@@ -1,0 +1,26 @@
+# Credentials and per-business configuration
+.env
+.env.*
+config/.env
+config/.env.*
+config/business.json
+
+# Business documents and generated data
+product-marketing.md
+inputs/**
+!inputs/**/
+!inputs/**/.gitkeep
+outputs/**
+!outputs/**/
+!outputs/**/.gitkeep
+
+# Local runtime files
+__pycache__/
+*.pyc
+.DS_Store
+.local/
+.venv-browser/
+
+# Browser login profiles (session data)
+config/.browser_profile/
+.venv/

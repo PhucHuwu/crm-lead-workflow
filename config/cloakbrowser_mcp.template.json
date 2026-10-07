@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "workflow-cloakbrowser": {
+      "command": "/ABSOLUTE/PATH/TO/crm-lead-workflow/.venv-browser/bin/python",
+      "args": [
+        "/ABSOLUTE/PATH/TO/crm-lead-workflow/scripts/cloakbrowser_mcp.py"
+      ]
+    }
+  }
+}

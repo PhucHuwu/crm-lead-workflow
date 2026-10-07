@@ -1,0 +1,40 @@
+{
+  "business_id": null,
+  "business_name": null,
+  "website": null,
+  "campaign": {
+    "name": null,
+    "priority_products": [],
+    "target_markets": [],
+    "daily_qualified_lead_target": null,
+    "lead_sources": []
+  },
+  "crm": {
+    "provider": "tinacrm",
+    "base_url": null,
+    "workspace_id": null,
+    "lead_object": null,
+    "field_mapping": {},
+    "credential_reference": null,
+    "task_assignee_id": null
+  },
+  "email": {
+    "provider": null,
+    "sender_address": null,
+    "reply_mailbox": null,
+    "credential_reference": null,
+    "tone": null,
+    "sequence_steps": [],
+    "final_reply_wait_days": null
+  },
+  "schedule": {
+    "timezone": null,
+    "daily_run_time": null,
+    "execution_method": null
+  },
+  "reporting": {
+    "recipients": [],
+    "day_of_week": null,
+    "time": null
+  }
+}
