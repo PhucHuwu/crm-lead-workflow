@@ -7,6 +7,10 @@ metadata:
 
 # RevOps & CRM Webhook Orchestration
 
+## TinaCRM: quy tắc kết nối ưu tiên
+
+Đọc `workflows/TINACRM_CONNECTION.md` trước các ví dụ bên dưới. Ưu tiên native MCP `/mcp`, khám phá tools/schema và quyền thực tế. REST/MCP cần xác thực; API key dùng Bearer, Role và workspace đã gắn trong token, không yêu cầu người dùng nhập workspace ID riêng. Webhook thông báo không phải cổng nhập lead; workflow trigger phải được thiết lập riêng. Payload `action` bên dưới chỉ là minh họa, không phải API chuẩn TinaCRM. Kết quả khởi chạy workflow chưa chứng minh dữ liệu đã được lưu; cần đọc lại.
+
 Kỹ năng này điều phối vòng đời của khách hàng tiềm năng giữa Claude và hệ thống CRM thông qua Webhook HTTP.
 
 ## 1. Vòng đời dữ liệu Lead (Lifecycle Stages)

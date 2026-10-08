@@ -12,11 +12,20 @@
   "crm": {
     "provider": "tinacrm",
     "base_url": null,
-    "workspace_id": null,
+    "connection_method": "native_mcp",
+    "mcp_url": null,
+    "auth_method": null,
+    "resolved_workspace_id": null,
     "lead_object": null,
     "field_mapping": {},
     "credential_reference": null,
-    "task_assignee_id": null
+    "task_assignee_id": null,
+    "workflow_triggers": {
+      "lead_import_url": null,
+      "task_create_url": null,
+      "auth_mode": null,
+      "credential_reference": null
+    }
   },
   "email": {
     "provider": null,

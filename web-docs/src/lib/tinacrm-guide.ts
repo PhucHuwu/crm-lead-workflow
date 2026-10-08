@@ -1,0 +1,21 @@
+import type { Guide } from "./guides";
+
+export const tinaCrmGuide: Guide = {
+  slug: "ket-noi-tinacrm", title: "Kết nối TinaCRM với Claude", shortTitle: "Kết nối TinaCRM", group: "Làm quen", minutes: 6,
+  description: "Dùng màn hình kết nối có sẵn trong TinaCRM. Không cần tìm mã workspace hoặc gửi khóa bí mật trong chat.",
+  sections: [
+    { id: "start", title: "Mở đúng tài khoản doanh nghiệp", paragraphs: ["Đăng nhập TinaCRM của doanh nghiệp bạn. Nếu tài khoản dùng được nhiều không gian làm việc, chọn đúng doanh nghiệp trước khi kết nối.", "Bạn không cần tự tìm mã workspace. Quyền truy cập được xác định khi đăng nhập/cấp quyền hoặc dùng khóa kết nối hợp lệ."], prompt: "Tôi muốn kết nối TinaCRM với Claude. Hãy hỏi tôi địa chỉ TinaCRM trước, rồi hướng dẫn từng thao tác đơn giản. Đừng yêu cầu mã workspace hoặc khóa bí mật trong chat." },
+    { id: "native", title: "Thử nút kết nối Claude có sẵn", steps: [
+      { title: "Mở Settings → MCP & APIs", body: "Trong TinaCRM, mở Settings (Cài đặt), tìm MCP & APIs. Tên hiển thị có thể khác theo ngôn ngữ hoặc phiên bản. Nếu không thấy mục này, nhờ quản trị viên kiểm tra quyền và phiên bản." },
+      { title: "Chọn tab MCP → Claude → Install", body: "Trong phần Quick install, tìm thẻ Claude và bấm Install. Source hiện có thể hiển thị tên Twenty thay vì TinaCRM. Link sẽ mở trang thêm kết nối trong Claude với địa chỉ điền sẵn." },
+      { title: "Đăng nhập và cấp quyền", body: "Làm theo màn hình kết nối để đăng nhập/cấp quyền đúng doanh nghiệp. Nút Install chỉ mở biểu mẫu, chưa tự hoàn tất kết nối. Nếu gặp lỗi hoặc nút bị mờ, nhờ người hỗ trợ; link yêu cầu địa chỉ HTTPS." }
+    ], note: { title: "Cần kiểm tra trên hệ thống đang dùng", body: "Hướng dẫn dựa trên mã nguồn TinaCRM đã khảo sát. Khả năng đăng nhập kết nối còn phụ thuộc bản đang triển khai và tài khoản Claude. Không cần tự sửa cấu hình kỹ thuật khi bị vướng." } },
+    { id: "key", title: "Nếu người hỗ trợ cần khóa kết nối", paragraphs: ["API key là khóa cho phép công cụ đọc hoặc ghi CRM theo quyền đã chọn. Chỉ địa chỉ TinaCRM hoặc mã workspace thì chưa đủ để truy cập dữ liệu."], steps: [
+      { title: "Mở tab API", body: "Trong MCP & APIs, chọn API, tìm API Keys rồi Create API key. Nếu không có quyền tạo, nhờ quản trị viên hỗ trợ." },
+      { title: "Đặt tên, quyền và thời hạn", body: "Đặt tên dễ nhớ như “Claude workflow”. Nhờ người hỗ trợ chọn Role phù hợp cho việc đọc/lưu khách và tạo task, cùng Expiration Date (ngày hết hạn)." },
+      { title: "Lưu khóa vào nơi cấu hình kết nối", body: "Sau khi tạo, khóa được đưa vào cấu hình công cụ trên máy hoặc màn hình kết nối phù hợp. Không dán khóa vào chat, email báo cáo hoặc ảnh màn hình. Người hỗ trợ sẽ chỉ đúng nơi nhập." }
+    ], note: { title: "Khóa hết hạn hoặc bị thu hồi thì kết nối ngừng", body: "Nếu trước đây dùng được nhưng nay báo không có quyền, nhờ kiểm tra khóa và Role. Không cần đổi mã workspace để xử lý lỗi này." } },
+    { id: "webhooks", title: "Bạn có phải tạo webhook không?", paragraphs: ["Thông thường hãy kết nối Claude với TinaCRM trước để đọc/lưu khách và tạo task. Không cần mặc định tạo webhook cho mọi bước.", "Tab Webhooks là nơi cấu hình TinaCRM gửi thông báo ra ngoài. Nó không tự tạo cổng nhận danh sách khách. Nếu dùng workflow được kích hoạt bằng link, người hỗ trợ phải chuẩn bị workflow, ánh xạ dữ liệu và kiểm tra cách bảo vệ link riêng."], note: { title: "Các loại khóa không dùng thay nhau", body: "Khóa API dùng cho truy cập dữ liệu. Secret của webhook thông báo dùng để kiểm tra thông báo đến từ CRM. Link kích hoạt workflow trong source hiện không tự kiểm tra khóa API; người hỗ trợ cần kiểm tra triển khai thực tế." } },
+    { id: "test", title: "Nhờ Claude kiểm tra trước khi lưu khách", prompt: "Hãy kiểm tra kết nối TinaCRM bằng công cụ thực tế: xác nhận đúng doanh nghiệp, xem những công cụ bạn được dùng và đọc cấu trúc các ô thông tin khách hàng. Chưa tạo, sửa hay xóa dữ liệu. Nếu bị lỗi, giải thích đơn giản đó là lỗi kết nối, khóa truy cập hay thiếu quyền.", checks: ["Tôi đang kết nối đúng doanh nghiệp trong TinaCRM.", "Claude đã đọc thử bằng công cụ, không chỉ nói đã kết nối.", "Người hỗ trợ đã kiểm tra quyền lưu khách và tạo task cần dùng.", "Khóa bí mật được cấu hình ngoài chat."] }
+  ]
+};

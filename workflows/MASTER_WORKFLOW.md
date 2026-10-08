@@ -1,5 +1,7 @@
 # MASTER WORKFLOW — TOÀN BỘ TIẾN TRÌNH VẬN HÀNH 13 BƯỚC
 
+**Kết nối CRM:** các bước B9/B12 dùng `TINACRM_CONNECTION.md` làm quy tắc ưu tiên. Thử native MCP sẵn có; không mặc định yêu cầu webhook nhập lead/task và không yêu cầu workspace ID riêng cho REST/MCP. Các payload, mẫu hỏi webhook bên dưới chỉ dành cho trường hợp workflow custom đã được thiết lập.
+
 Tài liệu này mô tả chi tiết logic chuyển trạng thái, đầu vào, đầu ra và kịch bản hỏi người dùng cho từng bước trong quy trình.
 
 **Kiến trúc ưu tiên:** [LOCAL_EXECUTION.md](LOCAL_EXECUTION.md) và [BUSINESS_ONBOARDING.md](BUSINESS_ONBOARDING.md). Claude Desktop điều phối với công cụ cục bộ; TinaCRM lưu lead và trạng thái theo workspace của doanh nghiệp. Mục tiêu lead/ngày, số email, lịch và người nhận báo cáo lấy từ `config/business.json` do Claude thiết lập với người dùng. Các ví dụ 4 email bên dưới chỉ là tham khảo. Lịch tự động cần được cấu hình và kiểm chứng bằng cơ chế thực thi thực tế trên máy người dùng.

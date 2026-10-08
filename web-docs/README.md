@@ -20,7 +20,7 @@ npm start
 
 ## Nội dung và chức năng
 
-- 11 bài: bắt đầu, Claude Desktop, tải workflow, đặt tài liệu vào thư mục, thiết lập, doanh nghiệp, tìm khách, email, hằng ngày, báo cáo, trợ giúp.
+- 12 bài: bắt đầu, Claude Desktop, tải workflow, đặt tài liệu vào thư mục, thiết lập, kết nối TinaCRM, doanh nghiệp, tìm khách, email, hằng ngày, báo cáo, trợ giúp.
 - Tìm kiếm tiếng Việt có hoặc không dấu; phím tắt Ctrl/Cmd+K.
 - Câu mẫu sao chép vào Claude, checklist và đánh dấu đã đọc lưu trong localStorage của trình duyệt.
 - Điều hướng từng bài, mục lục, chế độ sáng/tối, giao diện mobile và hỗ trợ in.

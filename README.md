@@ -8,6 +8,8 @@ Website tài liệu Next.js nằm tại [`web-docs/`](web-docs/README.md), gồm
 
 ## Kiến trúc và trải nghiệm
 
+**TinaCRM:** đã khảo sát source và có native MCP. Xem [`workflows/TINACRM_CONNECTION.md`](workflows/TINACRM_CONNECTION.md) để thiết lập xác thực đúng, phân biệt data API, workflow trigger và webhook thông báo. Không dùng workspace ID thay token. Cần kiểm chứng trên instance thực tế trước khi báo đã kết nối.
+
 ### Trải nghiệm cho người dùng ít quen công nghệ
 
 Claude chủ động hỏi từng câu, dùng từ dễ hiểu và lựa chọn đánh số. Người dùng có thể gửi tài liệu, website hoặc để Claude hỏi từng câu về doanh nghiệp; không cần biết tên skill hay chủ động đặt câu hỏi. Thông tin kỹ thuật do Claude chuyển thành cấu hình và hướng dẫn kết nối theo từng thao tác. Xem `rules/nontechnical_user_experience.md`.

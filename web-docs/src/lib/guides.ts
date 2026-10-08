@@ -1,5 +1,6 @@
 import { folderGuide } from "./folder-guide";
 import { downloadGuide } from "./download-guide";
+import { tinaCrmGuide } from "./tinacrm-guide";
 
 export type Section = {
   id: string;
@@ -79,6 +80,9 @@ export const guides: Guide[] = [
       { id: "handoff", title: "Gửi yêu cầu này cho người hỗ trợ", prompt: "Nhờ bạn giúp tôi thiết lập workflow trên Claude Desktop cho doanh nghiệp của tôi: dự án và tài liệu riêng, trình duyệt CloakBrowser, kết nối TinaCRM, hộp thư gửi/nhận và kiểm tra khả năng chạy theo lịch trên máy. Hãy thử từng kết nối và báo phần nào chưa sẵn sàng. Tôi sẽ tự nhập mật khẩu và mã xác minh khi đăng nhập." },
       { id: "ready", title: "Kiểm tra trước khi sử dụng", checks: ["Tôi mở được dự án của doanh nghiệp mình.", "Claude biết tài liệu thuộc đúng doanh nghiệp.", "Người hỗ trợ đã nói rõ công cụ nào hoạt động.", "Hộp thư và tài khoản TinaCRM là tài khoản tôi muốn dùng."] }
     ]
+  },
+  {
+    ...tinaCrmGuide
   },
   {
     slug: "doanh-nghiep", title: "Giới thiệu doanh nghiệp của bạn", shortTitle: "Giới thiệu doanh nghiệp", group: "Thực hiện workflow", minutes: 5,
