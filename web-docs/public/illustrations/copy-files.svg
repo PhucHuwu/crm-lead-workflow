@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="540" viewBox="0 0 1100 540">
+<rect width="1100" height="540" rx="18" fill="#f2f5ef"/>
+<g font-family="Arial,sans-serif" fill="#24342d">
+<text x="45" y="55" font-size="25" font-weight="700">Bạn tự sao chép tài liệu vào đúng chỗ</text><text x="45" y="87" font-size="17" fill="#53655a">Sơ đồ thao tác • Không phải ảnh chụp Finder hoặc File Explorer</text>
+<rect x="45" y="125" width="420" height="235" rx="12" fill="#fff" stroke="#b8cabd"/>
+<text x="70" y="165" font-size="21" font-weight="700">1. Nơi đang có tài liệu</text><text x="70" y="197" font-size="18">Ví dụ: Downloads / Tải xuống</text>
+<rect x="70" y="222" width="370" height="55" rx="8" fill="#e6eddf"/>
+<text x="90" y="257" font-size="20">ho-so-cong-ty.pdf</text><text x="70" y="319" font-size="18">Chọn tệp → Sao chép</text>
+<path d="M488 245H608M585 228L608 245L585 262" fill="none" stroke="#24644e" stroke-width="4"/>
+<rect x="635" y="125" width="420" height="235" rx="12" fill="#fff" stroke="#b8cabd"/>
+<text x="660" y="165" font-size="21" font-weight="700">2. Nơi nhận tài liệu</text><text x="660" y="200" font-size="18">crm-lead-workflow → inputs</text><text x="660" y="233" font-size="22" font-weight="700" fill="#24644e">→ 01_company_info</text><text x="660" y="280" font-size="18">Mở thư mục này → Dán</text><text x="660" y="318" font-size="17" fill="#53655a">Kiểm tra tên tệp đã xuất hiện</text>
+<text x="45" y="408" font-size="19" font-weight="700">Windows: Ctrl + C → Ctrl + V</text><text x="635" y="408" font-size="19" font-weight="700">Mac: Command + C → Command + V</text>
+<text x="45" y="460" font-size="18">Tài liệu sản phẩm? Dùng cùng cách, nhưng dán vào 02_marketing_materials.</text><text x="45" y="499" font-size="17" fill="#53655a">Sao chép giữ nguyên bản gốc. Nếu trùng tên, kiểm tra trước khi thay thế.</text>
+</g></svg>

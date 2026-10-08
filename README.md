@@ -2,7 +2,11 @@
 
 Quy trình tự động hóa 13 bước từ dữ liệu doanh nghiệp thô đến Lead Generation, Webhook CRM, Email Nurturing và Báo cáo tuần. Được tối ưu hóa cho **Claude Desktop (Projects)** với cơ chế **Chủ động tương tác & hỏi người dùng**.
 
-## Kiến trúc triển khai đã chốt
+## Web hướng dẫn cho người dùng
+
+Website tài liệu Next.js nằm tại [`web-docs/`](web-docs/README.md), gồm hướng dẫn Claude Desktop và workflow bằng tiếng Việt, tìm kiếm, câu mẫu sao chép và checklist lưu tiến độ. Xem README trong thư mục đó để chạy local.
+
+## Kiến trúc và trải nghiệm
 
 ### Trải nghiệm cho người dùng ít quen công nghệ
 
