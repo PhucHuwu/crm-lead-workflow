@@ -26,7 +26,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       {section.steps && <ol className="steps">{section.steps.map((step, n) => <li key={step.title}><span className="step-number">{n + 1}</span><div><h3>{step.title}</h3><p>{step.body}</p></div></li>)}</ol>}
       {(visuals[`${guide.slug}:${section.id}`] || []).map((visual) => <GuideVisual key={visual.src} visual={visual} />)}
       {section.checks && <Checklist items={section.checks} storageKey={`guide-checks:${guide.slug}:${section.id}`} />}
-      {section.prompt && <CopyPrompt text={section.prompt} />}
+      {section.prompt && <CopyPrompt text={section.prompt} command={guide.slug === "cai-moi-truong" && ["versions", "windows", "mac"].includes(section.id)} />}
       {section.note && <aside className="note"><InfoCircledIcon /><div><strong>{section.note.title}</strong><p>{section.note.body}</p></div></aside>}
       {section.faqs && <div className="faqs">{section.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</div>}
     </section>)}

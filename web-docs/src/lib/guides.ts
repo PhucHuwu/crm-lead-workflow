@@ -1,6 +1,8 @@
 import { folderGuide } from "./folder-guide";
 import { downloadGuide } from "./download-guide";
 import { tinaCrmGuide } from "./tinacrm-guide";
+import { environmentGuide } from "./environment-guide";
+import { codeDesktopGuides } from "./code-desktop-guides";
 
 export type Section = {
   id: string;
@@ -23,7 +25,7 @@ export type Guide = {
   sections: Section[];
 };
 
-export const guides: Guide[] = [
+const baseGuides: Guide[] = [
   {
     slug: "bat-dau", title: "Bắt đầu thật đơn giản", shortTitle: "Bắt đầu ở đây", group: "Làm quen", minutes: 4,
     description: "Không cần biết về AI. Một vài bước nhỏ để có người trợ lý tìm khách và chăm sóc khách cùng bạn.",
@@ -68,13 +70,16 @@ export const guides: Guide[] = [
     ...folderGuide
   },
   {
+    ...environmentGuide
+  },
+  {
     slug: "thiet-lap", title: "Thiết lập lần đầu", shortTitle: "Thiết lập lần đầu", group: "Làm quen", minutes: 7,
-    description: "Một lần chuẩn bị cùng người hỗ trợ, để sau đó bạn có thể làm việc bằng hội thoại đơn giản.",
+    description: "Bạn tự chuẩn bị môi trường và kết nối công cụ theo hướng dẫn; Claude Chat giải thích khi bạn cần.",
     sections: [
       { id: "project", title: "Chuẩn bị một dự án riêng", paragraphs: ["Mỗi doanh nghiệp nên có một dự án Claude riêng và một thư mục workflow riêng. Điều này giúp tài liệu, khách hàng và hộp thư không bị lẫn giữa các doanh nghiệp."], steps: [
         { title: "Tạo hoặc nhận dự án", body: "Người hỗ trợ tạo dự án trong Claude và đặt tên dễ nhớ, chẳng hạn “Tìm khách — Công ty của tôi”." },
         { title: "Thêm hướng dẫn cho trợ lý", body: "Người hỗ trợ thêm chỉ dẫn workflow và các tài liệu hướng dẫn vào dự án. Chỉ tạo dự án mới chưa đủ để Claude biết toàn bộ workflow." },
-        { title: "Kết nối công cụ", body: "Người hỗ trợ thiết lập trình duyệt CloakBrowser, kết nối TinaCRM và gửi/đọc email theo các công cụ thực sự có sẵn." }
+        { title: "Tự cài và kết nối công cụ", body: "Làm theo bài “Cài môi trường & chạy lệnh”: tự cài Node.js/Python, chạy lệnh trong Terminal/PowerShell và sửa cấu hình. Kết nối TinaCRM theo bài riêng; Claude Chat không chạy lệnh giúp bạn. Nếu bị vướng, có thể nhờ người hỗ trợ." }
       ], note: { title: "Đây là bước có thể cần người hỗ trợ", body: "Bộ workflow hiện chưa có bộ cài bằng một nút. Một số kết nối vẫn cần được xây dựng hoặc cấu hình. Bạn không cần tự nhập mã hay chỉnh tệp kỹ thuật." } },
       { id: "verify", title: "Nhờ Claude kiểm tra kết nối", prompt: "Hãy kiểm tra các công cụ hiện có: đọc tài liệu, mở trình duyệt CloakBrowser, kết nối TinaCRM, gửi và đọc email. Nói rõ việc nào đã dùng được, việc nào cần người hỗ trợ thiết lập. Không gửi email thật trong bước kiểm tra này.", paragraphs: ["Claude chỉ nên nói “đã kết nối” sau khi công cụ trả về kết quả. Nếu chưa có công cụ email, bạn vẫn có thể dùng Claude để soạn nội dung trước."] },
       { id: "handoff", title: "Gửi yêu cầu này cho người hỗ trợ", prompt: "Nhờ bạn giúp tôi thiết lập workflow trên Claude Desktop cho doanh nghiệp của tôi: dự án và tài liệu riêng, trình duyệt CloakBrowser, kết nối TinaCRM, hộp thư gửi/nhận và kiểm tra khả năng chạy theo lịch trên máy. Hãy thử từng kết nối và báo phần nào chưa sẵn sàng. Tôi sẽ tự nhập mật khẩu và mã xác minh khi đăng nhập." },
@@ -175,6 +180,24 @@ export const guides: Guide[] = [
     ]
   }
 ];
+
+const adaptCodeText = (text: string) => text
+  .replaceAll("Mở cuộc trò chuyện trong dự án đã được thiết lập", "Mở session trong tab Code, chọn Local và thư mục workflow")
+  .replaceAll("Mở dự án workflow", "Mở thư mục workflow trong Code Local")
+  .replaceAll("Mở dự án Claude", "Mở session Claude Code Local")
+  .replaceAll("một dự án Claude riêng", "một thư mục và session Claude Code riêng")
+  .replaceAll("dự án của doanh nghiệp", "session Code Local của doanh nghiệp")
+  .replaceAll("dự án workflow", "session Code Local của workflow");
+export const guides: Guide[] = baseGuides.map((guide) => codeDesktopGuides[guide.slug] ?? {
+  ...guide,
+  sections: guide.sections.map((section) => ({
+    ...section,
+    paragraphs: section.paragraphs?.map(adaptCodeText),
+    prompt: section.prompt ? adaptCodeText(section.prompt) : undefined,
+    steps: section.steps?.map((step) => ({ ...step, body: adaptCodeText(step.body) })),
+    faqs: section.faqs?.map((faq) => ({ ...faq, answer: adaptCodeText(faq.answer) })),
+  })),
+});
 
 export const groups = ["Làm quen", "Thực hiện workflow", "Trợ giúp"];
 export const guideHref = (slug: string) => `/huong-dan/${slug}`;

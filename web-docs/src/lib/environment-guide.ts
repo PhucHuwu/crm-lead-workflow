@@ -1,0 +1,28 @@
+import type { Guide } from "./guides";
+
+export const environmentGuide: Guide = {
+  slug: "cai-moi-truong", title: "Tự cài môi trường trên máy", shortTitle: "Cài môi trường & chạy lệnh", group: "Làm quen", minutes: 12,
+  description: "Bạn chạy lệnh trên máy mình. Claude Chat chỉ giải thích và giúp đọc lỗi; không chạy lệnh thay bạn.",
+  sections: [
+    { id: "roles", title: "Việc nào bạn làm, việc nào Claude làm?", paragraphs: ["Hướng dẫn này dùng Claude Chat trong ứng dụng Desktop, không phải Claude Code. Bạn tự cài phần mềm, mở cửa sổ lệnh và sửa cấu hình kết nối. Claude có thể giải thích từng bước và đọc thông báo lỗi bạn gửi.", "Sau khi cài và kết nối, Claude chỉ thực hiện được những thao tác công cụ cho phép: đọc thư mục, điều khiển CloakBrowser hoặc thao tác TinaCRM. Kết nối đọc tệp không cấp khả năng chạy lệnh tùy ý."], note: { title: "Đọc trước khi sao chép", body: "Các câu mẫu ở bài này là lệnh để chạy trong Terminal/PowerShell, không phải tin nhắn gửi Claude. Thay đường dẫn ví dụ bằng địa chỉ thư mục thật của bạn." } },
+    { id: "requirements", title: "Cài hai phần mềm cần thiết", steps: [
+      { title: "Node.js bản LTS", body: "Mở https://nodejs.org, tải bản LTS cho máy bạn và cài theo trình hướng dẫn. Công cụ đọc thư mục dùng Node.js và npx." },
+      { title: "Python 3.12", body: "Mở https://www.python.org/downloads/, chọn bản Python 3.12 phù hợp. Trên Windows, chọn Add python.exe to PATH khi trình cài đặt có tùy chọn này. CloakBrowser và MCP cục bộ dùng Python." },
+      { title: "Mở lại cửa sổ lệnh sau khi cài", body: "Nếu đang mở Terminal hoặc PowerShell, đóng rồi mở lại để nhận phần mềm vừa cài." }
+    ] },
+    { id: "terminal", title: "Mở cửa sổ để chạy lệnh", steps: [
+      { title: "Windows: mở PowerShell", body: "Mở Start, gõ PowerShell rồi mở Windows PowerShell. Không cần chọn Run as administrator cho các bước dưới." },
+      { title: "Mac: mở Terminal", body: "Nhấn Command + Space, gõ Terminal rồi nhấn Enter." },
+      { title: "Chạy từng dòng", body: "Sao chép một lệnh, dán vào cửa sổ và nhấn Enter. Đợi kết quả rồi mới chạy dòng tiếp theo. Nếu có lỗi, dừng và gửi thông báo đã che thông tin riêng tư cho Claude." }
+    ] },
+    { id: "versions", title: "Kiểm tra phần mềm đã cài", paragraphs: ["Chạy lần lượt hai dòng dưới. Mỗi dòng cần trả về số phiên bản. Nếu báo không tìm thấy lệnh, kiểm tra cài đặt và mở lại cửa sổ lệnh."], prompt: "node --version\nnpx --version" },
+    { id: "windows", title: "Cài công cụ trình duyệt trên Windows", paragraphs: ["Thay C:\\Users\\Lan\\Documents\\crm-lead-workflow bằng đường dẫn thư mục workflow đã giải nén của bạn. Chạy từng dòng trong PowerShell. Lệnh tạo môi trường riêng, không cần kích hoạt môi trường bằng script."], prompt: 'cd "C:\\Users\\Lan\\Documents\\crm-lead-workflow"\npy -3.12 --version\npy -3.12 -m venv .venv-browser\n.\\.venv-browser\\Scripts\\python.exe -m pip install -r config\\requirements-browser.txt', note: { title: "Nếu py -3.12 không chạy", body: "Có thể Python 3.12 chưa được cài hoặc Python Launcher chưa có. Kiểm tra trình cài đặt; gửi lỗi cho Claude để được hướng dẫn. Đừng tiếp tục chạy các dòng phía sau khi dòng trước lỗi." } },
+    { id: "mac", title: "Cài công cụ trình duyệt trên Mac", paragraphs: ["Thay /Users/lan/Documents/crm-lead-workflow bằng thư mục thật của bạn. Chạy lần lượt trong Terminal. Nếu Python bạn cài dùng tên lệnh khác, hỏi Claude với kết quả kiểm tra trước khi thay lệnh."], prompt: 'cd "/Users/lan/Documents/crm-lead-workflow"\npython3.12 --version\npython3.12 -m venv .venv-browser\n.venv-browser/bin/python -m pip install -r config/requirements-browser.txt' },
+    { id: "config", title: "Thêm công cụ vào Claude Desktop", paragraphs: ["Mở Settings của Claude Desktop, tìm phần Developer và Edit Config nếu phiên bản của bạn hỗ trợ cấu hình MCP cục bộ. Nếu giao diện khác, dùng tài liệu Claude hoặc hỏi với ảnh màn hình đã che dữ liệu riêng tư.", "Bạn tự mở và sửa tệp cấu hình. File config/claude_desktop_config.template.json là mẫu cho công cụ đọc thư mục. File config/cloakbrowser_mcp.template.json là mẫu cho trình duyệt. Gộp các mục bên trong mcpServers vào một cấu hình, không xóa kết nối đang dùng."], steps: [
+      { title: "Đổi đường dẫn theo máy bạn", body: "Filesystem cần địa chỉ thư mục workflow. CloakBrowser cần địa chỉ Python trong .venv-browser và tệp scripts/cloakbrowser_mcp.py. Windows dùng .venv-browser/Scripts/python.exe; Mac dùng .venv-browser/bin/python. Trong JSON Windows có thể dùng dấu / cho đường dẫn để tránh lỗi dấu backslash." },
+      { title: "Lưu và khởi động lại Claude", body: "Thoát hẳn ứng dụng rồi mở lại. Chỉ đóng cửa sổ có thể chưa thoát tiến trình. Kiểm tra công cụ có xuất hiện không." },
+      { title: "Kết nối TinaCRM riêng", body: "Làm theo bài Kết nối TinaCRM để dùng native MCP hoặc phương án phù hợp. Cài browser và filesystem chưa tự kết nối CRM hoặc email." }
+    ], note: { title: "Chưa quen sửa cấu hình?", body: "Nhờ Claude giải thích hoặc tạo bản cấu hình để bạn kiểm tra và tự dán. Không gửi API key, cookie hay mật khẩu trong chat. Nếu không chắc cách gộp, nhờ người hỗ trợ trước khi lưu." } },
+    { id: "test", title: "Sau khi cài, mới yêu cầu Claude kiểm tra", prompt: "Tôi đã tự cài môi trường và khởi động lại Claude Desktop. Hãy kiểm tra những công cụ bạn thực sự được dùng: đọc thư mục và mở CloakBrowser. Chưa sửa tệp hoặc gửi email. Nếu thiếu công cụ, giải thích bước tôi phải làm trên máy; không nói bạn đã chạy lệnh cài đặt thay tôi.", checks: ["Node.js và npx trả về số phiên bản.", "Tôi đã tạo môi trường Python và cài dependencies không báo lỗi.", "Tôi đã tự sửa đường dẫn trong cấu hình Claude Desktop.", "Claude đã kiểm tra công cụ thực tế sau khi khởi động lại."] }
+  ]
+};

@@ -2,6 +2,8 @@
 
 ## Phạm vi đã chốt
 
+- Giao diện là Claude Code trong Desktop, tab Code → Local → thư mục workflow. Claude đọc/ghi và chạy lệnh theo quyền/công cụ thực tế; người dùng xử lý đăng nhập và thao tác ngoài quyền. Filesystem MCP không bắt buộc cho đọc project Local.
+
 - Người dùng sử dụng Claude Desktop để thiết lập, điều phối và thực hiện quy trình BD cho doanh nghiệp của mình. Workflow/skills dùng chung; kiến thức và cấu hình được thiết lập riêng theo `BUSINESS_ONBOARDING.md`.
 - Các MCP server, connector và công cụ thực thi chạy trực tiếp trên máy người dùng. TinaCRM và dịch vụ email được truy cập qua kết nối hiện có.
 - Không yêu cầu triển khai thêm server automation, n8n cloud hoặc dịch vụ AI chạy nền trên server.

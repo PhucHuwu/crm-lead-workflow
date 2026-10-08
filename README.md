@@ -1,5 +1,14 @@
 # HỆ THỐNG QUẢN TRỊ & CHĂM SÓC KHÁCH HÀNG TỰ ĐỘNG (CRM LEAD WORKFLOW)
 
+## Cách sử dụng ưu tiên: Claude Code trong Desktop
+
+1. Tải và giải nén workflow; đặt tài liệu vào `inputs/01_company_info/` và `inputs/02_marketing_materials/`.
+2. Mở Claude Desktop → **Code** → **Local** → **Select folder**, chọn thư mục gốc workflow có `CLAUDE.md`.
+3. Chọn **Manual** khi mới sử dụng, gửi: “Hãy đọc CLAUDE.md, kiểm tra tài liệu và hướng dẫn tôi thiết lập workflow từng bước”.
+4. Claude có thể đọc/ghi và chạy lệnh theo quyền thực tế; bạn tự đăng nhập và xử lý thao tác ngoài quyền.
+
+Không cần Node.js/CLI chỉ để mở tab Code. Không dùng Chat Projects/Project Knowledge hoặc `claude_desktop_config.json` như setup mặc định. Các hướng dẫn Chat cũ bên dưới không áp dụng cho môi trường đã chốt; xem `CLAUDE.md` và bài web “Mở tab Code trong Desktop”.
+
 Quy trình tự động hóa 13 bước từ dữ liệu doanh nghiệp thô đến Lead Generation, Webhook CRM, Email Nurturing và Báo cáo tuần. Được tối ưu hóa cho **Claude Desktop (Projects)** với cơ chế **Chủ động tương tác & hỏi người dùng**.
 
 ## Web hướng dẫn cho người dùng

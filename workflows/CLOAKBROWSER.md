@@ -6,6 +6,8 @@ Workflow chọn CloakBrowser làm browser backend cho nghiên cứu và thu th�
 
 ## Cài đặt
 
+**Claude Code Desktop:** trong session Local, nhờ Claude kiểm tra Python và thiết lập môi trường qua shell khi được phép. Đăng ký MCP bằng `.mcp.json` ở project hoặc cơ chế connector/CLI Code hỗ trợ. Mẫu `cloakbrowser_mcp.template.json` chứa server entry có thể đưa vào project `.mcp.json` sau khi sửa đường dẫn. Các bước cấu hình `claude_desktop_config.json` bên dưới chỉ áp dụng cho Chat cũ, không phải lựa chọn mặc định của Code. Không cần filesystem MCP để đọc thư mục Local.
+
 Chạy từ thư mục clone riêng của doanh nghiệp:
 
 ```bash

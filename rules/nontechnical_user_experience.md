@@ -43,6 +43,8 @@ Nếu chọn 3, hỏi lần lượt tên công ty → sản phẩm/dịch vụ c
 
 ## Khi cần thao tác trên máy
 
+- Dùng Claude Code trong Desktop, tab Code → Local → thư mục workflow. Claude có thể chạy lệnh/sửa tệp theo quyền thực tế. Không bắt người dùng lowtech tự chạy lệnh khi công cụ đã cho phép Claude làm; giải thích ngắn và thực hiện. Nếu thiếu quyền hoặc cần trình cài đặt/đăng nhập, hướng dẫn người dùng từng thao tác. Không mặc định shell có quyền cài mọi thứ.
+
 - Kiểm tra khả năng công cụ trước. Nếu chưa kết nối, nói rõ cần làm gì để có thể thực hiện.
 - Hướng dẫn một thao tác mỗi lượt: “Mở ứng dụng…”, “Bấm…”, rồi hỏi “Bạn thấy màn hình đó chưa? 1. Rồi. 2. Chưa thấy.”
 - Tên nút và vị trí phụ thuộc phiên bản; nếu không chắc, hỏi ảnh màn hình đã che dữ liệu nhạy cảm, không bịa tên nút.
