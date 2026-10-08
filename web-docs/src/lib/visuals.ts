@@ -8,6 +8,7 @@ export type Visual = {
 };
 
 export const visuals: Record<string, Visual[]> = {
+  "claude-desktop:usage": [{ src: "/illustrations/claude-code-usage-menu-real.png", alt: "Menu tài khoản Claude Desktop có mục Usage ngay dưới Settings; không hiển thị email hoặc tên cá nhân", caption: "Mở menu tài khoản ở góc dưới bên trái, rồi chọn Usage (1). Ảnh chụp thực tế đã cắt bỏ email và tên tài khoản. Đây là menu mở Usage, chưa phải màn hình chi tiết hạn mức.", kind: "Ảnh chụp thực tế", markers: [{ x: 83, y: 14, label: "1" }] }],
   "tai-workflow:download": [{ src: "/illustrations/github-download.png", alt: "Trang GitHub crm-lead-workflow với menu Code đang mở và lựa chọn Download ZIP ở cuối menu", caption: "Bấm Code (1), rồi chọn Download ZIP (2). Ảnh chụp kho workflow; vị trí có thể thay đổi theo kích thước màn hình.", kind: "Ảnh chụp thực tế", source: "https://github.com/PhucHuwu/crm-lead-workflow", markers: [{ x: 73, y: 34, label: "1" }, { x: 53, y: 68, label: "2" }] }],
   "tai-workflow:unzip": [{ src: "/illustrations/unzip.svg", alt: "Sơ đồ giải nén trên Windows bằng Extract All và trên Mac bằng bấm đúp ZIP", caption: "Chọn cột đúng hệ điều hành của bạn. Sau giải nén, mở thư mục có inputs và outputs.", kind: "Sơ đồ minh họa" }],
   "tep-thu-muc:open": [{ src: "/illustrations/folder-map.svg", alt: "Sơ đồ thư mục workflow: inputs gồm 01_company_info cho hồ sơ công ty và 02_marketing_materials cho sản phẩm, outputs chứa kết quả", caption: "Đối chiếu tên thư mục trên máy với sơ đồ này. Tài liệu bạn chuẩn bị đặt trong inputs.", kind: "Sơ đồ minh họa" }],

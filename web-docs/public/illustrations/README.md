@@ -1,5 +1,7 @@
 # Nguồn hình hướng dẫn
 
+- `claude-code-usage-menu-real.png`: menu tài khoản Claude Desktop trên Mac có mục Usage, chụp ngày 2026-10-08. Đã cắt bỏ hoàn toàn email phía trên và tên tài khoản phía dưới; ảnh gốc không đưa vào public. Chưa phải screenshot trang Usage chi tiết.
+
 - `claude-code-open-folder-real.png`: ảnh cắt menu No folder đang mở trên Mac, hiển thị Open folder…; loại vùng Recent chứa các dự án khác. Đây là menu trong Claude, không phải hộp thoại chọn thư mục của macOS.
 
 - `claude-code-no-folder-real.png`: ảnh chụp Code Local trên Mac khi chưa chọn thư mục, nhãn thực tế là No folder. Cắt bỏ vùng tài khoản/thống kê; dùng để đối chiếu trước/sau với `claude-code-local-real.png`.
