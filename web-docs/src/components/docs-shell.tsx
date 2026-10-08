@@ -32,17 +32,15 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
   return <>
     <a className="skip-link" href="#noi-dung">Đến nội dung</a>
     <header className="topbar">
-      <Link href="/" className="brand"><span className="brand-symbol"><BookOpenIcon /></span><span>workflow<span className="brand-divider">/</span><span className="brand-light">sổ tay</span></span></Link>
+      <Link href="/" className="brand"><span className="brand-symbol"><BookOpenIcon /></span><span>Hướng dẫn workflow</span></Link>
       <div className="header-actions"><button className="search-trigger" onClick={() => setSearch(true)}><MagnifyingGlassIcon /><span>Tìm hướng dẫn…</span><kbd>⌘ K</kbd></button><button className="icon-button" aria-label={dark ? "Chuyển sang giao diện sáng" : "Chuyển sang giao diện tối"} onClick={toggleTheme}>{dark ? <SunIcon /> : <MoonIcon />}</button><button className="icon-button mobile-toggle" aria-label="Mở hoặc đóng mục lục" aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? <Cross1Icon /> : <HamburgerMenuIcon />}</button></div>
     </header>
     <div className="workspace">
       <aside className={`sidebar ${menu ? "is-open" : ""}`} aria-label="Điều hướng tài liệu">
         <Link className={`overview-link ${pathname === "/" ? "active" : ""}`} href="/" onClick={() => setMenu(false)}><BookOpenIcon /> Tổng quan sổ tay</Link>
-        {groups.map((group) => <div className="nav-group" key={group}><p className="nav-label">{group}</p><nav aria-label={group}>{guides.filter((g) => g.group === group).map((guide) => <Link onClick={() => setMenu(false)} href={guideHref(guide.slug)} key={guide.slug} className={`nav-link ${pathname === guideHref(guide.slug) ? "active" : ""}`}><span>{guide.shortTitle}</span>{completed.includes(guide.slug) && <CheckIcon aria-label="Đã đọc" />}</Link>)}</nav></div>)}
-        <div className="sidebar-help"><span className="helper-mark">?</span><strong>Chưa biết bắt đầu từ đâu?</strong><p>Đọc bài đầu tiên. Chúng tôi sẽ dẫn bạn từng bước.</p><Link href={guideHref("bat-dau")} onClick={() => setMenu(false)}>Bắt đầu ở đây <ArrowRightIcon /></Link></div>
-        <a className="claude-link" href="https://claude.ai/download" target="_blank" rel="noreferrer">Tải Claude Desktop <ExternalLinkIcon /></a>
+        {groups.map((group) => <details className="nav-group" key={`${group}:${pathname}`} open={guides.some((g) => g.group === group && pathname === guideHref(g.slug)) || (pathname === "/" && group === "Làm quen")}><summary className="nav-label">{group}</summary><nav aria-label={group}>{guides.filter((g) => g.group === group).map((guide) => <Link onClick={() => setMenu(false)} href={guideHref(guide.slug)} key={guide.slug} className={`nav-link ${pathname === guideHref(guide.slug) ? "active" : ""}`}><span>{guide.shortTitle}</span>{completed.includes(guide.slug) && <CheckIcon aria-label="Đã đọc" />}</Link>)}</nav></details>)}
       </aside>
-      <main id="noi-dung" className="main-content" tabIndex={-1}>{children}<footer className="footer"><span>Sổ tay Workflow · Dành cho mọi doanh nghiệp</span><span>Học từng bước. Làm từng việc.</span></footer></main>
+      <main id="noi-dung" className="main-content" tabIndex={-1}>{children}</main>
     </div>
     <dialog ref={dialog} className="search-dialog" onCancel={() => setSearch(false)} onClick={(event) => { if (event.target === dialog.current) setSearch(false); }}>
       <div className="search-dialog-header"><MagnifyingGlassIcon /><label className="sr-only" htmlFor="guide-search">Tìm hướng dẫn</label><input ref={input} id="guide-search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Bạn muốn tìm hiểu điều gì?" /><button className="icon-button" aria-label="Đóng tìm kiếm" onClick={() => setSearch(false)}><Cross1Icon /></button></div>

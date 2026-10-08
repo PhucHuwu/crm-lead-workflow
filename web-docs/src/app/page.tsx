@@ -1,17 +1,20 @@
 import Link from "next/link";
-import { ArrowRightIcon, ArrowTopRightIcon, CheckCircledIcon, ChatBubbleIcon, FileTextIcon, PersonIcon, EnvelopeClosedIcon, BarChartIcon } from "@radix-ui/react-icons";
-import { guides, guideHref } from "@/lib/guides";
-import { CopyPrompt } from "@/components/guide-actions";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
+import { guideHref } from "@/lib/guides";
 
 export default function Home() {
-  return <div className="home-page">
-    <div className="breadcrumb">Trung tâm hướng dẫn <span>/</span> Tổng quan</div>
-    <section className="home-hero"><div className="hero-copy"><span className="eyebrow"><span className="dot" /> Dành cho người mới bắt đầu</span><h1>Tìm khách cùng AI.<br />Bắt đầu từ đây.</h1><p>Một sổ tay dễ hiểu để sử dụng Claude Desktop và chăm sóc khách hàng từng bước.</p><Link href={guideHref("bat-dau")} className="button button-primary">Bắt đầu hướng dẫn <ArrowRightIcon /></Link></div><div className="hero-route" aria-label="Ba giai đoạn của workflow"><div className="route-caption">Từ thông tin của bạn<br /><strong>đến công việc rõ ràng.</strong></div>{[{ icon: FileTextIcon, title: "Hiểu doanh nghiệp", subtitle: "Bạn gửi tài liệu, Claude hỏi thêm" }, { icon: PersonIcon, title: "Tìm đúng khách", subtitle: "Có tiêu chuẩn, có nguồn thông tin" }, { icon: EnvelopeClosedIcon, title: "Chăm sóc & theo dõi", subtitle: "Có kế hoạch, có báo cáo kết quả" }].map((item, index) => <div className="route-item" key={item.title}><span className="route-icon"><item.icon /></span><div><strong>{item.title}</strong><span>{item.subtitle}</span></div><small>0{index + 1}</small></div>)}</div></section>
-    <div className="reassurance"><CheckCircledIcon /><p>Không cần viết lệnh. Không cần biết về AI. <strong>Bạn chỉ cần trả lời từng câu.</strong></p></div>
-    <section className="learning-path"><div className="section-heading"><h2>Một lộ trình, từng bước nhỏ</h2><p>Đọc theo thứ tự nếu bạn mới bắt đầu, hoặc chọn đúng phần mình cần.</p></div><div className="path-grid"><Link href={guideHref("claude-desktop")} className="path-feature"><span className="path-number">01 — LÀM QUEN</span><ChatBubbleIcon className="feature-icon" /><h3>Trước tiên, mở Claude.</h3><p>Cách đăng nhập, gửi tài liệu và bắt đầu cuộc trò chuyện đầu tiên.</p><span className="text-link">Làm quen với Claude Desktop <ArrowRightIcon /></span></Link><div className="path-list">{[{ n: "02", slug: "doanh-nghiep", label: "Giới thiệu doanh nghiệp", detail: "Cho Claude hiểu bạn bán gì và giúp ai." }, { n: "03", slug: "tim-khach", label: "Tìm khách phù hợp", detail: "Chọn tiêu chuẩn và xem danh sách có nguồn." }, { n: "04", slug: "email", label: "Chăm sóc & nhận phản hồi", detail: "Soạn email, thống nhất lịch và theo dõi." }, { n: "05", slug: "bao-cao", label: "Nhìn lại kết quả", detail: "Đọc báo cáo và chọn việc nên cải thiện." }].map((item) => <Link href={guideHref(item.slug)} key={item.slug}><span className="list-number">{item.n}</span><div><h3>{item.label}</h3><p>{item.detail}</p></div><ArrowTopRightIcon /></Link>)}</div></div></section>
-    <section className="start-conversation"><div><span className="conversation-icon"><ChatBubbleIcon /></span><h2>Chưa biết hỏi gì?<br />Để Claude hỏi bạn.</h2><p>Sao chép câu này vào dự án workflow trên Claude. Bạn có thể trả lời bằng số hoặc một câu ngắn.</p></div><CopyPrompt text="Tôi mới bắt đầu và chưa quen sử dụng AI. Hãy giúp tôi tìm và chăm sóc khách hàng cho doanh nghiệp của mình. Hỏi tôi từng câu đơn giản, mỗi lần một việc, và cho tôi lựa chọn để trả lời." /></section>
-    <section className="quick-access"><h2>Khi bạn cần đi tiếp</h2><div>{[{ slug: "thiet-lap", title: "Chưa có công cụ kết nối?", body: "Xem phần thiết lập cùng người hỗ trợ.", icon: CheckCircledIcon }, { slug: "hang-ngay", title: "Đã sẵn sàng làm việc?", body: "Mở checklist công việc hằng ngày.", icon: BarChartIcon }, { slug: "tro-giup", title: "Có một bước bị vướng?", body: "Tìm câu trả lời và cách nhờ trợ giúp.", icon: ChatBubbleIcon }].map((item) => <Link href={guideHref(item.slug)} key={item.slug}><item.icon /><div><h3>{item.title}</h3><p>{item.body}</p></div><ArrowRightIcon /></Link>)}</div></section>
-    <section className="quick-access"><h2>Chưa có bộ workflow trên máy?</h2><div><Link href={guideHref("tai-workflow")}><FileTextIcon /><div><h3>Tải workflow về máy</h3><p>Tải ZIP, giải nén và mở đúng thư mục. Không cần dùng lệnh.</p></div><ArrowRightIcon /></Link><Link href={guideHref("tep-thu-muc")}><FileTextIcon /><div><h3>Đặt tài liệu đúng chỗ</h3><p>Biết hồ sơ công ty và tài liệu sản phẩm cần đặt vào đâu.</p></div><ArrowRightIcon /></Link></div></section>
-    <p className="home-footnote">{guides.length} bài hướng dẫn · Dùng chung cho nhiều doanh nghiệp · Không yêu cầu kiến thức kỹ thuật</p>
+  return <div className="simple-home">
+    <h1>Hướng dẫn sử dụng workflow</h1>
+    <p className="home-intro">Tìm và chăm sóc khách hàng bằng Claude Code trên máy bạn. Hãy chọn việc bạn muốn làm.</p>
+    <section className="start-choice">
+      <h2>Tôi mới bắt đầu</h2>
+      <p>Đi theo 3 bước dưới đây. Bạn không cần biết lập trình.</p>
+      <ol className="start-steps">
+        {[{ slug: "tai-workflow", title: "Tải workflow về máy", body: "Tải và giải nén bộ thư mục có sẵn." }, { slug: "tep-thu-muc", title: "Đặt tài liệu công ty đúng chỗ", body: "Sao chép tài liệu vào thư mục được hướng dẫn." }, { slug: "claude-desktop", title: "Mở workflow trong Claude Code", body: "Chọn Code → Local → thư mục workflow." }].map((item, index) => <li key={item.slug}><Link href={guideHref(item.slug)}><span className="start-step-number">{index + 1}</span><div><h3>{item.title}</h3><p>{item.body}</p></div><ArrowRightIcon /></Link></li>)}
+      </ol>
+      <Link className="button button-primary" href={guideHref("tai-workflow")}>Bắt đầu bước 1 <ArrowRightIcon /></Link>
+    </section>
+    <section className="continue-choice"><h2>Tôi đã thiết lập xong</h2><p>Mở lại chiến dịch và kiểm tra những việc cần làm hôm nay.</p><Link className="button button-soft" href={guideHref("hang-ngay")}>Xem công việc hằng ngày <ArrowRightIcon /></Link></section>
+    <p className="home-help">Đang bị vướng? <Link href={guideHref("tro-giup")}>Xem cách xử lý</Link></p>
   </div>;
 }

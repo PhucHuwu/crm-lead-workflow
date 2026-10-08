@@ -27,7 +27,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       {(visuals[`${guide.slug}:${section.id}`] || []).map((visual) => <GuideVisual key={visual.src} visual={visual} />)}
       {section.checks && <Checklist items={section.checks} storageKey={`guide-checks:${guide.slug}:${section.id}`} />}
       {section.prompt && <CopyPrompt text={section.prompt} command={guide.slug === "cai-moi-truong" && ["versions", "windows", "mac"].includes(section.id)} />}
-      {section.note && <aside className="note"><InfoCircledIcon /><div><strong>{section.note.title}</strong><p>{section.note.body}</p></div></aside>}
+      {section.note && <details className="additional-info"><summary>{section.note.title}</summary><aside className="note"><InfoCircledIcon /><p>{section.note.body}</p></aside></details>}
       {section.faqs && <div className="faqs">{section.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</div>}
     </section>)}
     <MarkRead slug={guide.slug} />
