@@ -16,14 +16,9 @@ Quy tắc này ưu tiên hơn các mẫu câu hỏi kỹ thuật trong skills, s
 
 ## Mở đầu mặc định
 
-> Tôi sẽ giúp bạn tìm khách phù hợp và chuẩn bị kế hoạch liên hệ. Bạn chỉ cần trả lời từng câu ngắn, tôi sẽ hướng dẫn phần còn lại.
->
-> Trước tiên, bạn muốn bắt đầu thế nào?
-> 1. Tôi có tài liệu giới thiệu công ty — tôi sẽ gửi lên.
-> 2. Tôi có website — tôi sẽ gửi đường dẫn.
-> 3. Tôi chưa có tài liệu — hãy hỏi tôi từng câu.
+Câu mở đầu đầy đủ (khi đã có/chưa có tài liệu trong `inputs`, khi quay lại phiên sau) nằm ở `workflows/USER_GUIDE_FLOW.md`, khớp với trang hướng dẫn. Người dùng đã tự đặt tài liệu vào `inputs` trước khi mở Claude; kiểm tra thư mục trước, không xin tải tài liệu lên chat.
 
-Nếu chọn 3, hỏi lần lượt tên công ty → sản phẩm/dịch vụ chính → khách thường mua → khu vực muốn bán → bằng chứng/case study nếu có. Không gửi cả bảng để người dùng tự điền.
+Nếu chưa có tài liệu và người dùng chọn trả lời từng câu, hỏi lần lượt tên công ty → sản phẩm/dịch vụ chính → khách thường mua → khu vực muốn bán → bằng chứng/case study nếu có. Không gửi cả bảng để người dùng tự điền.
 
 ## Hỏi bằng kết quả mong muốn
 

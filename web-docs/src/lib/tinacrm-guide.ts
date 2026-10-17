@@ -1,7 +1,7 @@
 import type { Guide } from "./guides";
 
 export const tinaCrmGuide: Guide = {
-  slug: "ket-noi-tinacrm", title: "Kết nối TinaCRM với Claude", shortTitle: "Kết nối TinaCRM", group: "Làm quen", minutes: 6,
+  slug: "ket-noi-tinacrm", title: "Kết nối TinaCRM với Claude", shortTitle: "Kết nối TinaCRM", group: "Mở bằng Claude", minutes: 6,
   description: "Dùng màn hình kết nối có sẵn trong TinaCRM. Không cần tìm mã workspace hoặc gửi khóa bí mật trong chat.",
   sections: [
     { id: "start", title: "Mở đúng tài khoản doanh nghiệp", paragraphs: ["Đăng nhập TinaCRM của doanh nghiệp bạn. Nếu tài khoản dùng được nhiều không gian làm việc, chọn đúng doanh nghiệp trước khi kết nối.", "Bạn không cần tự tìm mã workspace. Quyền truy cập được xác định khi đăng nhập/cấp quyền hoặc dùng khóa kết nối hợp lệ."], prompt: "Tôi muốn kết nối TinaCRM với Claude. Hãy hỏi tôi địa chỉ TinaCRM trước, rồi hướng dẫn từng thao tác đơn giản. Đừng yêu cầu mã workspace hoặc khóa bí mật trong chat." },

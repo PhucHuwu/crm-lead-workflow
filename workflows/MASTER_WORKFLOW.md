@@ -44,7 +44,7 @@ graph TD
 ### GIAI ĐOẠN 1: THẤU HIỂU DOANH NGHIỆP & ĐỊNH NGHĨA LEAD (B1 -> B6)
 1. **Bước 1 (Khởi tạo):**
    - Kiểm tra folder `inputs/01_company_info/` và `inputs/02_marketing_materials/`.
-   - Nếu trống, hỏi người dùng: *"Bạn vui lòng tải lên tài liệu giới thiệu công ty vào thư mục `inputs/01_company_info/` và tài liệu sản phẩm vào `inputs/02_marketing_materials/` để bắt đầu."*
+   - Nếu trống, dùng câu mở đầu trong `USER_GUIDE_FLOW.md`: đưa lựa chọn tự đặt tài liệu (hướng dẫn mở Finder/File Explorer → `inputs/01_company_info/` hoặc `inputs/02_marketing_materials/`, sao chép và dán), gửi website hoặc trả lời từng câu.
 2. **Bước 2 & 3 (Company Analysis):**
    - Subagent `01_company_analyst` đọc hồ sơ, xác định USP, sứ mệnh, phân khúc phục vụ.
    - Trình bày tóm tắt cho người dùng xác nhận.

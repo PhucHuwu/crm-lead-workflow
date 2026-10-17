@@ -26,78 +26,21 @@ export type Guide = {
 };
 
 const baseGuides: Guide[] = [
-  {
-    slug: "bat-dau", title: "Bắt đầu thật đơn giản", shortTitle: "Bắt đầu ở đây", group: "Làm quen", minutes: 4,
-    description: "Không cần biết về AI. Một vài bước nhỏ để có người trợ lý tìm khách và chăm sóc khách cùng bạn.",
-    sections: [
-      { id: "workflow", title: "Trợ lý này giúp bạn làm gì?", paragraphs: ["Bạn cung cấp thông tin về doanh nghiệp và mục tiêu. Claude sẽ hỏi từng câu để hiểu bạn, đề xuất khách hàng phù hợp, rồi hỗ trợ tìm kiếm và chăm sóc khách.", "TinaCRM là nơi lưu thông tin khách và việc cần xử lý. Claude Desktop là nơi bạn trò chuyện và điều hành công việc. Công cụ kết nối sẽ thực hiện những thao tác mà bạn cho phép."], steps: [
-        { title: "Hiểu doanh nghiệp của bạn", body: "Đọc tài liệu, tìm hiểu sản phẩm và đề xuất nhóm khách hàng nên tiếp cận." },
-        { title: "Tìm và lưu khách phù hợp", body: "Tìm thông tin có nguồn, lọc trùng và lưu vào TinaCRM khi kết nối đã sẵn sàng." },
-        { title: "Liên hệ và theo dõi", body: "Soạn email, gửi theo kế hoạch đã thống nhất, theo dõi phản hồi và tổng hợp báo cáo." }
-      ] },
-      { id: "prepare", title: "Bạn cần chuẩn bị những gì?", checks: ["Tài khoản Claude và ứng dụng Claude Desktop trên máy.", "Tài liệu giới thiệu công ty hoặc đường dẫn website.", "Tài khoản TinaCRM và hộp thư dùng để liên hệ khách, nếu đã có.", "Người hỗ trợ đã kết nối các công cụ cần dùng."], note: { title: "Chưa có đủ? Bạn vẫn có thể bắt đầu", body: "Claude có thể hỏi từng câu về doanh nghiệp và chuẩn bị kế hoạch trước. Việc gửi email, lưu vào CRM hoặc chạy theo lịch cần công cụ được kết nối thực tế." } },
-      { id: "first-message", title: "Tin nhắn đầu tiên của bạn", paragraphs: ["Mở cuộc trò chuyện trong dự án đã được thiết lập. Dán câu dưới đây và gửi. Sau đó, bạn chỉ cần trả lời từng câu ngắn hoặc chọn số."], prompt: "Tôi muốn bắt đầu quy trình tìm và chăm sóc khách hàng cho doanh nghiệp của mình. Hãy hỏi tôi từng câu đơn giản, mỗi lần một việc. Nếu tôi chưa biết, hãy giúp tôi chọn." },
-      { id: "next", title: "Bạn không cần nhớ hết quy trình", paragraphs: ["Claude sẽ chủ động hỏi phần còn thiếu và dẫn bạn đến bước tiếp theo. Bạn có thể nói “Tôi chưa hiểu”, “Giải thích đơn giản hơn” hoặc “Để phần này sau” bất cứ lúc nào.", "Tài liệu này dùng chung cho nhiều doanh nghiệp. Số khách cần tìm, số email và người nhận báo cáo đều được chọn riêng cho bạn."] }
-    ]
-  },
-  {
-    slug: "claude-desktop", title: "Làm quen với Claude Desktop", shortTitle: "Sử dụng Claude Desktop", group: "Làm quen", minutes: 6,
-    description: "Cài ứng dụng, mở cuộc trò chuyện và trao đổi với Claude như với một người đồng nghiệp.",
-    sections: [
-      { id: "install", title: "Mở Claude trên máy của bạn", steps: [
-        { title: "Tải từ trang chính thức", body: "Truy cập claude.ai/download trong trình duyệt. Chọn bản dành cho máy của bạn và làm theo hướng dẫn cài đặt." },
-        { title: "Đăng nhập", body: "Mở Claude Desktop và đăng nhập tài khoản của bạn. Nếu đã cài và đăng nhập, bạn có thể bỏ qua hai bước này." },
-        { title: "Mở dự án của doanh nghiệp", body: "Tìm mục Projects (Dự án), mở dự án do người hỗ trợ đã chuẩn bị cho bạn. Nếu chưa có, xem bài “Thiết lập lần đầu”." }
-      ], note: { title: "Màn hình của bạn có thể khác", body: "Tên nút và vị trí có thể thay đổi theo phiên bản, ngôn ngữ và gói tài khoản. Nếu không thấy mục cần tìm, nhờ người hỗ trợ hoặc gửi ảnh đã che thông tin riêng tư." } },
-      { id: "chat", title: "Gửi tin nhắn đầu tiên", steps: [
-        { title: "Nhập yêu cầu vào ô trò chuyện", body: "Viết điều bạn muốn làm bằng tiếng Việt bình thường. Không cần chọn skill hoặc gõ lệnh đặc biệt." },
-        { title: "Gửi và đọc câu hỏi của Claude", body: "Bấm nút gửi. Nếu Claude đưa các lựa chọn, bạn có thể trả lời “1” hoặc “Tôi muốn tìm khách ở Việt Nam”." },
-        { title: "Kiểm tra khi Claude chuẩn bị hành động", body: "Khi ứng dụng hỏi quyền dùng công cụ, đọc tên công cụ và việc sắp làm. Chỉ cho phép nếu đúng công việc bạn yêu cầu." }
-      ], prompt: "Hãy kiểm tra tôi đã sẵn sàng sử dụng workflow chưa. Giải thích bằng từ dễ hiểu và hỏi tôi từng bước." },
-      { id: "files", title: "Gửi tài liệu cho Claude", paragraphs: ["Dùng nút đính kèm tệp trong cuộc trò chuyện, hoặc phần tài liệu của dự án nếu tài khoản của bạn hỗ trợ. Chọn hồ sơ công ty, brochure hoặc tài liệu dịch vụ.", "Bạn cũng có thể dán đường dẫn website. Chỉ gửi tài liệu mình muốn dùng cho công việc. Claude cần công cụ phù hợp để đọc website hoặc thư mục trên máy; ứng dụng không tự thấy tất cả tệp của bạn."], prompt: "Tôi vừa gửi tài liệu giới thiệu công ty. Hãy tóm tắt những gì bạn hiểu và hỏi tôi phần còn thiếu, mỗi lần một câu." },
-      { id: "local-folder", title: "Muốn Claude đọc tài liệu trên máy?", paragraphs: ["Bạn có thể yêu cầu đọc tài liệu trong một thư mục hoặc chuyển tệp vào đúng nơi dùng cho workflow. Trước hết, cần xác định đường dẫn và quyền truy cập. Bài tiếp theo “Tệp & thư mục trên máy” có hướng dẫn cùng câu mẫu cho từng thao tác."], prompt: "Tôi muốn bạn đọc tài liệu từ thư mục trên máy thay vì đính kèm từng tệp. Hãy kiểm tra kết nối đọc tệp và hỏi tôi địa chỉ thư mục, mỗi lần một việc." },
-      { id: "habits", title: "Ba câu bạn có thể dùng bất cứ lúc nào", steps: [
-        { title: "“Giải thích đơn giản hơn”", body: "Dùng khi câu trả lời có thuật ngữ hoặc quá dài." },
-        { title: "“Chúng ta đang ở bước nào?”", body: "Claude sẽ tóm tắt phần đã xong và việc tiếp theo." },
-        { title: "“Tạm dừng và tóm tắt giúp tôi”", body: "Lưu lại tiến trình trước khi nghỉ hoặc chuyển cuộc trò chuyện." }
-      ] }
-    ]
-  },
-  {
-    ...downloadGuide
-  },
-  {
-    ...folderGuide
-  },
-  {
-    ...environmentGuide
-  },
-  {
-    slug: "thiet-lap", title: "Thiết lập lần đầu", shortTitle: "Thiết lập lần đầu", group: "Làm quen", minutes: 7,
-    description: "Bạn tự chuẩn bị môi trường và kết nối công cụ theo hướng dẫn; Claude Chat giải thích khi bạn cần.",
-    sections: [
-      { id: "project", title: "Chuẩn bị một dự án riêng", paragraphs: ["Mỗi doanh nghiệp nên có một dự án Claude riêng và một thư mục workflow riêng. Điều này giúp tài liệu, khách hàng và hộp thư không bị lẫn giữa các doanh nghiệp."], steps: [
-        { title: "Tạo hoặc nhận dự án", body: "Người hỗ trợ tạo dự án trong Claude và đặt tên dễ nhớ, chẳng hạn “Tìm khách — Công ty của tôi”." },
-        { title: "Thêm hướng dẫn cho trợ lý", body: "Người hỗ trợ thêm chỉ dẫn workflow và các tài liệu hướng dẫn vào dự án. Chỉ tạo dự án mới chưa đủ để Claude biết toàn bộ workflow." },
-        { title: "Tự cài và kết nối công cụ", body: "Làm theo bài “Cài môi trường & chạy lệnh”: tự cài Node.js/Python, chạy lệnh trong Terminal/PowerShell và sửa cấu hình. Kết nối TinaCRM theo bài riêng; Claude Chat không chạy lệnh giúp bạn. Nếu bị vướng, có thể nhờ người hỗ trợ." }
-      ], note: { title: "Đây là bước có thể cần người hỗ trợ", body: "Bộ workflow hiện chưa có bộ cài bằng một nút. Một số kết nối vẫn cần được xây dựng hoặc cấu hình. Bạn không cần tự nhập mã hay chỉnh tệp kỹ thuật." } },
-      { id: "verify", title: "Nhờ Claude kiểm tra kết nối", prompt: "Hãy kiểm tra các công cụ hiện có: đọc tài liệu, mở trình duyệt CloakBrowser, kết nối TinaCRM, gửi và đọc email. Nói rõ việc nào đã dùng được, việc nào cần người hỗ trợ thiết lập. Không gửi email thật trong bước kiểm tra này.", paragraphs: ["Claude chỉ nên nói “đã kết nối” sau khi công cụ trả về kết quả. Nếu chưa có công cụ email, bạn vẫn có thể dùng Claude để soạn nội dung trước."] },
-      { id: "handoff", title: "Gửi yêu cầu này cho người hỗ trợ", prompt: "Nhờ bạn giúp tôi thiết lập workflow trên Claude Desktop cho doanh nghiệp của tôi: dự án và tài liệu riêng, trình duyệt CloakBrowser, kết nối TinaCRM, hộp thư gửi/nhận và kiểm tra khả năng chạy theo lịch trên máy. Hãy thử từng kết nối và báo phần nào chưa sẵn sàng. Tôi sẽ tự nhập mật khẩu và mã xác minh khi đăng nhập." },
-      { id: "ready", title: "Kiểm tra trước khi sử dụng", checks: ["Tôi mở được dự án của doanh nghiệp mình.", "Claude biết tài liệu thuộc đúng doanh nghiệp.", "Người hỗ trợ đã nói rõ công cụ nào hoạt động.", "Hộp thư và tài khoản TinaCRM là tài khoản tôi muốn dùng."] }
-    ]
-  },
-  {
-    ...tinaCrmGuide
-  },
+  downloadGuide,
+  folderGuide,
+  codeDesktopGuides["claude-desktop"],
+  codeDesktopGuides["thiet-lap"],
+  environmentGuide,
+  tinaCrmGuide,
   {
     slug: "doanh-nghiep", title: "Giới thiệu doanh nghiệp của bạn", shortTitle: "Giới thiệu doanh nghiệp", group: "Thực hiện workflow", minutes: 5,
     description: "Giúp Claude hiểu bạn bán gì, ai nên mua và vì sao họ nên chọn doanh nghiệp của bạn.",
     sections: [
       { id: "intro", title: "Bắt đầu từ thông tin bạn đang có", steps: [
-        { title: "Có tài liệu? Hãy gửi tệp", body: "Gửi hồ sơ công ty, tài liệu sản phẩm, dịch vụ hoặc câu chuyện khách hàng thực tế." },
+        { title: "Đã đặt tài liệu trong inputs? Yêu cầu Claude đọc", body: "Claude đọc hồ sơ công ty trong 01_company_info và tài liệu sản phẩm trong 02_marketing_materials, rồi báo tệp nào chưa đọc được." },
         { title: "Có website? Hãy gửi đường dẫn", body: "Nói cho Claude biết đâu là website chính thức và trang dịch vụ quan trọng nhất." },
         { title: "Chưa có cả hai? Trả lời từng câu", body: "Claude sẽ hỏi tên doanh nghiệp, sản phẩm, nhóm khách thường mua và khu vực bạn muốn bán." }
-      ], prompt: "Hãy tìm hiểu doanh nghiệp của tôi để chuẩn bị tìm khách hàng. Tôi sẽ gửi tài liệu hoặc website. Nếu còn thiếu thông tin, hỏi tôi từng câu; không tự tạo số liệu hay thành tích." },
+      ], prompt: "Hãy tìm hiểu doanh nghiệp của tôi để chuẩn bị tìm khách hàng. Tài liệu đã nằm trong thư mục inputs; nếu cần, tôi gửi thêm website. Nếu còn thiếu thông tin, hỏi tôi từng câu; không tự tạo số liệu hay thành tích." },
       { id: "confirm", title: "Đọc lại bản tóm tắt của Claude", paragraphs: ["Kiểm tra tên doanh nghiệp, dịch vụ chính, điểm mạnh và các kết quả thực tế. Nếu có chỗ sai, nói thẳng phần cần sửa.", "Nếu doanh nghiệp có nhiều sản phẩm, chọn sản phẩm muốn ưu tiên trong đợt này. Bạn không cần triển khai tất cả cùng lúc."], prompt: "Hãy tóm tắt doanh nghiệp của tôi trong vài dòng: bán gì, giúp khách giải quyết việc gì và có bằng chứng nào. Sau đó hỏi tôi muốn ưu tiên sản phẩm hoặc dịch vụ nào." },
       { id: "complete", title: "Bạn đã sẵn sàng khi…", checks: ["Thông tin doanh nghiệp và dịch vụ đã đúng.", "Tôi đã chọn sản phẩm hoặc dịch vụ ưu tiên.", "Các câu chuyện khách hàng và số liệu đều có nguồn thực tế."], note: { title: "Không cần “huấn luyện AI” bằng thao tác phức tạp", body: "Ở đây, bạn đang cung cấp tài liệu và hướng dẫn để Claude có ngữ cảnh làm việc. Khi sản phẩm thay đổi, gửi tài liệu mới và yêu cầu cập nhật." } }
     ]
@@ -145,7 +88,13 @@ const baseGuides: Guide[] = [
         { title: "Có bước nào đang chờ?", body: "Có thể cần đăng nhập lại, xử lý xác minh hoặc bổ sung thông tin. Claude cần nói rõ thay vì báo đã hoàn tất." }
       ] },
       { id: "schedule", title: "Nếu bạn muốn chạy theo lịch", paragraphs: ["Nói thời gian và múi giờ mong muốn. Người hỗ trợ kiểm tra khả năng tác vụ định kỳ của phiên bản/chế độ Claude Desktop hoặc cơ chế cục bộ có thể dùng.", "Viết “chạy mỗi sáng” vào chat chưa có nghĩa lịch đã được tạo. Nhờ kiểm tra thời điểm chạy tiếp theo và một lần chạy thử. Trong phạm vi này, công cụ chạy trực tiếp trên máy người dùng; không triển khai yêu cầu chạy khi máy tắt."], prompt: "Tôi muốn thực hiện công việc theo lịch trên máy của mình. Hãy kiểm tra môi trường hiện tại có hỗ trợ không. Nếu cần người hỗ trợ, nói rõ việc cần thiết lập; đừng báo đã tạo lịch khi chưa có công cụ thực hiện." },
-      { id: "resume", title: "Trước khi kết thúc phiên", prompt: "Tóm tắt những việc đã làm, kết quả thực tế, việc đang chờ và bước tiếp theo. Nếu có công cụ lưu tiến trình, hãy lưu và cho tôi biết đã lưu ở đâu; nếu chưa có, cho tôi bản tóm tắt để dùng ở phiên sau." }
+      { id: "outputs", title: "Kết quả được lưu ở đâu?", paragraphs: ["Mở thư mục outputs trong thư mục workflow để xem các tệp Claude đã thực sự lưu."], steps: [
+        { title: "outputs → 01_icp_criteria", body: "Tiêu chí khách hàng phù hợp." },
+        { title: "outputs → 02_crawled_leads", body: "Danh sách khách tìm được." },
+        { title: "outputs → 03_email_cadence", body: "Kế hoạch chăm sóc và nội dung email mẫu." },
+        { title: "outputs → 04_weekly_reports", body: "Báo cáo công việc hằng tuần." }
+      ], note: { title: "Kiểm tra tệp thực tế", body: "Nếu thư mục còn trống, hỏi Claude kết quả đã được lưu chưa và lưu ở đâu. Nội dung trong chat không tự trở thành tệp; tệp danh sách chưa đồng nghĩa đã nhập CRM, email mẫu chưa đồng nghĩa đã gửi." } },
+      { id: "resume", title: "Trước khi kết thúc phiên", prompt: "Tóm tắt những việc đã làm, kết quả thực tế, việc đang chờ và bước tiếp theo. Lưu tiến trình vào config/workflow_progress.md để lần sau tiếp tục." }
     ]
   },
   {
@@ -167,14 +116,14 @@ const baseGuides: Guide[] = [
     sections: [
       { id: "help", title: "Bắt đầu bằng câu này", prompt: "Tôi đang bị vướng ở bước này. Hãy hỏi tôi đang thấy gì trên màn hình, mỗi lần một câu. Hướng dẫn từng thao tác đơn giản và nói rõ nếu cần người hỗ trợ." },
       { id: "faq", title: "Những câu hỏi thường gặp", faqs: [
-        { question: "Tôi không biết nên nói gì với Claude", answer: "Mở dự án workflow và gửi “Hãy giúp tôi bắt đầu, hỏi tôi từng câu”. Claude sẽ đề nghị gửi tài liệu, website hoặc tự trả lời từng câu về doanh nghiệp." },
+        { question: "Tôi không biết nên nói gì với Claude", answer: "Mở dự án workflow và gửi “Hãy giúp tôi bắt đầu, hỏi tôi từng câu”. Claude kiểm tra tài liệu bạn đã đặt trong inputs, xem tiến trình lần trước và đề nghị bước tiếp theo bằng lựa chọn đánh số." },
         { question: "Claude nói đã làm nhưng tôi không thấy trong TinaCRM", answer: "Yêu cầu Claude kiểm tra lại bằng công cụ và cung cấp kết quả: ID bản ghi, số lượng nhập thành công và lỗi. Nội dung viết trong chat chưa có nghĩa dữ liệu đã được nhập." },
         { question: "Không thấy trình duyệt CloakBrowser mở", answer: "Nhờ Claude kiểm tra công cụ trình duyệt đã được kết nối chưa. Nếu chưa, chuyển cho người hỗ trợ thiết lập lần đầu. Claude không thể thay Chrome chỉ bằng một câu trong prompt." },
         { question: "Trang yêu cầu xác minh hoặc báo chặn", answer: "Dừng lượt truy cập đó. Tự xử lý xác minh trong cửa sổ nếu phù hợp hoặc chọn nguồn khác cùng Claude. Không yêu cầu truy cập lặp lại liên tục." },
         { question: "Tôi có phải gửi mật khẩu cho Claude không?", answer: "Không. Bạn tự nhập mật khẩu và mã xác minh trên màn hình đăng nhập/kết nối. Không gửi cookie, mật khẩu hoặc khóa kết nối trong chat." },
         { question: "Có cần duyệt từng email mãi không?", answer: "Bạn có thể duyệt kế hoạch và cho phép gửi tự động trong phạm vi chiến dịch cụ thể. Claude tiếp tục theo phạm vi đã chốt, đồng thời cần xin xác nhận khi thay đổi phạm vi đó." },
         { question: "Tại sao chưa tự chạy dù tôi đã đặt giờ?", answer: "Cần cơ chế chạy theo lịch thực tế và công cụ tương ứng. Nhờ người hỗ trợ kiểm tra môi trường, lịch và lần chạy thử. Một lời nhắc trong chat không tự tạo tác vụ định kỳ." },
-        { question: "Doanh nghiệp khác có thể dùng cùng workflow không?", answer: "Có. Mỗi doanh nghiệp nên có dự án, thư mục, tài liệu và cấu hình kết nối riêng. Không dùng hồ sơ của doanh nghiệp khác làm thông tin mặc định." }
+        { question: "Doanh nghiệp khác có thể dùng cùng workflow không?", answer: "Có. Mỗi doanh nghiệp nên có thư mục workflow, tài liệu và cấu hình kết nối riêng. Không dùng hồ sơ của doanh nghiệp khác làm thông tin mặc định." }
       ] },
       { id: "support", title: "Khi cần chuyển cho người hỗ trợ", paragraphs: ["Gửi bước bạn đang làm, thông báo lỗi và ảnh màn hình nếu cần. Che mật khẩu, mã xác minh và thông tin riêng tư trước khi gửi. Nếu không biết cách che, mô tả bằng lời trước."], prompt: "Hãy tóm tắt vướng mắc hiện tại thành một tin nhắn ngắn để tôi gửi người hỗ trợ. Nêu bước đang làm, lỗi thực tế và việc cần kiểm tra. Không đưa thông tin đăng nhập hoặc dữ liệu riêng tư vào tin nhắn." }
     ]
@@ -199,5 +148,5 @@ export const guides: Guide[] = baseGuides.map((guide) => codeDesktopGuides[guide
   })),
 });
 
-export const groups = ["Làm quen", "Thực hiện workflow", "Trợ giúp"];
+export const groups = ["Chuẩn bị trên máy", "Mở bằng Claude", "Thực hiện workflow", "Trợ giúp"];
 export const guideHref = (slug: string) => `/huong-dan/${slug}`;

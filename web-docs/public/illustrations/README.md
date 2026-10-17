@@ -12,3 +12,5 @@
 - Các ảnh Chat Projects/Add to project hoặc trang download không được dùng làm hình đối chiếu giao diện Code.
 
 `claude-code-tabs-real.png` và `claude-code-local-real.png`: cắt từ ảnh chụp Claude Desktop đang mở Code trên Mac ngày 2026-10-08. Đã loại vùng tên tài khoản/thống kê. Không biết số phiên bản ứng dụng. Ảnh local hiển thị Bypass permissions của máy chụp; chú thích hướng dẫn người mới chọn Manual. Chưa chụp hộp thoại Select folder hoặc yêu cầu cấp quyền.
+
+- `claude-code-usage-context-real.png`: cột bên trái Claude Desktop (300×964) với menu tài khoản mở; email và tên tài khoản đã che trong tệp ảnh. Đánh dấu bằng khung viền vàng và chú giải số bên dưới ảnh (định nghĩa trong `visuals.ts`), không vẽ số đè lên nút.

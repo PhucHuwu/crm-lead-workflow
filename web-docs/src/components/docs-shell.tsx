@@ -38,7 +38,7 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
     <div className="workspace">
       <aside className={`sidebar ${menu ? "is-open" : ""}`} aria-label="Điều hướng tài liệu">
         <Link className={`overview-link ${pathname === "/" ? "active" : ""}`} href="/" onClick={() => setMenu(false)}><BookOpenIcon /> Tổng quan sổ tay</Link>
-        {groups.map((group) => <details className="nav-group" key={`${group}:${pathname}`} open={guides.some((g) => g.group === group && pathname === guideHref(g.slug)) || (pathname === "/" && group === "Làm quen")}><summary className="nav-label">{group}</summary><nav aria-label={group}>{guides.filter((g) => g.group === group).map((guide) => <Link onClick={() => setMenu(false)} href={guideHref(guide.slug)} key={guide.slug} className={`nav-link ${pathname === guideHref(guide.slug) ? "active" : ""}`}><span>{guide.shortTitle}</span>{completed.includes(guide.slug) && <CheckIcon aria-label="Đã đọc" />}</Link>)}</nav></details>)}
+        {groups.map((group) => <details className="nav-group" key={`${group}:${pathname}`} open={guides.some((g) => g.group === group && pathname === guideHref(g.slug)) || (pathname === "/" && group === "Chuẩn bị trên máy")}><summary className="nav-label">{group}</summary><nav aria-label={group}>{guides.filter((g) => g.group === group).map((guide) => <Link onClick={() => setMenu(false)} href={guideHref(guide.slug)} key={guide.slug} className={`nav-link ${pathname === guideHref(guide.slug) ? "active" : ""}`}><span>{guide.shortTitle}</span>{completed.includes(guide.slug) && <CheckIcon aria-label="Đã đọc" />}</Link>)}</nav></details>)}
       </aside>
       <main id="noi-dung" className="main-content" tabIndex={-1}>{children}</main>
     </div>

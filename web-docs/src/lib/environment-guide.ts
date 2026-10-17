@@ -1,7 +1,7 @@
 import type { Guide } from "./guides";
 
 export const environmentGuide: Guide = {
-  slug: "cai-moi-truong", title: "Tự cài môi trường trên máy", shortTitle: "Cài môi trường & chạy lệnh", group: "Làm quen", minutes: 12,
+  slug: "cai-moi-truong", title: "Tự cài môi trường trên máy", shortTitle: "Cài môi trường & chạy lệnh", group: "Mở bằng Claude", minutes: 12,
   description: "Bạn chạy lệnh trên máy mình. Claude Chat chỉ giải thích và giúp đọc lỗi; không chạy lệnh thay bạn.",
   sections: [
     { id: "roles", title: "Việc nào bạn làm, việc nào Claude làm?", paragraphs: ["Hướng dẫn này dùng Claude Chat trong ứng dụng Desktop, không phải Claude Code. Bạn tự cài phần mềm, mở cửa sổ lệnh và sửa cấu hình kết nối. Claude có thể giải thích từng bước và đọc thông báo lỗi bạn gửi.", "Sau khi cài và kết nối, Claude chỉ thực hiện được những thao tác công cụ cho phép: đọc thư mục, điều khiển CloakBrowser hoặc thao tác TinaCRM. Kết nối đọc tệp không cấp khả năng chạy lệnh tùy ý."], note: { title: "Đọc trước khi sao chép", body: "Các câu mẫu ở bài này là lệnh để chạy trong Terminal/PowerShell, không phải tin nhắn gửi Claude. Thay đường dẫn ví dụ bằng địa chỉ thư mục thật của bạn." } },

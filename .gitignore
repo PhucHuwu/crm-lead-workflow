@@ -4,6 +4,7 @@
 config/.env
 config/.env.*
 config/business.json
+config/workflow_progress.md
 
 # Business documents and generated data
 product-marketing.md

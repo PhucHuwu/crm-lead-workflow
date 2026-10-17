@@ -26,7 +26,7 @@ Claude Desktop: kiến thức doanh nghiệp + kiến thức TinaCRM + skills + 
                Báo cáo + trạng thái tác vụ
 ```
 
-Claude cần kiểm tra công cụ thực sự được kết nối trước khi thực hiện. Project Knowledge không tự đọc thư mục trên máy; cần upload tài liệu hoặc connector đọc file hỗ trợ định dạng tương ứng. File mô tả vai trò không tự tạo subagent; chỉ gọi subagent khi môi trường có công cụ hỗ trợ, nếu không thì xử lý tuần tự theo vai trò.
+Claude cần kiểm tra công cụ thực sự được kết nối trước khi thực hiện. Trong Code Local, Claude đọc trực tiếp thư mục đã chọn; PDF quét, Word, slide có thể cần công cụ trích xuất riêng. File mô tả vai trò không tự tạo subagent; chỉ gọi subagent khi môi trường có công cụ hỗ trợ, nếu không thì xử lý tuần tự theo vai trò.
 
 ## Hai hình thức thực thi
 

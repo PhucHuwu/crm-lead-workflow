@@ -2,8 +2,8 @@ import type { Guide } from "./guides";
 
 export const codeDesktopGuides: Record<string, Guide> = {
   "claude-desktop": {
-    slug: "claude-desktop", title: "Mở đúng Claude Code trong Desktop", shortTitle: "Mở tab Code trong Desktop", group: "Làm quen", minutes: 6,
-    description: "Chọn Code → Local → thư mục workflow. Claude có thể đọc tệp và chạy lệnh theo quyền bạn cho phép.",
+    slug: "claude-desktop", title: "Mở đúng Claude Code trong Desktop", shortTitle: "Mở tab Code trong Desktop", group: "Mở bằng Claude", minutes: 6,
+    description: "Khi tài liệu đã nằm trong thư mục workflow: chọn Code → Local → thư mục workflow. Claude có thể đọc tệp và chạy lệnh theo quyền bạn cho phép.",
     sections: [
       { id: "install", title: "Cài Claude Desktop và đăng nhập", steps: [
         { title: "Tải ứng dụng chính thức", body: "Mở claude.ai/download, cài bản phù hợp với máy và đăng nhập. Nếu đã cài, cập nhật phiên bản mới khi cần." },
@@ -37,7 +37,7 @@ export const codeDesktopGuides: Record<string, Guide> = {
     ]
   },
   "cai-moi-truong": {
-    slug: "cai-moi-truong", title: "Để Claude Code hỗ trợ thiết lập", shortTitle: "Thiết lập công cụ với Code", group: "Làm quen", minutes: 6,
+    slug: "cai-moi-truong", title: "Để Claude Code hỗ trợ thiết lập", shortTitle: "Thiết lập công cụ với Code", group: "Mở bằng Claude", minutes: 6,
     description: "Claude Code kiểm tra môi trường và chạy lệnh được cho phép. Bạn xử lý đăng nhập và những bước cài đặt cần thao tác ngoài ứng dụng.",
     sections: [
       { id: "check", title: "Kiểm tra trước, chỉ cài phần cần thiết", paragraphs: ["Mở Code → Local → đúng thư mục workflow trước. Claude Code có thể kiểm tra Python, Node.js và công cụ hiện có bằng lệnh trên máy.", "Không cần cài Node.js hoặc Claude CLI chỉ để sử dụng tab Code. CloakBrowser dùng Python; công cụ khác có thể cần Node.js. Claude phải kiểm tra trước khi đề xuất cài."], prompt: "Hãy kiểm tra môi trường cho workflow trong session Local này. Đọc các tệp cấu hình, kiểm tra công cụ hiện có và nói ngắn phần nào cần bổ sung. Chưa cài gì trước khi giải thích cho tôi." },
@@ -51,15 +51,16 @@ export const codeDesktopGuides: Record<string, Guide> = {
     ]
   },
   "thiet-lap": {
-    slug: "thiet-lap", title: "Thiết lập workflow lần đầu", shortTitle: "Thiết lập lần đầu", group: "Làm quen", minutes: 5,
+    slug: "thiet-lap", title: "Thiết lập workflow lần đầu", shortTitle: "Thiết lập lần đầu", group: "Mở bằng Claude", minutes: 5,
     description: "Tải workflow, đặt tài liệu, mở thư mục trong Code và để Claude hướng dẫn thiết lập từng phần.",
     sections: [
       { id: "project", title: "Thứ tự chuẩn bị đúng", steps: [
         { title: "Tải và giải nén workflow", body: "Làm theo bài Tải workflow. Mỗi doanh nghiệp dùng một bản thư mục riêng." },
         { title: "Tự đặt tài liệu vào inputs", body: "Hồ sơ công ty vào 01_company_info, sản phẩm/dịch vụ vào 02_marketing_materials." },
-        { title: "Mở Code → Local → Select folder", body: "Chọn thư mục gốc workflow đã giải nén, không mở project Chat. Hướng dẫn và skills có trong thư mục." },
+        { title: "Mở Code → Local → No folder → Open folder…", body: "Chọn thư mục gốc workflow đã giải nén. Hướng dẫn và skills có sẵn trong thư mục." },
         { title: "Yêu cầu Claude kiểm tra và thiết lập", body: "Claude Code đọc tệp, đề xuất việc cần làm và có thể chạy lệnh sau khi được cho phép. Bạn xử lý đăng nhập và thao tác thủ công được yêu cầu." }
       ] },
+      { id: "order", title: "Claude sẽ dẫn bạn theo đúng thứ tự trang này", paragraphs: ["Sau câu bắt đầu, Claude hỏi từng câu và đi lần lượt: công cụ trên máy → TinaCRM → doanh nghiệp → tìm khách → email → công việc hằng ngày → báo cáo. Bạn có thể nói “Để sau” với bước chưa sẵn sàng.", "Claude ghi tiến trình vào config/workflow_progress.md. Lần sau mở lại đúng thư mục, Claude đọc tệp này và đề nghị tiếp tục chỗ đang dở."] },
       { id: "verify", title: "Câu bắt đầu thiết lập", prompt: "Hãy đọc CLAUDE.md và hướng dẫn workflow trong thư mục này. Giúp tôi thiết lập từng bước: kiểm tra tài liệu, CloakBrowser, TinaCRM, hộp thư và khả năng chạy lịch. Tôi dùng Claude Code Local trong Desktop. Bạn có thể chạy lệnh trong quyền tôi cho phép; trước mỗi thay đổi quan trọng hãy giải thích đơn giản. Chưa gửi email thật hoặc nhập lead thật." },
       { id: "ready", title: "Kiểm tra đã mở đúng", checks: ["Tôi đang ở tab Code, không phải Chat.", "Môi trường là Local và thư mục là bản workflow của doanh nghiệp.", "Claude đã đọc được hướng dẫn và tài liệu trong inputs.", "Claude đã báo công cụ nào thực sự hoạt động và phần nào chưa có."] }
     ]
