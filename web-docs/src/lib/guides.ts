@@ -22,55 +22,37 @@ export type Guide = {
 export const cycle: Guide[] = [
   {
     slug: "tai-workflow", title: "Tải workflow về máy", shortTitle: "Tải workflow về máy", actor: "Bạn làm trên máy",
-    description: "Tải bộ thư mục có sẵn và giải nén. Mỗi doanh nghiệp dùng một bản riêng.",
+    description: "Trên trang GitHub, bấm Code → Download ZIP rồi giải nén. Mỗi doanh nghiệp dùng một bản riêng, có thể đổi tên thư mục theo doanh nghiệp.",
     sections: [
-      { id: "download", title: "Tải bản ZIP", steps: [
-        { title: "Mở trang workflow", body: "Bấm nút “Mở trang tải workflow” ở trên, hoặc dùng đường dẫn người hỗ trợ gửi." },
-        { title: "Chọn Code → Download ZIP", body: "Bấm nút Code màu xanh rồi chọn Download ZIP. Tệp được lưu trong Downloads (Tải xuống)." }
-      ], note: { title: "Trang không mở được?", body: "Kho có thể cần quyền truy cập. Nhờ người hỗ trợ cấp quyền hoặc gửi trực tiếp tệp ZIP." } },
-      { id: "unzip", title: "Giải nén và cất ở chỗ dễ tìm", steps: [
-        { title: "Windows", body: "Chuột phải vào tệp ZIP → Extract All → chọn Documents → Extract." },
-        { title: "Mac", body: "Bấm đúp tệp ZIP. Kéo thư mục vừa tạo vào Documents." },
-        { title: "Đặt tên theo doanh nghiệp", body: "Ví dụ: Workflow - Công ty ABC. Giữ nguyên tên các thư mục bên trong." }
-      ] },
-      { id: "ready", title: "Xong khi", checks: ["Tôi đã mở thư mục đã giải nén, không phải tệp ZIP.", "Bên trong có inputs, outputs và CLAUDE.md."] }
+      { id: "download", title: "Code → Download ZIP" },
+      { id: "ready", title: "Xong khi", checks: ["Thư mục đã giải nén có inputs, outputs và CLAUDE.md."] }
     ]
   },
   {
     slug: "dat-tai-lieu", title: "Đặt tài liệu công ty vào thư mục inputs", shortTitle: "Đặt tài liệu vào inputs", actor: "Bạn làm trên máy",
-    description: "Tự sao chép hồ sơ công ty và tài liệu sản phẩm vào đúng thư mục. Claude sẽ đọc ở bước 4.",
+    description: "Sao chép tài liệu doanh nghiệp vào hai thư mục dưới đây. Claude sẽ đọc ở bước 4.",
     sections: [
       { id: "where", title: "Tài liệu nào đặt ở đâu?", steps: [
-        { title: "Công ty là ai → inputs/01_company_info", body: "Hồ sơ công ty, hồ sơ năng lực, dự án và câu chuyện khách hàng thực tế." },
-        { title: "Công ty bán gì → inputs/02_marketing_materials", body: "Brochure, giới thiệu sản phẩm/dịch vụ, bảng giá." }
-      ] },
-      { id: "copy", title: "Sao chép và dán", steps: [
-        { title: "Sao chép tệp", body: "Mở nơi chứa tài liệu, chọn tệp, nhấn Ctrl + C (Windows) hoặc Command + C (Mac)." },
-        { title: "Dán vào đúng thư mục", body: "Mở thư mục workflow → inputs → thư mục tương ứng, nhấn Ctrl + V hoặc Command + V." }
-      ], note: { title: "Định dạng nên dùng", body: "PDF, Word, Excel có chữ chọn được. Ảnh scan có thể không đọc được; Claude sẽ báo ở bước 4." } },
-      { id: "ready", title: "Xong khi", checks: ["Hồ sơ công ty nằm trong inputs/01_company_info.", "Tài liệu sản phẩm nằm trong inputs/02_marketing_materials."] }
+        { title: "inputs/01_company_info — công ty là ai", body: "Hồ sơ công ty, hồ sơ năng lực, dự án và câu chuyện khách hàng thực tế." },
+        { title: "inputs/02_marketing_materials — công ty bán gì", body: "Brochure, giới thiệu sản phẩm/dịch vụ, bảng giá." }
+      ], note: { title: "Định dạng nên dùng", body: "PDF, Word, Excel có chữ chọn được. Ảnh scan có thể không đọc được; Claude sẽ báo ở bước 4." } }
     ]
   },
   {
     slug: "mo-claude-code", title: "Mở workflow bằng Claude Code", shortTitle: "Mở bằng Claude Code", actor: "Bạn làm trên máy",
     description: "Dùng tab Code trong Claude Desktop, chọn Local và thư mục workflow. Không dùng tab Chat.",
     sections: [
-      { id: "install", title: "Cài Claude Desktop", paragraphs: ["Tải tại claude.ai/download, cài và đăng nhập. Tab Code cần gói Pro, Max, Team hoặc Enterprise. Không cần cài thêm Node.js hay CLI."] },
-      { id: "code", title: "Chọn tab Code", paragraphs: ["Ở góc trên bên trái, bấm biểu tượng </> (Code)."] },
-      { id: "folder", title: "Chọn Local và thư mục workflow", steps: [
-        { title: "Kiểm tra đang ở Local", body: "Local nghĩa là làm việc trên máy bạn." },
-        { title: "Bấm No folder → Open folder…", body: "Chọn thư mục workflow đã giải nén ở bước 1." }
-      ] },
+      { id: "code", title: "Chọn tab Code", paragraphs: ["Cần Claude Desktop (claude.ai/download) với gói Pro, Max, Team hoặc Enterprise. Bấm biểu tượng </> ở góc trên bên trái."] },
+      { id: "folder", title: "Local → No folder → Open folder…", paragraphs: ["Chọn thư mục workflow ở bước 1. Khi xong, No folder đổi thành tên thư mục."] },
       { id: "open-folder", title: "Menu chọn thư mục" },
-      { id: "permissions", title: "Chọn quyền Manual", paragraphs: ["Ở chế độ Manual, Claude hỏi trước khi sửa tệp hoặc chạy lệnh. Đọc yêu cầu rồi bấm cho phép nếu đúng việc bạn nhờ. Không cần chọn Bypass permissions."] },
-      { id: "ready", title: "Xong khi", checks: ["Tôi đang ở tab Code, môi trường Local.", "Nút No folder đã đổi thành tên thư mục workflow."] }
+      { id: "permissions", title: "Chọn quyền Manual", paragraphs: ["Claude sẽ hỏi trước khi sửa tệp hoặc chạy lệnh. Không chọn Bypass permissions."] }
     ]
   },
   {
     slug: "doc-tai-lieu", title: "Yêu cầu Claude đọc tài liệu inputs", shortTitle: "Claude đọc tài liệu", actor: "Bạn yêu cầu Claude",
     description: "Claude đọc tài liệu bạn đã đặt, tóm tắt doanh nghiệp và hỏi phần còn thiếu.",
     sections: [
-      { id: "send", title: "Gửi câu này cho Claude", paragraphs: ["Dán vào ô nhập trong tab Code rồi nhấn Enter. Claude sẽ báo tệp nào đọc được, tệp nào không."], prompt: "Hãy đọc CLAUDE.md và tài liệu trong inputs. Báo tệp nào đọc được, tệp nào không, rồi tóm tắt doanh nghiệp của tôi. Nếu thiếu thông tin, hỏi tôi từng câu. Tôi ít quen công nghệ, hãy hướng dẫn từng bước." },
+      { id: "send", title: "Gửi câu này cho Claude", prompt: "Hãy đọc CLAUDE.md và tài liệu trong inputs. Báo tệp nào đọc được, tệp nào không, rồi tóm tắt doanh nghiệp của tôi. Nếu thiếu thông tin, hỏi tôi từng câu. Tôi ít quen công nghệ, hãy hướng dẫn từng bước." },
       { id: "confirm", title: "Kiểm tra bản tóm tắt", paragraphs: ["Đọc tên doanh nghiệp, sản phẩm, điểm mạnh và số liệu. Sai chỗ nào, nói thẳng chỗ đó. Sau đó chọn sản phẩm muốn ưu tiên khi Claude hỏi."] },
       { id: "add-folder", title: "Tài liệu nằm ở thư mục khác?", paragraphs: ["Bấm nút thư mục có dấu cộng (Add another folder) phía trên ô nhập để thêm thư mục đó, rồi nói tên thư mục cho Claude."] },
       { id: "ready", title: "Xong khi", checks: ["Bản tóm tắt doanh nghiệp đã đúng.", "Tôi đã chọn sản phẩm/dịch vụ ưu tiên."] }
@@ -81,11 +63,7 @@ export const cycle: Guide[] = [
     description: "Claude kiểm tra máy đã có những gì và cài phần còn thiếu (như trình duyệt CloakBrowser) sau khi bạn cho phép.",
     sections: [
       { id: "send", title: "Gửi câu này cho Claude", prompt: "Hãy kiểm tra môi trường trên máy cho workflow này. Nói ngắn phần nào đã có, phần nào thiếu. Giải thích trước khi cài, rồi cài CloakBrowser theo workflows/CLOAKBROWSER.md khi tôi đồng ý." },
-      { id: "approve", title: "Duyệt từng thao tác", steps: [
-        { title: "Đọc giải thích của Claude", body: "Chưa hiểu thì trả lời: “Giải thích đơn giản hơn”." },
-        { title: "Bấm cho phép khi ứng dụng hỏi", body: "Chỉ cho phép lệnh đúng việc Claude vừa giải thích." },
-        { title: "Tự làm phần Claude nhờ", body: "Ví dụ mở trình cài Python hoặc nhập mật khẩu máy. Không gửi mật khẩu vào chat." }
-      ] },
+      { id: "approve", title: "Duyệt từng thao tác", paragraphs: ["Khi ứng dụng hỏi quyền, chỉ cho phép lệnh đúng việc Claude vừa giải thích. Nếu cần cài Python hoặc nhập mật khẩu máy, Claude sẽ nhờ bạn tự làm."] },
       { id: "ready", title: "Xong khi", checks: ["Claude báo môi trường đã đủ bằng kết quả kiểm tra thật."] }
     ]
   },
@@ -94,11 +72,7 @@ export const cycle: Guide[] = [
     description: "Kết nối trình duyệt CloakBrowser và TinaCRM để Claude tìm khách và lưu vào CRM.",
     sections: [
       { id: "browser", title: "Kết nối trình duyệt CloakBrowser", paragraphs: ["Claude tự thêm cấu hình vào tệp .mcp.json trong thư mục workflow. Khi được nhắc, mở lại session để công cụ được nạp."], prompt: "Hãy kết nối CloakBrowser cho Claude Code qua tệp .mcp.json trong thư mục này, rồi mở thử một trang web công khai để kiểm tra." },
-      { id: "tinacrm", title: "Kết nối TinaCRM", steps: [
-        { title: "Gửi câu mẫu", body: "Claude sẽ hỏi địa chỉ TinaCRM của doanh nghiệp bạn." },
-        { title: "Tự đăng nhập khi được yêu cầu", body: "Đăng nhập và cấp quyền trên màn hình TinaCRM. Nếu cần khóa API, nhờ quản trị viên tạo trong Settings → MCP & APIs. Không dán khóa vào chat." },
-        { title: "Để Claude đọc thử", body: "Claude xác nhận đúng doanh nghiệp và đọc các ô thông tin khách, chưa ghi dữ liệu." }
-      ], prompt: "Hãy kết nối TinaCRM với Claude Code. Hỏi tôi địa chỉ TinaCRM trước, hướng dẫn tôi đăng nhập từng bước, rồi đọc thử các ô thông tin khách hàng. Chưa tạo, sửa hay xóa dữ liệu. Không yêu cầu mật khẩu hoặc khóa trong chat." },
+      { id: "tinacrm", title: "Kết nối TinaCRM", paragraphs: ["Bạn tự đăng nhập và cấp quyền trên màn hình TinaCRM. Nếu cần khóa API, quản trị viên tạo trong Settings → MCP & APIs; không dán khóa vào chat."], prompt: "Hãy kết nối TinaCRM với Claude Code. Hỏi tôi địa chỉ TinaCRM trước, hướng dẫn tôi đăng nhập từng bước, rồi đọc thử các ô thông tin khách hàng. Chưa tạo, sửa hay xóa dữ liệu. Không yêu cầu mật khẩu hoặc khóa trong chat." },
       { id: "ready", title: "Xong khi", checks: ["CloakBrowser mở được trang thử.", "Claude đọc được dữ liệu thử từ đúng TinaCRM của doanh nghiệp."] }
     ]
   },
@@ -133,13 +107,8 @@ export const cycle: Guide[] = [
     slug: "hang-ngay", title: "Chạy công việc mỗi ngày", shortTitle: "Chạy mỗi ngày", actor: "Bạn yêu cầu Claude",
     description: "Từ đây chu trình lặp lại: mở thư mục, gửi một câu, xem kết quả.",
     sections: [
-      { id: "routine", title: "Mỗi sáng gửi câu này", paragraphs: ["Mở tab Code, chọn session cũ hoặc tạo session mới với Local và đúng thư mục workflow."], prompt: "Tiếp tục chiến dịch. Kiểm tra phản hồi mới, tìm khách theo mục tiêu đã chốt và gửi các email đến hạn trong phạm vi tôi đã cho phép. Báo rõ phần nào chưa chạy được." },
-      { id: "review", title: "Bạn chỉ cần xem", steps: [
-        { title: "Khách nào cần trả lời", body: "Người phụ trách liên hệ tiếp." },
-        { title: "Danh sách mới có đúng hướng", body: "Lệch thì nói Claude chỉnh tiêu chí." },
-        { title: "Việc đang chờ bạn", body: "Ví dụ đăng nhập lại hoặc xác minh." }
-      ] },
-      { id: "outputs", title: "Kết quả lưu ở đâu?", paragraphs: ["Trong thư mục outputs: 01_icp_criteria (tiêu chí), 02_crawled_leads (danh sách khách), 03_email_cadence (kế hoạch email), 04_weekly_reports (báo cáo). Tiến trình được lưu ở config/workflow_progress.md để lần sau Claude làm tiếp."] },
+      { id: "routine", title: "Mỗi sáng gửi câu này", prompt: "Tiếp tục chiến dịch. Kiểm tra phản hồi mới, tìm khách theo mục tiêu đã chốt và gửi các email đến hạn trong phạm vi tôi đã cho phép. Báo rõ phần nào chưa chạy được." },
+      { id: "outputs", title: "Kết quả lưu ở đâu?", paragraphs: ["Thư mục outputs: 01_icp_criteria (tiêu chí), 02_crawled_leads (danh sách khách), 03_email_cadence (kế hoạch email), 04_weekly_reports (báo cáo). Tiến trình lưu ở config/workflow_progress.md."] },
       { id: "end", title: "Trước khi tắt máy", prompt: "Tóm tắt việc đã làm, kết quả thật, việc đang chờ và bước tiếp theo. Lưu tiến trình vào config/workflow_progress.md." }
     ]
   },
@@ -160,7 +129,6 @@ export const help: Guide = {
     { id: "help", title: "Gửi câu này cho Claude", prompt: "Tôi đang bị vướng ở bước này. Hãy hỏi tôi đang thấy gì trên màn hình, mỗi lần một câu, và hướng dẫn từng thao tác." },
     { id: "faq", title: "Câu hỏi thường gặp", faqs: [
       { question: "Quay lại làm tiếp thế nào?", answer: "Mở tab Code, chọn Local và đúng thư mục workflow, gửi “Tiếp tục từ chỗ lần trước”. Claude đọc tiến trình đã lưu và đề nghị bước tiếp theo." },
-      { question: "Tôi có phải gửi mật khẩu cho Claude không?", answer: "Không. Bạn tự nhập mật khẩu và mã xác minh trên màn hình đăng nhập. Không gửi mật khẩu, cookie hay khóa vào chat." },
       { question: "Claude nói đã lưu nhưng TinaCRM không có", answer: "Yêu cầu Claude kiểm tra lại bằng công cụ và báo số bản ghi thật. Viết trong chat không có nghĩa đã lưu." },
       { question: "Không thấy cửa sổ CloakBrowser", answer: "Quay lại bước 6 và nhờ Claude kiểm tra kết nối trình duyệt." },
       { question: "Đặt giờ rồi mà chưa tự chạy", answer: "Máy phải bật và Claude Desktop phải mở. Nhờ Claude kiểm tra lịch đã thật sự được tạo chưa." },
