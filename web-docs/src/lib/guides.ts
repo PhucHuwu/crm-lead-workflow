@@ -70,7 +70,9 @@ export const cycle: Guide[] = [
     description: "Kết nối CloakBrowser và TinaCRM qua .mcp.json trong thư mục workflow.",
     sections: [
       { id: "browser", title: "CloakBrowser", prompt: "Kết nối CloakBrowser qua .mcp.json và mở thử một trang web công khai." },
-      { id: "tinacrm", title: "TinaCRM", paragraphs: ["Bạn tự đăng nhập TinaCRM khi được hỏi. Nếu cần API key, tạo trong Settings → MCP & APIs và đặt vào cấu hình trên máy, không gửi qua chat."], prompt: "Kết nối TinaCRM qua MCP. Hỏi tôi địa chỉ TinaCRM, sau đó đọc thử cấu trúc dữ liệu khách hàng, chưa ghi dữ liệu." }
+      { id: "apikey-open", title: "TinaCRM: tạo API key", paragraphs: ["Đăng nhập TinaCRM của doanh nghiệp → Settings → MCP & APIs → tab API → Create API key."] },
+      { id: "apikey-form", title: "Điền thông tin khóa", paragraphs: ["Role quyết định Claude được làm gì trong CRM: chọn role đủ quyền với khách hàng, công ty và công việc. Nên đặt ngày hết hạn thay vì Never."] },
+      { id: "apikey-copy", title: "Sao chép khóa", paragraphs: ["Khóa chỉ hiện một lần. Bấm Copy rồi gửi câu lệnh dưới đây; Claude sẽ chỉ chỗ dán khóa trên máy. Không dán khóa vào khung chat."], prompt: "Kết nối TinaCRM qua MCP. Hỏi tôi địa chỉ TinaCRM, chỉ tôi chỗ dán API key trên máy (không dán vào chat), sau đó đọc thử cấu trúc dữ liệu khách hàng, chưa ghi dữ liệu." },
     ]
   },
   {
@@ -123,9 +125,9 @@ export const help: Guide = {
       { question: "Claude báo đã lưu nhưng TinaCRM không có?", answer: "Yêu cầu Claude kiểm tra lại bằng công cụ và báo ID bản ghi." },
       { question: "CloakBrowser không mở?", answer: "Làm lại bước 6." },
       { question: "Lịch chạy không hoạt động?", answer: "Lịch chỉ chạy khi máy bật và Claude Desktop đang mở." },
-      { question: "Xem mức sử dụng Claude?", answer: "Menu tài khoản (góc dưới trái) → Usage." },
       { question: "Dùng cho doanh nghiệp khác?", answer: "Tải một bản workflow riêng và làm lại từ bước 1." }
-    ] }
+    ] },
+    { id: "usage", title: "Xem mức sử dụng Claude", paragraphs: ["Bấm tên tài khoản ở góc dưới bên trái → Usage."] }
   ]
 };
 
