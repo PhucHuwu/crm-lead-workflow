@@ -4,7 +4,7 @@
 
 Workflow và skills dùng chung, còn dữ liệu và cấu hình thuộc từng doanh nghiệp. TinaCRM là nền tảng CRM hiện được định hướng tích hợp, không phải tên doanh nghiệp sử dụng workflow.
 
-Ở phiên bản hiện tại, mỗi doanh nghiệp dùng một bản clone/thư mục riêng, mở bằng Claude Code (Code → Local → thư mục đó). Thứ tự dẫn dắt người dùng theo `USER_GUIDE_FLOW.md`; danh sách dưới đây là nội dung cần thu thập. Không dùng chung `product-marketing.md`, inputs, outputs hoặc cấu hình kết nối giữa các doanh nghiệp. Đây chưa phải ứng dụng nhiều tenant dùng chung một runtime.
+Ở phiên bản hiện tại, mỗi doanh nghiệp dùng một bản clone/thư mục riêng, mở bằng Claude Code (Code → This computer → thư mục đó). Thứ tự dẫn dắt người dùng theo `USER_GUIDE_FLOW.md`; danh sách dưới đây là nội dung cần thu thập. Không dùng chung `product-marketing.md`, inputs, outputs hoặc cấu hình kết nối giữa các doanh nghiệp. Đây chưa phải ứng dụng nhiều tenant dùng chung một runtime.
 
 ## Cách Claude thiết lập
 

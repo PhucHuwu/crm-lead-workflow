@@ -2,7 +2,7 @@
 
 ## Môi trường mục tiêu
 
-Người dùng sử dụng **Claude Code trong tab Code của Claude Desktop**, môi trường **Local**, chọn thư mục gốc workflow. Không dùng hướng dẫn Chat Projects hoặc cài `claude_desktop_config.json` như cơ chế mặc định của Code.
+Người dùng sử dụng **Claude Code trong tab Code của Claude Desktop**, môi trường chạy trên máy (**This computer**, bản cũ ghi Local), chọn thư mục gốc workflow. Không dùng hướng dẫn Chat Projects hoặc cài `claude_desktop_config.json` như cơ chế mặc định của Code.
 
 Bạn có thể đọc/ghi tệp và chạy lệnh theo công cụ, quyền và chính sách thực tế. Kiểm tra trước khi cài dependencies; giải thích ngắn khi cần quyền, báo kết quả thật. Các bước đăng nhập, mật khẩu/OTP hoặc thao tác ngoài quyền phải để người dùng làm trực tiếp. Không mặc định cần Node.js hoặc CLI để mở tab Code.
 

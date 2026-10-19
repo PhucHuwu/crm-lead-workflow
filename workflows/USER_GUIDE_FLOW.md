@@ -8,7 +8,7 @@ Trang hướng dẫn (`web-docs/`) trình bày **một chu trình duy nhất g�
 |---|---|---|---|---|
 | 1 | Tải workflow | Người dùng | — | Đã giải nén, có `inputs`, `outputs`, `CLAUDE.md`. |
 | 2 | Đặt tài liệu vào inputs | Người dùng | — (nếu trống, chỉ đường bằng Finder/File Explorer; không tự sao chép tệp) | Tài liệu nằm trong `inputs/01_company_info/`, `inputs/02_marketing_materials/`. |
-| 3 | Mở bằng Claude Code | Người dùng | — | Đang ở Code → Local → đúng thư mục, quyền Manual. |
+| 3 | Mở bằng Claude Code | Người dùng | — | Đang ở tab Code, thanh dưới ô nhập hiện This computer + tên thư mục workflow + Manual. |
 | 4 | Claude đọc tài liệu | Claude | Đọc `CLAUDE.md` + `inputs`, báo tệp đọc được/không, tóm tắt doanh nghiệp, hỏi phần thiếu, viết `product-marketing.md`, tạo `config/business.json` từ mẫu, hỏi sản phẩm ưu tiên. | Người dùng xác nhận tóm tắt và chọn sản phẩm ưu tiên. |
 | 5 | Claude kiểm tra môi trường | Claude | Kiểm tra Python/công cụ có sẵn, giải thích ngắn, cài CloakBrowser theo `CLOAKBROWSER.md` khi được cho phép. | Kết quả kiểm tra thật cho thấy đủ môi trường. |
 | 6 | Claude kết nối công cụ | Claude | Thêm `workflow-cloakbrowser` vào `.mcp.json`, nhắc mở lại session, mở thử trang công khai. Kết nối TinaCRM theo `TINACRM_CONNECTION.md`: hỏi địa chỉ, hướng dẫn đăng nhập, đọc thử schema, không ghi dữ liệu. | CloakBrowser mở được trang; đọc thử được đúng workspace TinaCRM. |
@@ -55,11 +55,11 @@ Trước khi nói, kiểm tra `config/workflow_progress.md`, `inputs/`, `config/
 - **Lần đầu, có tài liệu:** làm bước 4 ngay.
 - **Lần đầu, `inputs` trống:** hỏi “1. Tôi tự đặt tài liệu vào thư mục (bước 2) — chỉ đường giúp tôi. 2. Tôi gửi website. 3. Hỏi tôi từng câu.” Nếu chọn 1, hướng dẫn mở Finder/File Explorer → thư mục workflow → `inputs` → thư mục tương ứng, sao chép và dán, rồi hỏi “Bạn dán xong chưa? 1. Rồi. 2. Chưa được.”
 
-Tài liệu nằm ở thư mục khác đã thêm bằng nút Add another folder: đọc trực tiếp ở đó, không tự sao chép vào `inputs`.
+Nếu tài liệu nằm ngoài thư mục workflow, nhờ người dùng tự đặt vào `inputs`; không tự sao chép.
 
 ## Gọi tên theo màn hình người dùng thấy
 
-Dùng tên nút: Code (biểu tượng `</>`), Local, No folder, Open folder…, Add another folder, Manual, Usage, Settings → MCP & APIs. Không nói “session”, “repository”, “MCP server”, “worktree” trừ khi người dùng hỏi. Trước khi ứng dụng hỏi quyền, nói: “Sắp tới ứng dụng sẽ hỏi quyền để [việc]. Bạn bấm cho phép nếu đúng như vậy.” Không đề nghị Bypass permissions. Nếu màn hình khác mô tả, hỏi người dùng đang thấy gì, không bịa tên nút.
+Dùng tên nút như trên màn hình hiện tại: Code (biểu tượng `</>`), This computer, Choose… (nút chọn thư mục; bản cũ ghi No folder), Open folder…, Manual, Usage, Settings → MCP & APIs. Không nói “session”, “repository”, “MCP server”, “worktree” trừ khi người dùng hỏi. Trước khi ứng dụng hỏi quyền, nói: “Sắp tới ứng dụng sẽ hỏi quyền để [việc]. Bạn bấm cho phép nếu đúng như vậy.” Không đề nghị Bypass permissions. Nếu màn hình khác mô tả, hỏi người dùng đang thấy gì, không bịa tên nút.
 
 ## Lưu tiến trình
 

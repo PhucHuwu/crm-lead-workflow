@@ -37,20 +37,25 @@ export const cycle: Guide[] = [
   },
   {
     slug: "mo-claude-code", title: "Mở workflow bằng Claude Code", shortTitle: "Mở bằng Claude Code", actor: "Bạn làm trên máy",
-    description: "Claude Desktop → tab Code → Local → chọn thư mục workflow. Cần gói Pro, Max, Team hoặc Enterprise.",
+    description: "Claude Desktop → tab Code → Choose… → Open folder… → chọn thư mục workflow, quyền Manual. Cần gói Pro, Max, Team hoặc Enterprise.",
     sections: [
-      { id: "code", title: "Tab Code" },
-      { id: "folder", title: "Local → No folder → Open folder…" },
-      { id: "open-folder", title: "Menu chọn thư mục" },
-      { id: "permissions", title: "Quyền: Manual", paragraphs: ["Claude hỏi trước khi sửa tệp hoặc chạy lệnh. Không dùng Bypass permissions."] }
+      { id: "overview", title: "Vị trí các nút" },
+      { id: "folder", title: "Chọn thư mục workflow" },
+      { id: "permissions", title: "Chọn quyền: Manual", steps: [
+        { title: "Auto", body: "Claude tự quyết định việc nào cần hỏi. Không nên dùng khi mới bắt đầu." },
+        { title: "Manual (nên chọn)", body: "Luôn hỏi bạn trước khi sửa tệp hoặc chạy lệnh." },
+        { title: "Accept edits", body: "Tự sửa tệp không hỏi; chạy lệnh vẫn hỏi." },
+        { title: "Plan", body: "Chỉ lập kế hoạch, chưa làm gì. Dùng khi muốn xem trước Claude định làm gì." },
+        { title: "Bypass permissions (không dùng)", body: "Claude được sửa hoặc xóa tệp mà không hỏi." }
+      ] },
+      { id: "done", title: "Đã mở đúng", paragraphs: ["Thanh dưới ô nhập hiện This computer, tên thư mục workflow và Manual, như ảnh ở đầu bước."] }
     ]
   },
   {
     slug: "doc-tai-lieu", title: "Claude đọc tài liệu", shortTitle: "Claude đọc tài liệu", actor: "Bạn yêu cầu Claude",
     description: "Claude tóm tắt doanh nghiệp từ inputs và hỏi phần còn thiếu. Bạn xác nhận và chọn sản phẩm ưu tiên.",
     sections: [
-      { id: "send", title: "Câu lệnh", prompt: "Đọc CLAUDE.md và tài liệu trong inputs. Báo tệp nào không đọc được, tóm tắt doanh nghiệp và hỏi tôi phần còn thiếu." },
-      { id: "add-folder", title: "Tài liệu ở thư mục khác", paragraphs: ["Thêm thư mục bằng nút Add another folder, rồi nói tên thư mục cho Claude."] }
+      { id: "send", title: "Câu lệnh", prompt: "Đọc CLAUDE.md và tài liệu trong inputs. Báo tệp nào không đọc được, tóm tắt doanh nghiệp và hỏi tôi phần còn thiếu." }
     ]
   },
   {
