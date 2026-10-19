@@ -8,7 +8,7 @@ Bạn có thể đọc/ghi tệp và chạy lệnh theo công cụ, quyền và 
 
 ## Hướng dẫn vận hành
 
-- **Dẫn dắt theo `workflows/USER_GUIDE_FLOW.md`**: thứ tự giai đoạn, câu mở đầu, cách nhận diện câu mẫu và tên gọi khớp với trang hướng dẫn người dùng đã đọc. Người dùng đã tự tải workflow, tự đặt tài liệu vào `inputs` và mở thư mục bằng Code → Local trước khi gặp bạn.
+- **Dẫn dắt theo `workflows/USER_GUIDE_FLOW.md`**: chu trình 11 bước giống trang hướng dẫn, câu mở đầu, cách nhận diện câu mẫu và tên gọi khớp với trang hướng dẫn người dùng đã đọc. Người dùng đã tự tải workflow, tự đặt tài liệu vào `inputs` và mở thư mục bằng Code → Local trước khi gặp bạn.
 - Mở đầu mỗi phiên: kiểm tra `config/workflow_progress.md`, `inputs/`, `config/business.json`, `product-marketing.md` trước khi hỏi. Cập nhật `config/workflow_progress.md` sau mỗi giai đoạn và khi kết thúc phiên.
 - Đọc `CLAUDE_PROJECT_INSTRUCTIONS.md` để biết chi tiết nghiệp vụ từng bước; quy tắc môi trường trong file CLAUDE.md này và `USER_GUIDE_FLOW.md` ưu tiên khi tài liệu cũ mâu thuẫn.
 - Áp dụng `rules/nontechnical_user_experience.md`: hỏi từng câu đơn giản, lựa chọn đánh số, không yêu cầu người dùng tự biết phải hỏi gì.

@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRightIcon, ReaderIcon as BookOpenIcon, CheckIcon, Cross1Icon, MagnifyingGlassIcon, HamburgerMenuIcon, SunIcon, MoonIcon, ExternalLinkIcon } from "@radix-ui/react-icons";
-import { guides, groups, guideHref } from "@/lib/guides";
+import { ArrowRightIcon, ReaderIcon as BookOpenIcon, Cross1Icon, MagnifyingGlassIcon, HamburgerMenuIcon, SunIcon, MoonIcon } from "@radix-ui/react-icons";
+import { guides, cycle, help, guideHref } from "@/lib/guides";
 
 const normalize = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").toLowerCase();
 
@@ -14,13 +14,10 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
   const [search, setSearch] = useState(false);
   const [query, setQuery] = useState("");
   const [dark, setDark] = useState(false);
-  const [completed, setCompleted] = useState<string[]>([]);
   const dialog = useRef<HTMLDialogElement>(null);
   const input = useRef<HTMLInputElement>(null);
   useEffect(() => {
     try { const mode = localStorage.getItem("guide-theme"); const enabled = mode ? mode === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; setDark(enabled); document.documentElement.dataset.theme = enabled ? "dark" : "light"; } catch {}
-    const update = () => { try { const data = JSON.parse(localStorage.getItem("guide-completed") || "[]"); if (Array.isArray(data)) setCompleted(data.filter((item) => typeof item === "string")); } catch {} };
-    update(); window.addEventListener("guide-progress", update); return () => window.removeEventListener("guide-progress", update);
   }, []);
   useEffect(() => { if (search) { dialog.current?.showModal(); input.current?.focus(); } else dialog.current?.close(); }, [search]);
   useEffect(() => {
@@ -37,8 +34,10 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
     </header>
     <div className="workspace">
       <aside className={`sidebar ${menu ? "is-open" : ""}`} aria-label="Điều hướng tài liệu">
-        <Link className={`overview-link ${pathname === "/" ? "active" : ""}`} href="/" onClick={() => setMenu(false)}><BookOpenIcon /> Tổng quan sổ tay</Link>
-        {groups.map((group) => <details className="nav-group" key={`${group}:${pathname}`} open={guides.some((g) => g.group === group && pathname === guideHref(g.slug)) || (pathname === "/" && group === "Chuẩn bị trên máy")}><summary className="nav-label">{group}</summary><nav aria-label={group}>{guides.filter((g) => g.group === group).map((guide) => <Link onClick={() => setMenu(false)} href={guideHref(guide.slug)} key={guide.slug} className={`nav-link ${pathname === guideHref(guide.slug) ? "active" : ""}`}><span>{guide.shortTitle}</span>{completed.includes(guide.slug) && <CheckIcon aria-label="Đã đọc" />}</Link>)}</nav></details>)}
+        <Link className={`overview-link ${pathname === "/" ? "active" : ""}`} href="/" onClick={() => setMenu(false)}><BookOpenIcon /> Toàn bộ chu trình</Link>
+        <p className="nav-label nav-cycle-label">Chu trình</p>
+        <nav aria-label="Các bước của chu trình" className="nav-cycle">{cycle.map((guide, i) => <Link onClick={() => setMenu(false)} href={guideHref(guide.slug)} key={guide.slug} className={`nav-link ${pathname === guideHref(guide.slug) ? "active" : ""}`}><span><b className="nav-step">{i + 1}</b>{guide.shortTitle}</span></Link>)}</nav>
+        <Link onClick={() => setMenu(false)} href={guideHref(help.slug)} className={`nav-link nav-help ${pathname === guideHref(help.slug) ? "active" : ""}`}><span>{help.shortTitle}</span></Link>
       </aside>
       <main id="noi-dung" className="main-content" tabIndex={-1}>{children}</main>
     </div>

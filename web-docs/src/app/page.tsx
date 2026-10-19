@@ -1,20 +1,17 @@
 import Link from "next/link";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
-import { guideHref } from "@/lib/guides";
+import { cycle, guideHref } from "@/lib/guides";
 
 export default function Home() {
   return <div className="simple-home">
-    <h1>Hướng dẫn sử dụng workflow</h1>
-    <p className="home-intro">Bắt đầu bằng việc chuẩn bị thư mục và tài liệu công ty trên máy. Chỉ khi đã xong mới mở Claude.</p>
+    <h1>Chu trình sử dụng workflow</h1>
+    <p className="home-intro">Một chu trình duy nhất, làm lần lượt từ bước 1. Ba bước đầu bạn làm trên máy; từ bước 4, bạn gửi câu mẫu để Claude làm.</p>
     <section className="start-choice">
-      <h2>Tôi mới bắt đầu</h2>
-      <p>Làm lần lượt 3 bước. Hai bước đầu chỉ thao tác với thư mục trên máy.</p>
       <ol className="start-steps">
-        {[{ slug: "tai-workflow", title: "Tải workflow về máy", body: "Tải và giải nén bộ thư mục có sẵn." }, { slug: "tep-thu-muc", title: "Đặt tài liệu công ty đúng chỗ", body: "Sao chép hồ sơ công ty và tài liệu sản phẩm vào thư mục inputs." }, { slug: "claude-desktop", title: "Mở workflow trong Claude Code", body: "Khi tài liệu đã sẵn sàng: Code → Local → chọn thư mục workflow." }].map((item, index) => <li key={item.slug}><Link href={guideHref(item.slug)}><span className="start-step-number">{index + 1}</span><div><h3>{item.title}</h3><p>{item.body}</p></div><ArrowRightIcon /></Link></li>)}
+        {cycle.map((item, index) => <li key={item.slug}><Link href={guideHref(item.slug)}><span className="start-step-number">{index + 1}</span><div><h3>{item.shortTitle}</h3><p><span className="actor-tag">{item.actor}</span> {item.description}</p></div><ArrowRightIcon /></Link></li>)}
       </ol>
-      <Link className="button button-primary" href={guideHref("tai-workflow")}>Bắt đầu bước 1 <ArrowRightIcon /></Link>
+      <Link className="button button-primary" href={guideHref(cycle[0].slug)}>Bắt đầu bước 1 <ArrowRightIcon /></Link>
     </section>
-    <section className="continue-choice"><h2>Tôi đã thiết lập xong</h2><p>Mở lại chiến dịch và kiểm tra những việc cần làm hôm nay.</p><Link className="button button-soft" href={guideHref("hang-ngay")}>Xem công việc hằng ngày <ArrowRightIcon /></Link></section>
-    <p className="home-help">Đang bị vướng? <Link href={guideHref("tro-giup")}>Xem cách xử lý</Link></p>
+    <p className="home-help">Đã làm xong lần đầu? Mỗi ngày chỉ cần <Link href={guideHref("hang-ngay")}>bước {cycle.findIndex((g) => g.slug === "hang-ngay") + 1}</Link>. Bị vướng? <Link href={guideHref("tro-giup")}>Xem cách xử lý</Link></p>
   </div>;
 }
