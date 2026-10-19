@@ -28,3 +28,6 @@ web-docs/*.tsbuildinfo
 # Browser login profiles (session data)
 config/.browser_profile/
 .venv/
+
+# TinaCRM API key (read by scripts/tinacrm_auth_header.sh)
+config/tinacrm_api_key.txt

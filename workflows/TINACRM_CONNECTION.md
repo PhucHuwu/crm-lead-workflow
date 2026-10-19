@@ -10,6 +10,19 @@ Server có OAuth discovery và Bearer authentication. Luồng đăng nhập/cấ
 
 MCP có tool catalog/discovery và thực thi theo Role. Cần initialize, tools/list, học catalog/schema và thử đọc trước; không giả định tất cả công cụ CRM/email đều được cấp hoặc hiện ngay trong danh sách đầu tiên.
 
+## Thiết lập MCP với API key (cách mặc định trong Claude Code)
+
+Dữ liệu lead vẫn đọc/ghi qua **MCP native** của TinaCRM; API key chỉ là thông tin xác thực để MCP biết workspace và Role. Không dùng REST thay MCP khi MCP hoạt động.
+
+1. Hỏi địa chỉ TinaCRM. URL MCP là `<server-base-url>/mcp` (xem Settings → MCP & APIs → tab MCP; backend có thể khác domain giao diện). Ghi `crm.base_url`, `crm.mcp_url`, `crm.auth_method: "api_key_headers_helper"`, `crm.credential_reference: "config/tinacrm_api_key.txt"` vào `config/business.json`.
+2. Tạo tệp rỗng `config/tinacrm_api_key.txt` (đã gitignore) và mở nó cho người dùng (`open -e` trên macOS, `notepad` trên Windows). Người dùng tự dán khóa, lưu, rồi báo “xong”. Claude không đọc nội dung tệp ra chat, không in khóa.
+3. Thêm server vào `.mcp.json` ở thư mục gốc theo `config/tinacrm_mcp.template.json` (giữ các server có sẵn như `workflow-cloakbrowser`). `headersHelper` chạy `scripts/tinacrm_auth_header.sh`, đọc khóa và gửi `Authorization: Bearer <token>`. Không ghi khóa trực tiếp vào `.mcp.json` hoặc `headers`.
+4. Nhờ người dùng mở phiên mới (+ New) trong cùng thư mục và chấp nhận hộp thoại tin cậy thư mục nếu có; headersHelper của project chỉ chạy khi thư mục đã được tin cậy.
+5. Kiểm tra server `tinacrm` đã kết nối và có công cụ; thử đọc schema/một vài bản ghi, chưa ghi dữ liệu.
+6. Lỗi 401/403: khóa sai, hết hạn hoặc đã xóa → người dùng tạo khóa mới và dán đè vào tệp. Lỗi kết nối: kiểm tra URL `/mcp` và HTTPS.
+
+Trên Windows không có `sh`: dùng Git Bash nếu có, hoặc viết helper tương đương bằng Python (`.venv`) và cập nhật `headersHelper`. Phương án OAuth/connector (mục dưới) vẫn dùng được nếu deployment hỗ trợ.
+
 ## Ba cơ chế khác nhau
 
 | Cơ chế | Đường dẫn trong source | Xác thực và workspace | Dùng để làm gì |
@@ -45,7 +58,7 @@ Chữ ký: HMAC-SHA256(secret, `timestamp + ':' + JSON.stringify(payloadWithoutS
 
 1. Người dùng cung cấp địa chỉ TinaCRM; kiểm tra server URL trong Settings, không đoán từ frontend URL khi backend tách domain.
 2. Hướng dẫn mở MCP & APIs, thử Install của Claude và đăng nhập/cấp quyền đúng doanh nghiệp.
-3. Nếu dùng API key: tạo với Name, Role, Expiration Date. Chọn Role đáp ứng đọc schema, đọc/ghi object cần dùng và tạo/liên kết task. Cấu hình token ngoài chat.
+3. Nếu dùng API key: tạo với Name, Role, Expiration Date. Chọn Role đáp ứng đọc schema, đọc/ghi object cần dùng và tạo/liên kết task. Cấu hình token ngoài chat theo mục “Thiết lập MCP với API key”.
 4. Xác minh ngữ cảnh doanh nghiệp qua kết quả có sẵn và người dùng, không chỉ decode token rồi coi là đã xác thực.
 5. Khám phá object và trường thực tế qua tools/schema; tìm Person/Company/lead custom object và quan hệ task.
 6. Thử đọc không thay đổi dữ liệu; sau đó thử ghi mẫu được thống nhất, đọc lại và kiểm tra chạy lại không tạo trùng.
@@ -66,4 +79,10 @@ Chữ ký: HMAC-SHA256(secret, `timestamp + ':' + JSON.stringify(payloadWithoutS
 
 ## Trạng thái
 
-Đã đối chiếu source; chưa thử với instance TinaCRM thật và credential thật. File `business.example.json` là hợp đồng cấu hình cho workflow; các script mẫu không tự đọc cấu hình hoặc tự tạo kết nối MCP.
+Thử thật 2026-10-19 với API key (Bearer) trên một workspace TinaCRM cloud:
+
+- `initialize` thành công (cả `<workspace>.tinacrm.com/mcp` và `api.tinacrm.com/mcp`); xác thực API key qua MCP hoạt động.
+- `tools/list` và `tools/call` lỗi `-32603 Missing MCP annotations for preloaded tool "extract_json_paths"`. Nguyên nhân trong source: `COMMON_PRELOAD_TOOLS` có `extract_json_paths`, `search_output` nhưng `MCP_PRELOADED_TOOL_ANNOTATIONS` trong `mcp-protocol.service.ts` chỉ khai báo `search_help_center`. Cần sửa phía server trước khi Claude dùng được công cụ MCP.
+- REST cùng khóa đọc được `people`, `companies`, `tasks`, `opportunities` (phương án dự phòng chỉ đọc khi MCP còn lỗi).
+
+Chưa thử ghi dữ liệu và chưa thử qua Claude Code (`.mcp.json` + headersHelper). File `business.example.json` là hợp đồng cấu hình cho workflow; các script mẫu không tự đọc cấu hình hoặc tự tạo kết nối MCP.

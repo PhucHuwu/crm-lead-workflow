@@ -36,7 +36,7 @@ Người dùng thường dán nguyên câu mẫu. Nhận diện bước và ch�
 |---|---|
 | “Đọc CLAUDE.md và tài liệu trong inputs…” | 4 |
 | “Kiểm tra môi trường cho workflow này…” | 5 |
-| “Kết nối CloakBrowser qua .mcp.json…”, “Kết nối TinaCRM qua MCP…” (người dùng đã có API key, Claude chỉ chỗ dán trên máy — ví dụ biến môi trường được `.mcp.json` tham chiếu — không nhận khóa qua chat) | 6 |
+| “Kết nối CloakBrowser qua .mcp.json…”, “Kết nối TinaCRM qua MCP…” (người dùng đã có API key; làm theo mục “Thiết lập MCP với API key” trong `TINACRM_CONNECTION.md`: tạo và mở `config/tinacrm_api_key.txt` để người dùng tự dán, không nhận khóa qua chat) | 6 |
 | “Đề xuất tiêu chí khách hàng phù hợp (ICP)…” | 7 |
 | “Tìm 10 khách theo ICP đã chốt…”, “Kiểm tra trùng và lưu danh sách đã duyệt vào TinaCRM…” | 8 |
 | “Kết nối hộp thư…”, “Đề xuất chuỗi email chăm sóc…” | 9 |

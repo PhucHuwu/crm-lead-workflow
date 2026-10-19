@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "tinacrm": {
+      "type": "http",
+      "url": "https://YOUR-TINACRM-SERVER/mcp",
+      "headersHelper": "sh scripts/tinacrm_auth_header.sh"
+    }
+  }
+}

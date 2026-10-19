@@ -72,7 +72,8 @@ export const cycle: Guide[] = [
       { id: "browser", title: "CloakBrowser", prompt: "Kết nối CloakBrowser qua .mcp.json và mở thử một trang web công khai." },
       { id: "apikey-open", title: "TinaCRM: tạo API key", paragraphs: ["Đăng nhập TinaCRM của doanh nghiệp → Settings → MCP & APIs → tab API → Create API key."] },
       { id: "apikey-form", title: "Điền thông tin khóa", paragraphs: ["Role quyết định Claude được làm gì trong CRM: chọn role đủ quyền với khách hàng, công ty và công việc. Nên đặt ngày hết hạn thay vì Never."] },
-      { id: "apikey-copy", title: "Sao chép khóa", paragraphs: ["Khóa chỉ hiện một lần. Bấm Copy rồi gửi câu lệnh dưới đây; Claude sẽ chỉ chỗ dán khóa trên máy. Không dán khóa vào khung chat."], prompt: "Kết nối TinaCRM qua MCP. Hỏi tôi địa chỉ TinaCRM, chỉ tôi chỗ dán API key trên máy (không dán vào chat), sau đó đọc thử cấu trúc dữ liệu khách hàng, chưa ghi dữ liệu." },
+      { id: "apikey-copy", title: "Sao chép khóa", paragraphs: ["Khóa chỉ hiện một lần. Bấm Copy rồi gửi câu lệnh dưới đây. Claude mở tệp config/tinacrm_api_key.txt, bạn dán khóa vào đó và lưu. Không dán khóa vào khung chat."], prompt: "Kết nối TinaCRM qua MCP. Hỏi tôi địa chỉ TinaCRM, mở tệp để tôi dán API key (không dán vào chat), sau đó đọc thử dữ liệu khách hàng, chưa ghi gì." },
+      { id: "mcp-check", title: "Kiểm tra kết nối", paragraphs: ["Claude ghi kết nối tinacrm vào .mcp.json rồi nhờ bạn mở phiên mới (+ New) và cho phép thư mục nếu được hỏi. Từ đây Claude đọc và lưu khách vào TinaCRM qua MCP này; API key chỉ là quyền truy cập."] },
     ]
   },
   {
