@@ -52,7 +52,7 @@ graph TD
    - Subagent `02_marketing_strategist` phân tích giá trị giải pháp, điểm đau khách hàng, đối tượng mục tiêu.
    - Xác nhận với người dùng mục tiêu chiến dịch cụ thể.
 4. **Bước 6 (ICP Synthesis):**
-   - Hai subagent thảo luận tạo file `outputs/01_icp_criteria/icp_criteria.json` và `.md`.
+   - Hai subagent thảo luận tạo file `campaigns/<slug>/outputs/01_icp_criteria/icp_criteria.json` và `.md`.
    - Người dùng xem và duyệt qua bộ tiêu chí chấm điểm Lead.
 
 ---

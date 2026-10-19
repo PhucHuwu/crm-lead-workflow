@@ -24,6 +24,6 @@ Kỹ sư thu thập dữ liệu khách hàng tiềm năng. Hướng dẫn và cu
   - *Lưu ý: Khuyến nghị dùng tài khoản phụ để tuyệt đối an toàn cho tài khoản chính."*
 
 ## 4. DỮ LIỆU ĐẦU RA
-Lưu danh sách lead sau khi cào và lọc vào `outputs/02_crawled_leads/leads_raw.json`.
+Lưu danh sách lead sau khi cào và lọc vào `campaigns/<slug>/outputs/02_crawled_leads/leads_raw.json`.
 Cấu trúc mỗi lead bao gồm:
 `full_name`, `job_title`, `company_name`, `company_size`, `website`, `email`, `phone`, `social_url`, `location`, `match_score`, `intent_signals`.

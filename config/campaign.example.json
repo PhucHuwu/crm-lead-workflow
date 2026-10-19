@@ -1,0 +1,21 @@
+{
+  "slug": null,
+  "name": null,
+  "status": "draft",
+  "target_segment": null,
+  "priority_products": [],
+  "target_markets": [],
+  "daily_qualified_lead_target": null,
+  "lead_sources": [],
+  "browser_profile": null,
+  "crm_campaign_value": null,
+  "email": {
+    "tone": null,
+    "sequence_steps": [],
+    "final_reply_wait_days": null,
+    "daily_send_limit": null
+  },
+  "schedule": {
+    "daily_run_time": null
+  }
+}

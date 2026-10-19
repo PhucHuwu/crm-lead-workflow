@@ -4,7 +4,7 @@ Bộ quy chuẩn JSON Schema cho các dữ liệu luân chuyển trong hệ th�
 
 ---
 
-## 1. TIÊU CHÍ KHÁCH HÀNG TIỀM NĂNG (outputs/01_icp_criteria/icp_criteria.json)
+## 1. TIÊU CHÍ KHÁCH HÀNG TIỀM NĂNG (campaigns/<slug>/outputs/01_icp_criteria/icp_criteria.json)
 ```json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -40,7 +40,7 @@ Bộ quy chuẩn JSON Schema cho các dữ liệu luân chuyển trong hệ th�
 
 ---
 
-## 2. DỮ LIỆU LEAD CÀO ĐƯỢC (outputs/02_crawled_leads/leads_raw.json)
+## 2. DỮ LIỆU LEAD CÀO ĐƯỢC (campaigns/<slug>/outputs/02_crawled_leads/leads_raw.json)
 ```json
 [
   {

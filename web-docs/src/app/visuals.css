@@ -9,3 +9,8 @@
 @media print{.visual-top button,.visual-dialog{display:none}.guide-visual{break-inside:avoid}}
 
 :root[data-theme="dark"]{--visual-stage:#2a332e}@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--visual-stage:#2a332e}}
+
+.visual-image .img-dark{display:none}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .img-dark{display:block}:root:not([data-theme="light"]) .img-light{display:none}}
+:root[data-theme="dark"] .img-dark{display:block}
+:root[data-theme="dark"] .img-light{display:none}

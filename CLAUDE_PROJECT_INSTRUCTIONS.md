@@ -69,7 +69,7 @@ Hệ thống hoạt động theo tiêu chuẩn **Agent Skills**:
   - **Nhân khẩu học / Doanh nghiệp học (Firmographics):** Quy mô, ngành nghề, địa lý, chức danh người ra quyết định.
   - **Dấu hiệu tiềm năng (Buying Intent Signals):** Đang tuyển dụng, vừa gọi vốn, thay đổi công nghệ...
   - **Bộ câu hỏi chấm điểm (Lead Scoring Framework):** Thang điểm 100.
-- Xuất kết quả dưới dạng Markdown và JSON chuẩn vào `outputs/01_icp_criteria/icp_criteria.json`.
+- Xuất kết quả dưới dạng Markdown và JSON chuẩn vào `campaigns/<slug>/outputs/01_icp_criteria/icp_criteria.json`.
 - **Hành động hỏi:** Trình bày tiêu chí ICP và hỏi người dùng: *"Bạn có muốn tinh chỉnh tiêu chí lọc hoặc loại trừ nhóm đối tượng nào (ví dụ: công ty dưới 5 người, đối thủ cạnh tranh...) không?"*
 
 ---
@@ -122,7 +122,7 @@ Hệ thống hoạt động theo tiêu chuẩn **Agent Skills**:
      - Gửi qua SMTP server riêng.
      - Gửi qua Email Service Provider (Resend, SendGrid, Amazon SES).
   2. *"Bạn muốn Claude chuẩn bị sẵn nội dung cá nhân hóa từng lead để bạn duyệt trước khi gửi (Human-in-the-loop) hay gửi tự động theo batch?"*
-- Xuất danh sách email cá nhân hóa vào `outputs/03_email_cadence/`.
+- Xuất danh sách email cá nhân hóa vào `campaigns/<slug>/outputs/03_email_cadence/`.
 - Thiết lập cơ chế ghi nhận trạng thái phản hồi (Đã mở, Đã click, Đã trả lời, Chưa trả lời).
 
 ---

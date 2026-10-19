@@ -3,16 +3,17 @@
 Tìm lead trên LinkedIn theo ICP (Bước 7-8), chạy cục bộ bằng Playwright + Google Chrome.
 
 - Đăng nhập: bạn tự đăng nhập một lần trong cửa sổ Chrome thường (lệnh `login`), kể cả bằng Google.
-  Phiên được lưu ở config/.browser_profile/linkedin; script không đọc/lưu mật khẩu.
+  Mỗi chiến dịch có phiên riêng ở config/.browser_profile/linkedin-<slug>; script không đọc/lưu mật khẩu.
 - An toàn: giãn cách ngẫu nhiên 5-15 giây, giới hạn số trang xem mỗi lần chạy,
   dừng ngay khi gặp checkpoint/authwall.
 - Email: đoán theo mẫu tên + domain website công ty, chỉ kiểm tra MX (không dò SMTP).
-- Đầu ra: outputs/02_crawled_leads/leads_raw.json (lọc trùng, có nguồn + thời điểm thu thập).
+- Chiến dịch (workflows/CAMPAIGNS.md): đọc ICP và mục tiêu trong campaigns/<slug>/,
+  ghi campaigns/<slug>/outputs/02_crawled_leads/leads_raw.json (lọc trùng, có nguồn + thời điểm thu thập).
 
 Cách dùng:
-  .venv/bin/python scripts/linkedin_prospector.py login
-  .venv/bin/python scripts/linkedin_prospector.py run --campaign A --dry-run
-  .venv/bin/python scripts/linkedin_prospector.py run --campaign A
+  .venv/bin/python scripts/linkedin_prospector.py login --campaign ban-le-hcm
+  .venv/bin/python scripts/linkedin_prospector.py run --campaign ban-le-hcm --dry-run
+  .venv/bin/python scripts/linkedin_prospector.py run --campaign ban-le-hcm
 """
 
 import argparse
@@ -30,16 +31,28 @@ from urllib.parse import quote, urlparse
 from playwright.sync_api import sync_playwright
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ICP_PATH = os.path.join(ROOT, "outputs/01_icp_criteria/icp_criteria.json")
-BUSINESS_PATH = os.path.join(ROOT, "config/business.json")
-OUT_DIR = os.path.join(ROOT, "outputs/02_crawled_leads")
-LEADS_PATH = os.path.join(OUT_DIR, "leads_raw.json")
-COMPANY_CACHE_PATH = os.path.join(OUT_DIR, "company_cache.json")
-DEBUG_DIR = os.path.join(OUT_DIR, "debug")
-PROFILE_DIR = os.path.join(ROOT, "config/.browser_profile/linkedin")
 CHROME_BIN = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
-CAMPAIGN_INDEX = {"A": 0, "B": 1}
+# Set by use_campaign() from --campaign <slug>.
+CAMPAIGN_DIR = ICP_PATH = CAMPAIGN_PATH = OUT_DIR = LEADS_PATH = None
+COMPANY_CACHE_PATH = DEBUG_DIR = PROFILE_DIR = None
+
+
+def use_campaign(slug):
+    global CAMPAIGN_DIR, ICP_PATH, CAMPAIGN_PATH, OUT_DIR, LEADS_PATH, COMPANY_CACHE_PATH, DEBUG_DIR, PROFILE_DIR
+    if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", slug):
+        sys.exit("[!] --campaign phải là slug chiến dịch: chữ thường, số và '-'.")
+    CAMPAIGN_DIR = os.path.join(ROOT, "campaigns", slug)
+    if not os.path.isdir(CAMPAIGN_DIR):
+        sys.exit(f"[!] Chưa có chiến dịch campaigns/{slug}/")
+    ICP_PATH = os.path.join(CAMPAIGN_DIR, "outputs/01_icp_criteria/icp_criteria.json")
+    CAMPAIGN_PATH = os.path.join(CAMPAIGN_DIR, "campaign.json")
+    OUT_DIR = os.path.join(CAMPAIGN_DIR, "outputs/02_crawled_leads")
+    LEADS_PATH = os.path.join(OUT_DIR, "leads_raw.json")
+    COMPANY_CACHE_PATH = os.path.join(OUT_DIR, "company_cache.json")
+    DEBUG_DIR = os.path.join(OUT_DIR, "debug")
+    PROFILE_DIR = os.path.join(ROOT, "config/.browser_profile", f"linkedin-{slug}")
+
 QUALIFIED_MIN = 50
 HOT_MIN = 80
 
@@ -131,7 +144,7 @@ def cmd_login(_args):
                      stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
     print("[*] Đã mở cửa sổ Chrome riêng. Hãy tự đăng nhập tài khoản LinkedIn PHỤ trong đó.")
     print("[*] Khi thấy trang chủ (feed) LinkedIn: bấm vào cửa sổ Chrome đó và nhấn Cmd+Q.")
-    print("[*] Sau đó chạy: .venv/bin/python scripts/linkedin_prospector.py check")
+    print(f"[*] Sau đó chạy: .venv/bin/python scripts/linkedin_prospector.py check --campaign {os.path.basename(CAMPAIGN_DIR)}")
 
 
 def profile_in_use():
@@ -371,10 +384,15 @@ def cmd_run(args):
         sys.exit("[!] Chrome của hồ sơ LinkedIn đang mở. Thoát nó (Cmd+Q) rồi chạy lại.")
     icp_all = load_json(ICP_PATH, None)
     if not icp_all:
-        sys.exit("[!] Chưa có outputs/01_icp_criteria/icp_criteria.json")
-    icp = icp_all["campaigns"][CAMPAIGN_INDEX[args.campaign]]
-    business = load_json(BUSINESS_PATH, {})
-    target = args.target or business.get("campaign", {}).get("daily_qualified_lead_target") or 10
+        sys.exit(f"[!] Chưa có {os.path.relpath(ICP_PATH, ROOT)}")
+    if "campaigns" in icp_all:
+        if len(icp_all["campaigns"]) != 1:
+            sys.exit("[!] icp_criteria.json của chiến dịch phải chỉ có một bộ tiêu chí.")
+        icp = icp_all["campaigns"][0]
+    else:
+        icp = icp_all
+    campaign = load_json(CAMPAIGN_PATH, {})
+    target = args.target or campaign.get("daily_qualified_lead_target") or 10
     search = icp["linkedin_search"]
 
     leads = load_json(LEADS_PATH, [])
@@ -497,11 +515,12 @@ def cmd_run(args):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("login", help="Mở Chrome để bạn tự đăng nhập tài khoản LinkedIn phụ")
-    sub.add_parser("check", help="Kiểm tra phiên đăng nhập LinkedIn đã lưu")
+    for name, help_text in (("login", "Mở Chrome để bạn tự đăng nhập tài khoản LinkedIn phụ"),
+                            ("check", "Kiểm tra phiên đăng nhập LinkedIn đã lưu")):
+        sub.add_parser(name, help=help_text).add_argument("--campaign", required=True, help="Slug chiến dịch")
     r = sub.add_parser("run", help="Tìm và chấm điểm lead")
-    r.add_argument("--campaign", choices=["A", "B"], required=True)
-    r.add_argument("--target", type=int, help="Số lead đạt chuẩn cần tìm (mặc định lấy từ business.json)")
+    r.add_argument("--campaign", required=True, help="Slug chiến dịch trong campaigns/")
+    r.add_argument("--target", type=int, help="Số lead đạt chuẩn cần tìm (mặc định lấy từ campaign.json)")
     r.add_argument("--max-profiles", type=int, default=25, help="Giới hạn số hồ sơ xem mỗi lần chạy")
     r.add_argument("--pages-per-query", type=int, default=2)
     r.add_argument("--no-jobs", action="store_true", help="Không xem trang tuyển dụng của công ty")
@@ -509,6 +528,7 @@ def main():
     r.add_argument("--headless", action="store_true")
     r.add_argument("--debug", action="store_true", help="Lưu HTML + ảnh chụp từng trang vào debug/")
     args = ap.parse_args()
+    use_campaign(args.campaign)
     {"login": cmd_login, "check": cmd_check, "run": cmd_run}[args.cmd](args)
 
 

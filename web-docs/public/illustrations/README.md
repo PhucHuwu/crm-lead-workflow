@@ -14,3 +14,4 @@
 - `claude-account-menu.png`: góc dưới trái Claude Desktop, menu tài khoản có Usage, chụp 2026-10-19. Đã xóa email và tên tài khoản.
 - `tinacrm-api-keys.png`, `tinacrm-api-key-form.png`, `tinacrm-api-key-created.png`: TinaCRM Settings → MCP & APIs → API, tạo khóa thử, chụp 2026-10-19 trên Edge. Đã cắt thanh trình duyệt (địa chỉ workspace) và che hoàn toàn chuỗi khóa.
 - `tinacrm-key-dialog.png`: hộp thoại do scripts/tinacrm_save_key.sh bật lên, chụp 2026-10-19.
+- Bản giao diện sáng `*-light.png` của 4 ảnh Claude Desktop trên (`claude-code-folder-chosen-full-light.png`, `claude-code-open-folder-zoom-light.png`, `claude-code-permissions-zoom-light.png`, `claude-account-menu-light.png`): chụp 2026-10-19, cùng vùng cắt với bản tối để dùng chung vị trí đánh dấu. Trang tự đổi ảnh theo giao diện sáng/tối (`srcLight` trong `src/lib/visuals.ts`). Đã xóa tên tài khoản, email và các dự án khác trong mục Recent.

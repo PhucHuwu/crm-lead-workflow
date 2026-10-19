@@ -79,17 +79,18 @@ export const cycle: Guide[] = [
   },
   {
     slug: "khach-phu-hop", title: "Xác định khách phù hợp", shortTitle: "Xác định khách phù hợp", actor: "Bạn yêu cầu Claude",
-    description: "Chốt ngành, quy mô, khu vực và người ra quyết định. Kết quả lưu ở outputs/01_icp_criteria.",
+    description: "Mỗi nhóm khách hoặc sản phẩm là một chiến dịch riêng. Chốt ngành, quy mô, khu vực và người ra quyết định cho chiến dịch.",
     sections: [
-      { id: "send", title: "Câu lệnh", prompt: "Đề xuất tiêu chí khách hàng phù hợp (ICP) và thị trường ưu tiên. Sau khi tôi duyệt, lưu vào outputs/01_icp_criteria." }
+      { id: "send", title: "Câu lệnh", prompt: "Tạo chiến dịch mới. Hỏi tôi tên chiến dịch, nhóm khách và sản phẩm, rồi đề xuất tiêu chí khách hàng phù hợp (ICP). Lưu sau khi tôi duyệt." },
+      { id: "more", title: "Thêm chiến dịch", paragraphs: ["Làm lại bước 7–9 cho mỗi chiến dịch mới. Tài liệu doanh nghiệp, TinaCRM và hộp thư dùng chung."] }
     ]
   },
   {
     slug: "tim-khach", title: "Tìm khách và lưu vào TinaCRM", shortTitle: "Tìm khách & lưu CRM", actor: "Bạn yêu cầu Claude",
     description: "Bắt đầu bằng danh sách nhỏ. Nếu nguồn cần đăng nhập, bạn tự đăng nhập trong cửa sổ CloakBrowser.",
     sections: [
-      { id: "find", title: "Tìm danh sách", prompt: "Tìm 10 khách theo ICP đã chốt, kèm lý do phù hợp và nguồn. Lưu vào outputs/02_crawled_leads." },
-      { id: "save", title: "Lưu TinaCRM", prompt: "Kiểm tra trùng và lưu danh sách đã duyệt vào TinaCRM. Báo số tạo mới, cập nhật, bỏ qua và lỗi." }
+      { id: "find", title: "Tìm danh sách", prompt: "Tìm 10 khách theo ICP của chiến dịch, kèm lý do phù hợp và nguồn." },
+      { id: "save", title: "Lưu TinaCRM", prompt: "Kiểm tra trùng (cả với chiến dịch khác) và lưu danh sách đã duyệt vào TinaCRM. Báo số tạo mới, cập nhật, bỏ qua và lỗi." }
     ]
   },
   {
@@ -105,8 +106,14 @@ export const cycle: Guide[] = [
     slug: "hang-ngay", title: "Chạy hằng ngày", shortTitle: "Chạy hằng ngày", actor: "Bạn yêu cầu Claude",
     description: "Sau lần thiết lập đầu, mỗi ngày chỉ cần bước này.",
     sections: [
-      { id: "routine", title: "Câu lệnh", prompt: "Tiếp tục chiến dịch: kiểm tra phản hồi mới, tìm khách theo mục tiêu ngày và gửi email đến hạn." },
-      { id: "outputs", title: "Kết quả", paragraphs: ["outputs/01_icp_criteria, 02_crawled_leads, 03_email_cadence, 04_weekly_reports. Tiến trình lưu ở config/workflow_progress.md."] }
+      { id: "routine", title: "Câu lệnh", prompt: "Tiếp tục chiến dịch <tên chiến dịch>: kiểm tra phản hồi mới, tìm khách theo mục tiêu ngày và gửi email đến hạn." },
+      { id: "parallel", title: "Chạy song song", steps: [
+        { title: "Mở phiên mới", body: "Bấm + New. Mỗi phiên làm một chiến dịch hoặc một doanh nghiệp." },
+        { title: "Chọn thư mục", body: "Cùng doanh nghiệp: chọn cùng thư mục. Doanh nghiệp khác: chọn thư mục của doanh nghiệp đó." },
+        { title: "Gửi câu lệnh", body: "Gửi câu lệnh trên với tên chiến dịch của phiên đó." },
+        { title: "Chạy theo lịch", body: "Scheduled: mỗi chiến dịch một lịch, giờ cách nhau ít nhất 30 phút." }
+      ], note: { title: "Lưu ý", body: "Không đăng nhập cùng một tài khoản mạng xã hội ở hai chiến dịch chạy cùng lúc. Mỗi phiên tốn lượt dùng Claude riêng." } },
+      { id: "outputs", title: "Kết quả", paragraphs: ["Mỗi chiến dịch: campaigns/<tên chiến dịch>/outputs. Báo cáo tuần: outputs/04_weekly_reports."] }
     ]
   },
   {
@@ -123,11 +130,12 @@ export const help: Guide = {
   description: "Các vướng mắc hay gặp.",
   sections: [
     { id: "faq", title: "Câu hỏi", faqs: [
-      { question: "Làm tiếp ở phiên sau?", answer: "Mở lại thư mục workflow trong Code và gửi “Tiếp tục từ lần trước”. Claude đọc config/workflow_progress.md." },
+      { question: "Làm tiếp ở phiên sau?", answer: "Mở lại thư mục workflow trong Code và gửi “Tiếp tục chiến dịch <tên>” hoặc “Tiếp tục từ lần trước”." },
       { question: "Claude báo đã lưu nhưng TinaCRM không có?", answer: "Yêu cầu Claude kiểm tra lại bằng công cụ và báo ID bản ghi." },
       { question: "CloakBrowser không mở?", answer: "Làm lại bước 6." },
       { question: "Lịch chạy không hoạt động?", answer: "Lịch chỉ chạy khi máy bật và Claude Desktop đang mở." },
-      { question: "Dùng cho doanh nghiệp khác?", answer: "Tải một bản workflow riêng và làm lại từ bước 1." }
+      { question: "Dùng cho doanh nghiệp khác?", answer: "Tải một bản workflow riêng và làm lại từ bước 1. Chạy song song: xem bước 10." },
+      { question: "Khách xuất hiện ở hai chiến dịch?", answer: "Claude giữ khách ở chiến dịch đầu tiên và báo “đã thuộc chiến dịch X”." }
     ] },
     { id: "usage", title: "Xem mức sử dụng Claude", paragraphs: ["Bấm tên tài khoản ở góc dưới bên trái → Usage."] }
   ]

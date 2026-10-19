@@ -28,7 +28,7 @@ Kỹ năng này chịu trách nhiệm chuyển đổi định vị doanh nghiệ
    - < 50 điểm: **Disqualified** (Bỏ qua).
 
 ## 3. Đầu ra bắt buộc
-- Ghi vào file: `outputs/01_icp_criteria/icp_criteria.json` và `icp_criteria.md`.
+- Ghi vào file: `campaigns/<slug>/outputs/01_icp_criteria/icp_criteria.json` và `icp_criteria.md`.
 
 ## 4. Checkpoint hỏi người dùng
 - *"Đây là bộ tiêu chí ICP và thang chấm điểm Lead được tính toán. Bạn có muốn thêm điều kiện loại trừ nào không (ví dụ: loại trừ đối thủ cạnh tranh, loại trừ doanh nghiệp có quy mô quá nhỏ...)?"*

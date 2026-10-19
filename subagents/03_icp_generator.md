@@ -9,7 +9,7 @@ Cầu nối hội tụ giữa `@CompanyAnalyst` và `@MarketingStrategist`. Ch�
 3. Tìm điểm giao thoa tốt nhất (Sweet Spot) giữa năng lực cung cấp và nhu cầu khách hàng.
 
 ## 3. ĐẦU RA BẮT BUỘC
-Lưu file vào `outputs/01_icp_criteria/icp_criteria.json` và `icp_criteria.md`:
+Lưu file vào `campaigns/<slug>/outputs/01_icp_criteria/icp_criteria.json` và `icp_criteria.md`:
 - **Tiêu chuẩn doanh nghiệp (Firmographics):**
   - Ngành nghề / Lĩnh vực hoạt động.
   - Quy mô công ty (Số nhân viên, doanh thu ước tính).

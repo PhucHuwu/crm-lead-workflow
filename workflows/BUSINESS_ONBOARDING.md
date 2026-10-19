@@ -4,7 +4,7 @@
 
 Workflow và skills dùng chung, còn dữ liệu và cấu hình thuộc từng doanh nghiệp. TinaCRM là nền tảng CRM hiện được định hướng tích hợp, không phải tên doanh nghiệp sử dụng workflow.
 
-Ở phiên bản hiện tại, mỗi doanh nghiệp dùng một bản clone/thư mục riêng, mở bằng Claude Code (Code → This computer → thư mục đó). Thứ tự dẫn dắt người dùng theo `USER_GUIDE_FLOW.md`; danh sách dưới đây là nội dung cần thu thập. Không dùng chung `product-marketing.md`, inputs, outputs hoặc cấu hình kết nối giữa các doanh nghiệp. Đây chưa phải ứng dụng nhiều tenant dùng chung một runtime.
+Ở phiên bản hiện tại, mỗi doanh nghiệp dùng một bản clone/thư mục riêng (có thể chạy song song nhiều doanh nghiệp và nhiều chiến dịch, xem `CAMPAIGNS.md`), mở bằng Claude Code (Code → This computer → thư mục đó). Thứ tự dẫn dắt người dùng theo `USER_GUIDE_FLOW.md`; danh sách dưới đây là nội dung cần thu thập. Không dùng chung `product-marketing.md`, inputs, outputs hoặc cấu hình kết nối giữa các doanh nghiệp. Đây chưa phải ứng dụng nhiều tenant dùng chung một runtime.
 
 ## Cách Claude thiết lập
 
@@ -13,9 +13,9 @@ Workflow và skills dùng chung, còn dữ liệu và cấu hình thuộc từng
 1. Xác định doanh nghiệp đang được phục vụ, nhận tài liệu công ty, sản phẩm và case study. Chỉ hỏi phần chưa có trong tài liệu.
 2. Tổng hợp `product-marketing.md`, đề xuất thị trường/ngách và ICP; xác nhận sản phẩm trọng tâm với người dùng.
 3. Sao chép `config/business.example.json` thành `config/business.json` qua công cụ đọc/ghi file nếu đã kết nối; nếu chưa có, cung cấp cấu hình để người dùng lưu. `null` và danh sách rỗng là thông tin chưa được thiết lập, không phải giá trị hợp lệ để chạy tác vụ tương ứng.
-4. Hỏi mục tiêu lead/ngày, nguồn tìm kiếm và quyền truy cập công cụ khi thiết lập thu thập lead.
+4. Từ bước 7, mỗi nhóm khách/sản phẩm là một chiến dịch trong `campaigns/<slug>/` theo `CAMPAIGNS.md`. Mục tiêu lead/ngày, nguồn tìm kiếm, ICP và chuỗi email lưu trong `campaign.json` của chiến dịch.
 5. Hỏi địa chỉ TinaCRM, ưu tiên kết nối MCP native theo `TINACRM_CONNECTION.md`. Hướng dẫn đăng nhập/cấp quyền hoặc nhờ người hỗ trợ cấu hình API key có Role và thời hạn. REST/MCP xác định workspace từ token/ngữ cảnh đã xác thực; không yêu cầu nhập workspace ID riêng. Khám phá và ánh xạ trường theo schema thực tế. Tham chiếu credential, không lưu secret trong hồ sơ.
-6. Hỏi hộp thư gửi/nhận, giọng điệu, số email, khoảng cách từng lần gửi và thời gian chờ cuối chuỗi. Mỗi bước trong `email.sequence_steps` cần có `step` và `delay_days` (khoảng cách so với bước trước; bước đầu tính từ lúc bắt đầu chăm sóc). Các chuỗi 3 hoặc 4 email trong tài liệu chỉ là ví dụ.
+6. Hỏi hộp thư gửi/nhận và giới hạn gửi/ngày của hộp thư (`config/business.json`); giọng điệu, số email, khoảng cách từng lần gửi và thời gian chờ cuối chuỗi theo từng chiến dịch (`campaign.json`). Mỗi bước trong `email.sequence_steps` cần có `step` và `delay_days` (khoảng cách so với bước trước; bước đầu tính từ lúc bắt đầu chăm sóc). Các chuỗi 3 hoặc 4 email trong tài liệu chỉ là ví dụ.
 7. Hỏi lịch chạy, múi giờ và phương thức thực thi cục bộ thực sự hỗ trợ. Hỏi người nhận báo cáo, ngày và giờ gửi. Không mặc định người nhận hoặc lịch từ doanh nghiệp khác.
 8. Kiểm tra kết nối và các tham số cần thiết cho bước sắp chạy; lưu câu trả lời và tiếp tục các bước độc lập khi có thể. Chỉ ghi hoàn tất thao tác khi công cụ trả kết quả thực tế.
 

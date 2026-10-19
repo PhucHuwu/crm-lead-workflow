@@ -40,4 +40,4 @@ Kỹ năng này chịu trách nhiệm xây dựng chuỗi email chăm sóc đa �
   2. *Gửi qua SMTP server riêng của doanh nghiệp*
   3. *Gửi qua dịch vụ API (Resend / SendGrid)*
   4. *Xuất file email cá nhân hóa để bạn duyệt và gửi thủ công từng người*
-- Xuất danh sách email đã cá nhân hóa vào thư mục `outputs/03_email_cadence/`.
+- Xuất danh sách email đã cá nhân hóa vào thư mục `campaigns/<slug>/outputs/03_email_cadence/`.

@@ -7,7 +7,7 @@ metadata:
 
 # Prospecting & Lead Discovery
 
-Kỹ năng này hướng dẫn và thực thi việc tìm kiếm danh sách khách hàng tiềm năng dựa trên tiêu chí ICP đã chốt tại `outputs/01_icp_criteria/icp_criteria.json`.
+Kỹ năng này hướng dẫn và thực thi việc tìm kiếm danh sách khách hàng tiềm năng dựa trên tiêu chí ICP đã chốt tại `campaigns/<slug>/outputs/01_icp_criteria/icp_criteria.json`.
 
 ## 1. Phân nhánh tìm kiếm (Pick the Branch)
 Dựa trên loại hình sản phẩm trong `product-marketing.md`, chọn một trong 4 nhánh tiếp cận:
@@ -46,5 +46,5 @@ Dựa trên loại hình sản phẩm trong `product-marketing.md`, chọn một
 ---
 
 ## 4. Đầu ra
-Lưu danh sách lead vào `outputs/02_crawled_leads/leads_raw.json`.
+Lưu danh sách lead vào `campaigns/<slug>/outputs/02_crawled_leads/leads_raw.json`.
 Gợi ý danh sách Top 5 lead đạt điểm ICP cao nhất để người dùng ưu tiên tiếp cận đầu tiên.
