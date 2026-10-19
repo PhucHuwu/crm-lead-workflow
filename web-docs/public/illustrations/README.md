@@ -13,3 +13,4 @@
 - `claude-code-permissions-zoom.png`: phần dưới cửa sổ, menu Permissions mở từ nút Manual với 5 chế độ, chụp 2026-10-19.
 - `claude-account-menu.png`: góc dưới trái Claude Desktop, menu tài khoản có Usage, chụp 2026-10-19. Đã xóa email và tên tài khoản.
 - `tinacrm-api-keys.png`, `tinacrm-api-key-form.png`, `tinacrm-api-key-created.png`: TinaCRM Settings → MCP & APIs → API, tạo khóa thử, chụp 2026-10-19 trên Edge. Đã cắt thanh trình duyệt (địa chỉ workspace) và che hoàn toàn chuỗi khóa.
+- `tinacrm-key-dialog.png`: hộp thoại do scripts/tinacrm_save_key.sh bật lên, chụp 2026-10-19.

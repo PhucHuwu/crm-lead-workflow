@@ -15,13 +15,13 @@ MCP có tool catalog/discovery và thực thi theo Role. Cần initialize, tools
 Dữ liệu lead vẫn đọc/ghi qua **MCP native** của TinaCRM; API key chỉ là thông tin xác thực để MCP biết workspace và Role. Không dùng REST thay MCP khi MCP hoạt động.
 
 1. Hỏi địa chỉ TinaCRM. URL MCP là `<server-base-url>/mcp` (xem Settings → MCP & APIs → tab MCP; backend có thể khác domain giao diện). Ghi `crm.base_url`, `crm.mcp_url`, `crm.auth_method: "api_key_headers_helper"`, `crm.credential_reference: "config/tinacrm_api_key.txt"` vào `config/business.json`.
-2. Tạo tệp rỗng `config/tinacrm_api_key.txt` (đã gitignore) và mở nó cho người dùng (`open -e` trên macOS, `notepad` trên Windows). Người dùng tự dán khóa, lưu, rồi báo “xong”. Claude không đọc nội dung tệp ra chat, không in khóa.
+2. Chạy `sh scripts/tinacrm_save_key.sh <mcp_url>` (macOS). Lệnh bật hộp thoại "Kết nối TinaCRM"; nói trước với người dùng: "Một hộp thoại sẽ hiện ra, dán khóa vào ô và bấm Lưu". Script lưu khóa vào `config/tinacrm_api_key.txt` (gitignore), không in khóa, và báo TinaCRM chấp nhận/từ chối khóa. Không bắt người dùng tự tìm hoặc mở tệp. Nếu hộp thoại không hiện (bị che sau cửa sổ khác), nhắc người dùng tìm trên thanh Dock. Kết quả "Đã hủy" thì hỏi lại; "từ chối" thì tạo khóa mới và chạy lại.
 3. Thêm server vào `.mcp.json` ở thư mục gốc theo `config/tinacrm_mcp.template.json` (giữ các server có sẵn như `workflow-cloakbrowser`). `headersHelper` chạy `scripts/tinacrm_auth_header.sh`, đọc khóa và gửi `Authorization: Bearer <token>`. Không ghi khóa trực tiếp vào `.mcp.json` hoặc `headers`.
 4. Nhờ người dùng mở phiên mới (+ New) trong cùng thư mục và chấp nhận hộp thoại tin cậy thư mục nếu có; headersHelper của project chỉ chạy khi thư mục đã được tin cậy.
 5. Kiểm tra server `tinacrm` đã kết nối và có công cụ; thử đọc schema/một vài bản ghi, chưa ghi dữ liệu.
-6. Lỗi 401/403: khóa sai, hết hạn hoặc đã xóa → người dùng tạo khóa mới và dán đè vào tệp. Lỗi kết nối: kiểm tra URL `/mcp` và HTTPS.
+6. Lỗi 401/403: khóa sai, hết hạn hoặc đã xóa → người dùng tạo khóa mới, Claude chạy lại `tinacrm_save_key.sh`. Lỗi kết nối: kiểm tra URL `/mcp` và HTTPS.
 
-Trên Windows không có `sh`: dùng Git Bash nếu có, hoặc viết helper tương đương bằng Python (`.venv`) và cập nhật `headersHelper`. Phương án OAuth/connector (mục dưới) vẫn dùng được nếu deployment hỗ trợ.
+Trên Windows không có `sh` và `osascript`: cần bản Python/PowerShell tương đương cho cả hộp thoại lưu khóa và headersHelper (chưa có). Phương án OAuth/connector (mục dưới) vẫn dùng được nếu deployment hỗ trợ.
 
 ## Ba cơ chế khác nhau
 
