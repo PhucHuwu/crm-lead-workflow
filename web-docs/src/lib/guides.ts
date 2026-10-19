@@ -73,7 +73,7 @@ export const cycle: Guide[] = [
       { id: "apikey-open", title: "TinaCRM: tạo API key", paragraphs: ["Đăng nhập TinaCRM của doanh nghiệp → Settings → MCP & APIs → tab API → Create API key."] },
       { id: "apikey-form", title: "Điền thông tin khóa", paragraphs: ["Role quyết định Claude được làm gì trong CRM: chọn role đủ quyền với khách hàng, công ty và công việc. Nên đặt ngày hết hạn thay vì Never."] },
       { id: "apikey-copy", title: "Sao chép khóa", paragraphs: ["Khóa chỉ hiện một lần. Bấm Copy rồi gửi câu lệnh dưới đây. Không dán khóa vào khung chat."], prompt: "Kết nối TinaCRM qua MCP. Hỏi tôi địa chỉ TinaCRM, bật hộp thoại để tôi dán API key, sau đó đọc thử dữ liệu khách hàng, chưa ghi gì." },
-      { id: "apikey-paste", title: "Dán khóa vào hộp thoại", paragraphs: ["Claude bật hộp thoại Kết nối TinaCRM: dán khóa vào ô, bấm Lưu. Không thấy hộp thoại thì tìm trên thanh Dock."] },
+      { id: "apikey-paste", title: "Dán khóa vào hộp thoại", paragraphs: ["Claude bật hộp thoại Kết nối TinaCRM: dán khóa vào ô, bấm Lưu. Không thấy hộp thoại thì tìm trên thanh Dock (Mac) hoặc thanh tác vụ (Windows)."] },
       { id: "mcp-check", title: "Kiểm tra kết nối", paragraphs: ["Claude ghi kết nối tinacrm vào .mcp.json rồi nhờ bạn mở phiên mới (+ New) và cho phép thư mục nếu được hỏi. Từ đây Claude đọc và lưu khách vào TinaCRM qua MCP này; API key chỉ là quyền truy cập."] },
     ]
   },

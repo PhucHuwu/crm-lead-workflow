@@ -15,13 +15,17 @@ MCP có tool catalog/discovery và thực thi theo Role. Cần initialize, tools
 Dữ liệu lead vẫn đọc/ghi qua **MCP native** của TinaCRM; API key chỉ là thông tin xác thực để MCP biết workspace và Role. Không dùng REST thay MCP khi MCP hoạt động.
 
 1. Hỏi địa chỉ TinaCRM. URL MCP là `<server-base-url>/mcp` (xem Settings → MCP & APIs → tab MCP; backend có thể khác domain giao diện). Ghi `crm.base_url`, `crm.mcp_url`, `crm.auth_method: "api_key_headers_helper"`, `crm.credential_reference: "config/tinacrm_api_key.txt"` vào `config/business.json`.
-2. Chạy `sh scripts/tinacrm_save_key.sh <mcp_url>` (macOS). Lệnh bật hộp thoại "Kết nối TinaCRM"; nói trước với người dùng: "Một hộp thoại sẽ hiện ra, dán khóa vào ô và bấm Lưu". Script lưu khóa vào `config/tinacrm_api_key.txt` (gitignore), không in khóa, và chỉ lưu khi TinaCRM chấp nhận khóa (khóa cũ giữ nguyên nếu bị từ chối). Không bắt người dùng tự tìm hoặc mở tệp. Nếu hộp thoại không hiện (bị che sau cửa sổ khác), nhắc người dùng tìm trên thanh Dock. Kết quả "Đã hủy" thì hỏi lại; "từ chối" thì tạo khóa mới và chạy lại.
-3. Thêm server vào `.mcp.json` ở thư mục gốc theo `config/tinacrm_mcp.template.json` (giữ các server có sẵn như `workflow-cloakbrowser`). `headersHelper` chạy `scripts/tinacrm_auth_header.sh`, đọc khóa và gửi `Authorization: Bearer <token>`. Không ghi khóa trực tiếp vào `.mcp.json` hoặc `headers`.
+2. Bật hộp thoại lưu khóa, chọn lệnh theo hệ điều hành:
+   - macOS: `sh scripts/tinacrm_save_key.sh <mcp_url>`
+   - Windows: `powershell -NoProfile -ExecutionPolicy Bypass -STA -File scripts/tinacrm_save_key.ps1 <mcp_url>` (chạy được từ Git Bash lẫn PowerShell)
+
+   Nói trước với người dùng: "Một hộp thoại Kết nối TinaCRM sẽ hiện ra, dán khóa vào ô và bấm Lưu". Script lưu khóa vào `config/tinacrm_api_key.txt` (gitignore), không in khóa, và chỉ lưu khi TinaCRM chấp nhận khóa (khóa cũ giữ nguyên nếu bị từ chối). Không bắt người dùng tự tìm hoặc mở tệp. Hộp thoại bị che thì nhắc tìm trên thanh Dock (macOS) hoặc thanh tác vụ (Windows). Kết quả "Đã hủy" thì hỏi lại; "từ chối" thì tạo khóa mới và chạy lại.
+3. Thêm server vào `.mcp.json` ở thư mục gốc theo `config/tinacrm_mcp.template.json` (macOS) hoặc `config/tinacrm_mcp.windows.template.json` (Windows), giữ các server có sẵn như `workflow-cloakbrowser`. `headersHelper` chạy `scripts/tinacrm_auth_header.sh` hoặc `.ps1`, đọc khóa và gửi `Authorization: Bearer <token>`. Không ghi khóa trực tiếp vào `.mcp.json` hoặc `headers`.
 4. Nhờ người dùng mở phiên mới (+ New) trong cùng thư mục và chấp nhận hộp thoại tin cậy thư mục nếu có; headersHelper của project chỉ chạy khi thư mục đã được tin cậy.
 5. Kiểm tra server `tinacrm` đã kết nối và có công cụ; thử đọc schema/một vài bản ghi, chưa ghi dữ liệu.
-6. Lỗi 401/403: khóa sai, hết hạn hoặc đã xóa → người dùng tạo khóa mới, Claude chạy lại `tinacrm_save_key.sh`. Lỗi kết nối: kiểm tra URL `/mcp` và HTTPS.
+6. Lỗi 401/403: khóa sai, hết hạn hoặc đã xóa → người dùng tạo khóa mới, Claude chạy lại script lưu khóa ở bước 2. Lỗi kết nối: kiểm tra URL `/mcp` và HTTPS.
 
-Trên Windows không có `sh` và `osascript`: cần bản Python/PowerShell tương đương cho cả hộp thoại lưu khóa và headersHelper (chưa có). Phương án OAuth/connector (mục dưới) vẫn dùng được nếu deployment hỗ trợ.
+Bản Windows dùng Windows PowerShell 5.1 có sẵn (Windows Forms), không cần Git Bash hay Python; tệp `.ps1` lưu UTF-8 có BOM để hiện đúng tiếng Việt, đừng lưu lại không BOM. Bản Windows chưa được chạy thử trên máy Windows thật. Phương án OAuth/connector (mục dưới) vẫn dùng được nếu deployment hỗ trợ.
 
 ## Ba cơ chế khác nhau
 
