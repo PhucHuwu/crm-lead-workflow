@@ -45,6 +45,7 @@ Khi tài liệu khác nói `outputs/01_icp_criteria`, `outputs/02_crawled_leads`
 ## Tài nguyên dùng chung
 
 - **Hộp thư:** mọi chiến dịch gửi qua cùng hộp thư. `email.daily_send_limit` trong `config/business.json` là tổng cho cả hộp thư; `email.daily_send_limit` của mỗi chiến dịch là phần được chia, tổng không vượt mức chung.
+- **Nguồn tìm khách:** mỗi chiến dịch tự chọn nguồn theo ICP của mình (`campaign.json` → `lead_sources`), không mặc định LinkedIn. Claude đề xuất 2–3 nguồn, người dùng chọn (skill prospecting).
 - **Trình duyệt (CloakBrowser):** mỗi chiến dịch dùng hồ sơ trình duyệt riêng bằng tham số `profile=<slug>` của `browser_open`; người dùng đăng nhập riêng trong từng hồ sơ. Không đăng nhập cùng một tài khoản mạng xã hội ở hai chiến dịch chạy cùng lúc: nguy cơ bị khóa. Nếu chỉ có một tài khoản, lần lượt tìm khách từng chiến dịch.
 - **TinaCRM:** dùng chung kết nối và khóa.
 

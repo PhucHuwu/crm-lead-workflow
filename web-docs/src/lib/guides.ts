@@ -89,6 +89,7 @@ export const cycle: Guide[] = [
     slug: "tim-khach", title: "Tìm khách và lưu vào TinaCRM", shortTitle: "Tìm khách & lưu CRM", actor: "Bạn yêu cầu Claude",
     description: "Bắt đầu bằng danh sách nhỏ. Nếu nguồn cần đăng nhập, bạn tự đăng nhập trong cửa sổ CloakBrowser.",
     sections: [
+      { id: "source", title: "Chọn nguồn", paragraphs: ["Claude đề xuất 2–3 nguồn hợp với nhóm khách của chiến dịch (ví dụ Google Maps, danh bạ doanh nghiệp, LinkedIn) kèm lý do. Bạn chọn số."], prompt: "Đề xuất nguồn tìm khách phù hợp nhất cho chiến dịch này." },
       { id: "find", title: "Tìm danh sách", prompt: "Tìm 10 khách theo ICP của chiến dịch, kèm lý do phù hợp và nguồn." },
       { id: "save", title: "Lưu TinaCRM", prompt: "Kiểm tra trùng (cả với chiến dịch khác) và lưu danh sách đã duyệt vào TinaCRM. Báo số tạo mới, cập nhật, bỏ qua và lỗi." }
     ]

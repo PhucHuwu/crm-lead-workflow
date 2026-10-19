@@ -58,29 +58,8 @@ graph TD
 ---
 
 ### GIAI ĐOẠN 2: THU THẬP & ĐỒNG BỘ LEAD LÊN CRM (B7 -> B9)
-5. **Bước 7 (Lựa chọn công cụ & nền tảng cào):**
-   - **Kịch bản hỏi:**
-     > *"Dựa trên bộ tiêu chí ICP vừa xác lập, đối tượng khách hàng của bạn tập trung ở các kênh sau:*
-     > 1. *LinkedIn (Chuyên gia, Quản lý, Giám đốc doanh nghiệp B2B)*
-     > 2. *Facebook (Chủ doanh nghiệp vừa & nhỏ, nhóm cộng đồng ngành nghề)*
-     > 3. *Google Maps / Trang vàng (Doanh nghiệp địa phương, chuỗi cửa hàng, F&B, xưởng sản xuất)*
-     > 4. *Website / B2B Directory (Doanh nghiệp xuất nhập khẩu, công nghệ)*
-     >
-     > *Bạn muốn ưu tiên quét nguồn nào trước? Bạn muốn sử dụng Script tự động có sẵn hay API dịch vụ?"*
-6. **Bước 8 (Tiếp nhận thông tin tài khoản an toàn):**
-   - **Kịch bản hỏi:**
-     > *"Để cào dữ liệu từ [Nền tảng đã chọn] mà không bị khóa tài khoản:*
-     > 1. *Chúng tôi khuyến nghị sử dụng Session Cookie (lấy từ trình duyệt) thay vì nhập trực tiếp mật khẩu.*
-     > 2. *Bạn nên sử dụng tài khoản phụ (Secondary account) để đảm bảo an toàn tuyệt đối cho tài khoản chính.*
-     > *Bạn muốn cấu hình file `.env` theo mẫu hay paste cookie trực tiếp vào đây?"*
-7. **Bước 9 (Đẩy Lead lên CRM qua Webhook):**
-   - **Kịch bản hỏi:**
-     > *"Tôi đã sẵn sàng đẩy danh sách lead đạt chuẩn lên CRM.*
-     > *Vui lòng cung cấp:*
-     > 1. *Webhook URL của CRM của bạn.*
-     > 2. *Nền tảng CRM bạn đang dùng (Lark Suite, HubSpot, Salesforce, Google Sheets, hay khác?).*
-     > 3. *Có cần kèm theo Header Authentication nào không (Bearer Token / API Key)?"*
-   - Gửi một lead mẫu (Test Payload) để người dùng xác nhận trên CRM trước khi chạy hàng loạt.
+5. **Chọn nguồn tìm khách (theo chiến dịch):** Claude phân tích ICP của chiến dịch, đề xuất 2–3 nguồn xếp theo độ phù hợp kèm lý do và rủi ro, người dùng chọn. Không mặc định LinkedIn. Chi tiết: `.claude/skills/prospecting/SKILL.md`.
+6. **Đăng nhập nguồn:** người dùng tự đăng nhập trong cửa sổ CloakBrowser của chiến dịch; không xin mật khẩu, OTP, cookie hay token.
 
 ---
 

@@ -75,23 +75,15 @@ Hệ thống hoạt động theo tiêu chuẩn **Agent Skills**:
 ---
 
 ### BƯỚC 7: Đề xuất Công cụ & Nền tảng Cào Lead
-- Dựa trên ICP đã chốt ở Bước 6, phân tích nguồn dữ liệu phù hợp (LinkedIn Sales Navigator, Facebook Group/Page, Google Maps, Trang vàng doanh nghiệp, Website tuyển dụng...).
-- **Hành động hỏi BẮT BUỘC:** 
-  Đưa ra các phương án công cụ kèm ưu/nhược điểm và hỏi người dùng:
-  1. Bạn muốn cào lead từ nền tảng nào trước tiên (LinkedIn, Facebook, Google Maps, Website B2B...)?
-  2. Bạn muốn sử dụng giải pháp nào:
-     - **Lựa chọn A (Khuyên dùng):** Sử dụng headless browser tự động (Playwright script được cấp sẵn trong thư mục `scripts/`).
-     - **Lựa chọn B:** Sử dụng API dịch vụ chuyên dụng (Apify, Apollo, SerpAPI).
-     - **Lựa chọn C:** Extension trình duyệt xuất file CSV/JSON để Claude phân tích.
+- Không mặc định nền tảng nào. Dựa trên ICP của chiến dịch, đề xuất 2–3 nguồn xếp theo độ phù hợp (lý do, dữ liệu lấy được, cần đăng nhập không, rủi ro) và để người dùng chọn; lưu vào `campaigns/<slug>/campaign.json` → `lead_sources`. Chi tiết: `.claude/skills/prospecting/SKILL.md`.
+- Công cụ: CloakBrowser với hồ sơ trình duyệt của chiến dịch; `scripts/linkedin_prospector.py` chỉ dùng khi đã chọn LinkedIn.
 
 ---
 
-### BƯỚC 8: Tiếp nhận Thông tin Tài khoản Cá nhân An toàn để Cào Lead
-- Sau khi người dùng chọn nền tảng và công cụ ở Bước 7:
-- **Hành động hỏi BẮT BUỘC:** Hướng dẫn người dùng cung cấp thông tin xác thực an toàn:
-  - Ưu tiên sử dụng Session Cookie / Access Token thay vì Username/Password để tránh bị checkpoint.
-  - Hướng dẫn cấu hình an toàn vào file `.env` hoặc file config cục bộ, **không in mật khẩu lộ thiên trên màn hình chat**.
-  - Hỏi người dùng: *"Bạn đã sẵn sàng tài khoản phụ/tài khoản cá nhân cho việc cào dữ liệu chưa? Bạn muốn cấu hình cookie hay đăng nhập theo kịch bản?"*
+### BƯỚC 8: Đăng nhập nguồn an toàn
+- Sau khi người dùng chọn nguồn ở Bước 7: nếu nguồn cần đăng nhập, mở cửa sổ CloakBrowser của chiến dịch để người dùng **tự đăng nhập**; phiên được giữ trong hồ sơ trình duyệt.
+- Không xin mật khẩu, OTP, cookie hay token trong chat hoặc tệp `.env`. Khuyên dùng tài khoản phụ cho mạng xã hội.
+- Nguồn công khai không cần đăng nhập thì bỏ qua bước này.
 
 ---
 
