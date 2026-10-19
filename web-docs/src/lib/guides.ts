@@ -21,119 +21,105 @@ export type Guide = {
 
 export const cycle: Guide[] = [
   {
-    slug: "tai-workflow", title: "Tải workflow về máy", shortTitle: "Tải workflow về máy", actor: "Bạn làm trên máy",
-    description: "Trên trang GitHub, bấm Code → Download ZIP rồi giải nén. Mỗi doanh nghiệp dùng một bản riêng, có thể đổi tên thư mục theo doanh nghiệp.",
-    sections: [
-      { id: "download", title: "Code → Download ZIP" },
-      { id: "ready", title: "Xong khi", checks: ["Thư mục đã giải nén có inputs, outputs và CLAUDE.md."] }
-    ]
+    slug: "tai-workflow", title: "Tải workflow", shortTitle: "Tải workflow", actor: "Bạn làm trên máy",
+    description: "Tải ZIP từ GitHub và giải nén. Mỗi doanh nghiệp dùng một bản riêng.",
+    sections: [{ id: "download", title: "Code → Download ZIP" }]
   },
   {
-    slug: "dat-tai-lieu", title: "Đặt tài liệu công ty vào thư mục inputs", shortTitle: "Đặt tài liệu vào inputs", actor: "Bạn làm trên máy",
-    description: "Sao chép tài liệu doanh nghiệp vào hai thư mục dưới đây. Claude sẽ đọc ở bước 4.",
+    slug: "dat-tai-lieu", title: "Đặt tài liệu vào inputs", shortTitle: "Đặt tài liệu vào inputs", actor: "Bạn làm trên máy",
+    description: "Claude đọc tài liệu doanh nghiệp từ hai thư mục này.",
     sections: [
-      { id: "where", title: "Tài liệu nào đặt ở đâu?", steps: [
-        { title: "inputs/01_company_info — công ty là ai", body: "Hồ sơ công ty, hồ sơ năng lực, dự án và câu chuyện khách hàng thực tế." },
-        { title: "inputs/02_marketing_materials — công ty bán gì", body: "Brochure, giới thiệu sản phẩm/dịch vụ, bảng giá." }
-      ], note: { title: "Định dạng nên dùng", body: "PDF, Word, Excel có chữ chọn được. Ảnh scan có thể không đọc được; Claude sẽ báo ở bước 4." } }
+      { id: "where", title: "Thư mục", steps: [
+        { title: "inputs/01_company_info", body: "Hồ sơ công ty, hồ sơ năng lực, dự án, case study." },
+        { title: "inputs/02_marketing_materials", body: "Brochure, mô tả sản phẩm/dịch vụ, bảng giá." }
+      ], paragraphs: ["Ưu tiên PDF, Word, Excel có chữ. Ảnh scan có thể không đọc được."] }
     ]
   },
   {
     slug: "mo-claude-code", title: "Mở workflow bằng Claude Code", shortTitle: "Mở bằng Claude Code", actor: "Bạn làm trên máy",
-    description: "Dùng tab Code trong Claude Desktop, chọn Local và thư mục workflow. Không dùng tab Chat.",
+    description: "Claude Desktop → tab Code → Local → chọn thư mục workflow. Cần gói Pro, Max, Team hoặc Enterprise.",
     sections: [
-      { id: "code", title: "Chọn tab Code", paragraphs: ["Cần Claude Desktop (claude.ai/download) với gói Pro, Max, Team hoặc Enterprise. Bấm biểu tượng </> ở góc trên bên trái."] },
-      { id: "folder", title: "Local → No folder → Open folder…", paragraphs: ["Chọn thư mục workflow ở bước 1. Khi xong, No folder đổi thành tên thư mục."] },
+      { id: "code", title: "Tab Code" },
+      { id: "folder", title: "Local → No folder → Open folder…" },
       { id: "open-folder", title: "Menu chọn thư mục" },
-      { id: "permissions", title: "Chọn quyền Manual", paragraphs: ["Claude sẽ hỏi trước khi sửa tệp hoặc chạy lệnh. Không chọn Bypass permissions."] }
+      { id: "permissions", title: "Quyền: Manual", paragraphs: ["Claude hỏi trước khi sửa tệp hoặc chạy lệnh. Không dùng Bypass permissions."] }
     ]
   },
   {
-    slug: "doc-tai-lieu", title: "Yêu cầu Claude đọc tài liệu inputs", shortTitle: "Claude đọc tài liệu", actor: "Bạn yêu cầu Claude",
-    description: "Claude đọc tài liệu bạn đã đặt, tóm tắt doanh nghiệp và hỏi phần còn thiếu.",
+    slug: "doc-tai-lieu", title: "Claude đọc tài liệu", shortTitle: "Claude đọc tài liệu", actor: "Bạn yêu cầu Claude",
+    description: "Claude tóm tắt doanh nghiệp từ inputs và hỏi phần còn thiếu. Bạn xác nhận và chọn sản phẩm ưu tiên.",
     sections: [
-      { id: "send", title: "Gửi câu này cho Claude", prompt: "Hãy đọc CLAUDE.md và tài liệu trong inputs. Báo tệp nào đọc được, tệp nào không, rồi tóm tắt doanh nghiệp của tôi. Nếu thiếu thông tin, hỏi tôi từng câu. Tôi ít quen công nghệ, hãy hướng dẫn từng bước." },
-      { id: "confirm", title: "Kiểm tra bản tóm tắt", paragraphs: ["Đọc tên doanh nghiệp, sản phẩm, điểm mạnh và số liệu. Sai chỗ nào, nói thẳng chỗ đó. Sau đó chọn sản phẩm muốn ưu tiên khi Claude hỏi."] },
-      { id: "add-folder", title: "Tài liệu nằm ở thư mục khác?", paragraphs: ["Bấm nút thư mục có dấu cộng (Add another folder) phía trên ô nhập để thêm thư mục đó, rồi nói tên thư mục cho Claude."] },
-      { id: "ready", title: "Xong khi", checks: ["Bản tóm tắt doanh nghiệp đã đúng.", "Tôi đã chọn sản phẩm/dịch vụ ưu tiên."] }
+      { id: "send", title: "Câu lệnh", prompt: "Đọc CLAUDE.md và tài liệu trong inputs. Báo tệp nào không đọc được, tóm tắt doanh nghiệp và hỏi tôi phần còn thiếu." },
+      { id: "add-folder", title: "Tài liệu ở thư mục khác", paragraphs: ["Thêm thư mục bằng nút Add another folder, rồi nói tên thư mục cho Claude."] }
     ]
   },
   {
-    slug: "kiem-tra-moi-truong", title: "Yêu cầu Claude kiểm tra môi trường", shortTitle: "Claude kiểm tra môi trường", actor: "Bạn yêu cầu Claude",
-    description: "Claude kiểm tra máy đã có những gì và cài phần còn thiếu (như trình duyệt CloakBrowser) sau khi bạn cho phép.",
+    slug: "kiem-tra-moi-truong", title: "Claude kiểm tra môi trường", shortTitle: "Claude kiểm tra môi trường", actor: "Bạn yêu cầu Claude",
+    description: "Claude kiểm tra máy và cài phần còn thiếu, gồm trình duyệt CloakBrowser.",
     sections: [
-      { id: "send", title: "Gửi câu này cho Claude", prompt: "Hãy kiểm tra môi trường trên máy cho workflow này. Nói ngắn phần nào đã có, phần nào thiếu. Giải thích trước khi cài, rồi cài CloakBrowser theo workflows/CLOAKBROWSER.md khi tôi đồng ý." },
-      { id: "approve", title: "Duyệt từng thao tác", paragraphs: ["Khi ứng dụng hỏi quyền, chỉ cho phép lệnh đúng việc Claude vừa giải thích. Nếu cần cài Python hoặc nhập mật khẩu máy, Claude sẽ nhờ bạn tự làm."] },
-      { id: "ready", title: "Xong khi", checks: ["Claude báo môi trường đã đủ bằng kết quả kiểm tra thật."] }
+      { id: "send", title: "Câu lệnh", prompt: "Kiểm tra môi trường cho workflow này, báo phần còn thiếu và cài CloakBrowser theo workflows/CLOAKBROWSER.md." }
     ]
   },
   {
-    slug: "ket-noi-mcp", title: "Yêu cầu Claude kết nối công cụ (MCP)", shortTitle: "Claude kết nối công cụ", actor: "Bạn yêu cầu Claude",
-    description: "Kết nối trình duyệt CloakBrowser và TinaCRM để Claude tìm khách và lưu vào CRM.",
+    slug: "ket-noi-mcp", title: "Claude kết nối công cụ (MCP)", shortTitle: "Claude kết nối công cụ", actor: "Bạn yêu cầu Claude",
+    description: "Kết nối CloakBrowser và TinaCRM qua .mcp.json trong thư mục workflow.",
     sections: [
-      { id: "browser", title: "Kết nối trình duyệt CloakBrowser", paragraphs: ["Claude tự thêm cấu hình vào tệp .mcp.json trong thư mục workflow. Khi được nhắc, mở lại session để công cụ được nạp."], prompt: "Hãy kết nối CloakBrowser cho Claude Code qua tệp .mcp.json trong thư mục này, rồi mở thử một trang web công khai để kiểm tra." },
-      { id: "tinacrm", title: "Kết nối TinaCRM", paragraphs: ["Bạn tự đăng nhập và cấp quyền trên màn hình TinaCRM. Nếu cần khóa API, quản trị viên tạo trong Settings → MCP & APIs; không dán khóa vào chat."], prompt: "Hãy kết nối TinaCRM với Claude Code. Hỏi tôi địa chỉ TinaCRM trước, hướng dẫn tôi đăng nhập từng bước, rồi đọc thử các ô thông tin khách hàng. Chưa tạo, sửa hay xóa dữ liệu. Không yêu cầu mật khẩu hoặc khóa trong chat." },
-      { id: "ready", title: "Xong khi", checks: ["CloakBrowser mở được trang thử.", "Claude đọc được dữ liệu thử từ đúng TinaCRM của doanh nghiệp."] }
+      { id: "browser", title: "CloakBrowser", prompt: "Kết nối CloakBrowser qua .mcp.json và mở thử một trang web công khai." },
+      { id: "tinacrm", title: "TinaCRM", paragraphs: ["Bạn tự đăng nhập TinaCRM khi được hỏi. Nếu cần API key, tạo trong Settings → MCP & APIs và đặt vào cấu hình trên máy, không gửi qua chat."], prompt: "Kết nối TinaCRM qua MCP. Hỏi tôi địa chỉ TinaCRM, sau đó đọc thử cấu trúc dữ liệu khách hàng, chưa ghi dữ liệu." }
     ]
   },
   {
-    slug: "khach-phu-hop", title: "Yêu cầu Claude xác định khách phù hợp", shortTitle: "Xác định khách phù hợp", actor: "Bạn yêu cầu Claude",
-    description: "Thống nhất ngành, quy mô, khu vực và người ra quyết định trước khi tìm danh sách.",
+    slug: "khach-phu-hop", title: "Xác định khách phù hợp", shortTitle: "Xác định khách phù hợp", actor: "Bạn yêu cầu Claude",
+    description: "Chốt ngành, quy mô, khu vực và người ra quyết định. Kết quả lưu ở outputs/01_icp_criteria.",
     sections: [
-      { id: "send", title: "Gửi câu này cho Claude", prompt: "Dựa trên tài liệu doanh nghiệp, hãy đề xuất nhóm khách phù hợp và thị trường nên ưu tiên. Giải thích ngắn rồi hỏi tôi chọn từng phần. Lưu tiêu chí đã chốt vào outputs." },
-      { id: "ready", title: "Xong khi", checks: ["Tôi đã duyệt tiêu chí khách phù hợp.", "Tiêu chí được lưu trong outputs/01_icp_criteria."] }
+      { id: "send", title: "Câu lệnh", prompt: "Đề xuất tiêu chí khách hàng phù hợp (ICP) và thị trường ưu tiên. Sau khi tôi duyệt, lưu vào outputs/01_icp_criteria." }
     ]
   },
   {
-    slug: "tim-khach", title: "Yêu cầu Claude tìm khách và lưu vào TinaCRM", shortTitle: "Tìm khách & lưu CRM", actor: "Bạn yêu cầu Claude",
-    description: "Bắt đầu bằng danh sách nhỏ, kiểm tra kỹ rồi mới lưu vào TinaCRM.",
+    slug: "tim-khach", title: "Tìm khách và lưu vào TinaCRM", shortTitle: "Tìm khách & lưu CRM", actor: "Bạn yêu cầu Claude",
+    description: "Bắt đầu bằng danh sách nhỏ. Nếu nguồn cần đăng nhập, bạn tự đăng nhập trong cửa sổ CloakBrowser.",
     sections: [
-      { id: "find", title: "Tìm một danh sách nhỏ", paragraphs: ["Claude sẽ hỏi bạn có tài khoản nào (LinkedIn, Apollo…) và muốn bao nhiêu khách mỗi ngày. Nếu cần đăng nhập, Claude mở cửa sổ CloakBrowser; bạn tự đăng nhập rồi báo “Tôi đã đăng nhập”."], prompt: "Hãy tìm một danh sách nhỏ theo tiêu chí đã chốt. Với mỗi khách, cho tôi biết vì sao phù hợp và nguồn thông tin. Không tự tạo tên hoặc email." },
-      { id: "save", title: "Lưu vào TinaCRM", prompt: "Hãy kiểm tra trùng với TinaCRM rồi lưu danh sách tôi đã duyệt. Báo số khách tạo mới, cập nhật, bỏ qua và lỗi." },
-      { id: "ready", title: "Xong khi", checks: ["Tôi đã duyệt danh sách mẫu.", "Claude báo kết quả lưu TinaCRM bằng số liệu thật."] }
+      { id: "find", title: "Tìm danh sách", prompt: "Tìm 10 khách theo ICP đã chốt, kèm lý do phù hợp và nguồn. Lưu vào outputs/02_crawled_leads." },
+      { id: "save", title: "Lưu TinaCRM", prompt: "Kiểm tra trùng và lưu danh sách đã duyệt vào TinaCRM. Báo số tạo mới, cập nhật, bỏ qua và lỗi." }
     ]
   },
   {
-    slug: "email", title: "Yêu cầu Claude kết nối email và soạn chuỗi chăm sóc", shortTitle: "Email chăm sóc", actor: "Bạn yêu cầu Claude",
-    description: "Kết nối hộp thư, duyệt kế hoạch gửi và email mẫu trước khi gửi thật.",
+    slug: "email", title: "Email chăm sóc", shortTitle: "Email chăm sóc", actor: "Bạn yêu cầu Claude",
+    description: "Kết nối hộp thư (cần quyền gửi và đọc), duyệt chuỗi email trước khi gửi thật.",
     sections: [
-      { id: "mailbox", title: "Kết nối hộp thư", paragraphs: ["Đăng nhập và cấp quyền trên màn hình của Gmail/Outlook, không gửi mật khẩu trong chat. Cần quyền cả gửi và đọc thư để biết khách trả lời."], prompt: "Hãy giúp tôi kết nối hộp thư để gửi email và đọc phản hồi của khách. Hỏi tôi dùng loại hộp thư nào trước, rồi hướng dẫn từng bước." },
-      { id: "sequence", title: "Duyệt chuỗi email", prompt: "Hãy đề xuất chuỗi email chăm sóc cho nhóm khách đã lưu: số email, khoảng cách gửi và một email mẫu. Chưa gửi thật đến khi tôi đồng ý." },
-      { id: "replies", title: "Khi khách trả lời", paragraphs: ["Khách trả lời thật: dừng chuỗi và tạo việc cho người phụ trách trong TinaCRM. Khách yêu cầu ngừng: dừng hẳn. Thư tự động hoặc lỗi: xử lý riêng."] },
-      { id: "ready", title: "Xong khi", checks: ["Hộp thư đã kết nối.", "Tôi đã duyệt kế hoạch và cho phép phạm vi gửi."] }
+      { id: "mailbox", title: "Kết nối hộp thư", prompt: "Kết nối hộp thư để gửi email và đọc phản hồi của khách." },
+      { id: "sequence", title: "Chuỗi email", prompt: "Đề xuất chuỗi email chăm sóc: số email, khoảng cách gửi và email mẫu. Chưa gửi thật khi tôi chưa duyệt." },
+      { id: "replies", title: "Xử lý phản hồi" }
     ]
   },
   {
-    slug: "hang-ngay", title: "Chạy công việc mỗi ngày", shortTitle: "Chạy mỗi ngày", actor: "Bạn yêu cầu Claude",
-    description: "Từ đây chu trình lặp lại: mở thư mục, gửi một câu, xem kết quả.",
+    slug: "hang-ngay", title: "Chạy hằng ngày", shortTitle: "Chạy hằng ngày", actor: "Bạn yêu cầu Claude",
+    description: "Sau lần thiết lập đầu, mỗi ngày chỉ cần bước này.",
     sections: [
-      { id: "routine", title: "Mỗi sáng gửi câu này", prompt: "Tiếp tục chiến dịch. Kiểm tra phản hồi mới, tìm khách theo mục tiêu đã chốt và gửi các email đến hạn trong phạm vi tôi đã cho phép. Báo rõ phần nào chưa chạy được." },
-      { id: "outputs", title: "Kết quả lưu ở đâu?", paragraphs: ["Thư mục outputs: 01_icp_criteria (tiêu chí), 02_crawled_leads (danh sách khách), 03_email_cadence (kế hoạch email), 04_weekly_reports (báo cáo). Tiến trình lưu ở config/workflow_progress.md."] },
-      { id: "end", title: "Trước khi tắt máy", prompt: "Tóm tắt việc đã làm, kết quả thật, việc đang chờ và bước tiếp theo. Lưu tiến trình vào config/workflow_progress.md." }
+      { id: "routine", title: "Câu lệnh", prompt: "Tiếp tục chiến dịch: kiểm tra phản hồi mới, tìm khách theo mục tiêu ngày và gửi email đến hạn." },
+      { id: "outputs", title: "Kết quả", paragraphs: ["outputs/01_icp_criteria, 02_crawled_leads, 03_email_cadence, 04_weekly_reports. Tiến trình lưu ở config/workflow_progress.md."] }
     ]
   },
   {
-    slug: "bao-cao", title: "Xem báo cáo hằng tuần", shortTitle: "Báo cáo tuần", actor: "Bạn yêu cầu Claude",
-    description: "Xem số khách mới, email đã gửi, phản hồi và một điều nên thay đổi cho tuần sau.",
+    slug: "bao-cao", title: "Báo cáo tuần", shortTitle: "Báo cáo tuần", actor: "Bạn yêu cầu Claude",
+    description: "Khách mới, email đã gửi, phản hồi và đề xuất điều chỉnh.",
     sections: [
-      { id: "setup", title: "Thiết lập báo cáo", prompt: "Hãy thiết lập báo cáo hằng tuần. Hỏi tôi người nhận, ngày và giờ gửi, rồi cho tôi xem bản nháp trước." },
-      { id: "improve", title: "Cải thiện tuần sau", prompt: "Dựa trên dữ liệu thật tuần này, đề xuất một thay đổi đáng làm nhất cho tuần sau và hỏi tôi có áp dụng không." }
+      { id: "setup", title: "Câu lệnh", prompt: "Thiết lập báo cáo hằng tuần: hỏi tôi người nhận, ngày, giờ gửi và cho xem bản nháp." }
     ]
   }
 ];
 
 export const help: Guide = {
-  slug: "tro-giup", title: "Khi bị vướng", shortTitle: "Khi bị vướng", actor: "Bạn yêu cầu Claude",
-  description: "Gửi một câu để Claude hướng dẫn tiếp.",
+  slug: "tro-giup", title: "Câu hỏi thường gặp", shortTitle: "Câu hỏi thường gặp", actor: "Bạn yêu cầu Claude",
+  description: "Các vướng mắc hay gặp.",
   sections: [
-    { id: "help", title: "Gửi câu này cho Claude", prompt: "Tôi đang bị vướng ở bước này. Hãy hỏi tôi đang thấy gì trên màn hình, mỗi lần một câu, và hướng dẫn từng thao tác." },
-    { id: "faq", title: "Câu hỏi thường gặp", faqs: [
-      { question: "Quay lại làm tiếp thế nào?", answer: "Mở tab Code, chọn Local và đúng thư mục workflow, gửi “Tiếp tục từ chỗ lần trước”. Claude đọc tiến trình đã lưu và đề nghị bước tiếp theo." },
-      { question: "Claude nói đã lưu nhưng TinaCRM không có", answer: "Yêu cầu Claude kiểm tra lại bằng công cụ và báo số bản ghi thật. Viết trong chat không có nghĩa đã lưu." },
-      { question: "Không thấy cửa sổ CloakBrowser", answer: "Quay lại bước 6 và nhờ Claude kiểm tra kết nối trình duyệt." },
-      { question: "Đặt giờ rồi mà chưa tự chạy", answer: "Máy phải bật và Claude Desktop phải mở. Nhờ Claude kiểm tra lịch đã thật sự được tạo chưa." },
-      { question: "Xem mức sử dụng Claude ở đâu?", answer: "Bấm tên tài khoản ở góc dưới bên trái Claude Desktop → Usage." },
-      { question: "Doanh nghiệp khác dùng được không?", answer: "Được. Tải một bản workflow riêng cho mỗi doanh nghiệp và làm lại chu trình từ bước 1." }
+    { id: "faq", title: "Câu hỏi", faqs: [
+      { question: "Làm tiếp ở phiên sau?", answer: "Mở lại thư mục workflow trong Code và gửi “Tiếp tục từ lần trước”. Claude đọc config/workflow_progress.md." },
+      { question: "Claude báo đã lưu nhưng TinaCRM không có?", answer: "Yêu cầu Claude kiểm tra lại bằng công cụ và báo ID bản ghi." },
+      { question: "CloakBrowser không mở?", answer: "Làm lại bước 6." },
+      { question: "Lịch chạy không hoạt động?", answer: "Lịch chỉ chạy khi máy bật và Claude Desktop đang mở." },
+      { question: "Xem mức sử dụng Claude?", answer: "Menu tài khoản (góc dưới trái) → Usage." },
+      { question: "Dùng cho doanh nghiệp khác?", answer: "Tải một bản workflow riêng và làm lại từ bước 1." }
     ] }
   ]
 };

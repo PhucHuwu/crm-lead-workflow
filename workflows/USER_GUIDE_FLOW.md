@@ -6,7 +6,7 @@ Trang hướng dẫn (`web-docs/`) trình bày **một chu trình duy nhất g�
 
 | Bước | Tên trên trang | Ai làm | Claude làm | Xong khi |
 |---|---|---|---|---|
-| 1 | Tải workflow về máy | Người dùng | — | Đã giải nén, có `inputs`, `outputs`, `CLAUDE.md`. |
+| 1 | Tải workflow | Người dùng | — | Đã giải nén, có `inputs`, `outputs`, `CLAUDE.md`. |
 | 2 | Đặt tài liệu vào inputs | Người dùng | — (nếu trống, chỉ đường bằng Finder/File Explorer; không tự sao chép tệp) | Tài liệu nằm trong `inputs/01_company_info/`, `inputs/02_marketing_materials/`. |
 | 3 | Mở bằng Claude Code | Người dùng | — | Đang ở Code → Local → đúng thư mục, quyền Manual. |
 | 4 | Claude đọc tài liệu | Claude | Đọc `CLAUDE.md` + `inputs`, báo tệp đọc được/không, tóm tắt doanh nghiệp, hỏi phần thiếu, viết `product-marketing.md`, tạo `config/business.json` từ mẫu, hỏi sản phẩm ưu tiên. | Người dùng xác nhận tóm tắt và chọn sản phẩm ưu tiên. |
@@ -15,7 +15,7 @@ Trang hướng dẫn (`web-docs/`) trình bày **một chu trình duy nhất g�
 | 7 | Xác định khách phù hợp | Claude | Đề xuất khách phù hợp + thị trường, hỏi chọn từng phần, lưu `outputs/01_icp_criteria/`. | Người dùng duyệt tiêu chí, đã lưu tệp. |
 | 8 | Tìm khách & lưu CRM | Claude | Hỏi nguồn (tài khoản đang có) và mục tiêu/ngày; tìm danh sách nhỏ (lưu `outputs/02_crawled_leads/`); người dùng tự đăng nhập trong CloakBrowser; kiểm tra trùng rồi lưu TinaCRM. | Danh sách được duyệt; số tạo mới/cập nhật/bỏ qua/lỗi là kết quả thật. |
 | 9 | Email chăm sóc | Claude | Hỏi loại hộp thư → địa chỉ, hướng dẫn kết nối; đề xuất chuỗi email (lưu `outputs/03_email_cadence/`), cho xem mẫu. | Hộp thư đã kết nối; người dùng duyệt kế hoạch và phạm vi gửi. |
-| 10 | Chạy mỗi ngày | Claude | Phản hồi mới → tìm khách theo mục tiêu → email đến hạn. Kiểm tra lịch chạy thật trước khi hứa. Cuối phiên tóm tắt và lưu tiến trình. | Có tóm tắt phiên, tiến trình được cập nhật. |
+| 10 | Chạy hằng ngày | Claude | Phản hồi mới → tìm khách theo mục tiêu → email đến hạn. Kiểm tra lịch chạy thật trước khi hứa. Cuối phiên tóm tắt và lưu tiến trình. | Có tóm tắt phiên, tiến trình được cập nhật. |
 | 11 | Báo cáo tuần | Claude | Hỏi người nhận → ngày → giờ; cho xem bản nháp (lưu `outputs/04_weekly_reports/`); đề xuất một điều chỉnh. | Mẫu báo cáo được duyệt. |
 
 Sau bước 11, chu trình lặp lại từ bước 10. Ánh xạ nội bộ: bước 4 = B1–B5, bước 7 = B6, bước 8 = B7–B9, bước 9 = B10–B12, bước 11 = B13.
@@ -34,15 +34,16 @@ Người dùng thường dán nguyên câu mẫu. Nhận diện bước và ch�
 
 | Câu mẫu bắt đầu bằng… | Bước |
 |---|---|
-| “Hãy đọc CLAUDE.md và tài liệu trong inputs…” | 4 |
-| “Hãy kiểm tra môi trường trên máy…” | 5 |
-| “Hãy kết nối CloakBrowser cho Claude Code…”, “Hãy kết nối TinaCRM với Claude Code…” | 6 |
-| “Dựa trên tài liệu doanh nghiệp, hãy đề xuất nhóm khách…” | 7 |
-| “Hãy tìm một danh sách nhỏ…”, “Hãy kiểm tra trùng với TinaCRM…” | 8 |
-| “Hãy giúp tôi kết nối hộp thư…”, “Hãy đề xuất chuỗi email…” | 9 |
-| “Tiếp tục chiến dịch…”, “Tóm tắt việc đã làm…”, “Tiếp tục từ chỗ lần trước” | 10 |
-| “Hãy thiết lập báo cáo hằng tuần…”, “Dựa trên dữ liệu thật tuần này…” | 11 |
-| “Tôi đang bị vướng ở bước này…” | Trợ giúp: hỏi người dùng đang thấy gì, mỗi lần một câu |
+| “Đọc CLAUDE.md và tài liệu trong inputs…” | 4 |
+| “Kiểm tra môi trường cho workflow này…” | 5 |
+| “Kết nối CloakBrowser qua .mcp.json…”, “Kết nối TinaCRM qua MCP…” | 6 |
+| “Đề xuất tiêu chí khách hàng phù hợp (ICP)…” | 7 |
+| “Tìm 10 khách theo ICP đã chốt…”, “Kiểm tra trùng và lưu danh sách đã duyệt vào TinaCRM…” | 8 |
+| “Kết nối hộp thư…”, “Đề xuất chuỗi email chăm sóc…” | 9 |
+| “Tiếp tục chiến dịch…”, “Tiếp tục từ lần trước” | 10 |
+| “Thiết lập báo cáo hằng tuần…” | 11 |
+
+Câu lệnh trên trang được viết ngắn cho người dùng. Vẫn áp dụng đầy đủ quy tắc an toàn: hỏi từng câu, giải thích ngắn trước khi cài, không ghi CRM khi câu lệnh chỉ yêu cầu đọc thử, không gửi email thật trước khi người dùng duyệt, không xin mật khẩu/khóa trong chat.
 
 Nếu người dùng nhảy cóc, nói ngắn bước nào còn thiếu và hỏi: “1. Làm bước N trước. 2. Vẫn tiếp tục với thông tin hiện có.”
 
@@ -50,7 +51,7 @@ Nếu người dùng nhảy cóc, nói ngắn bước nào còn thiếu và hỏ
 
 Trước khi nói, kiểm tra `config/workflow_progress.md`, `inputs/`, `config/business.json`, `product-marketing.md`.
 
-- **Có tiến trình:** tóm tắt tối đa ba dòng, rồi hỏi “1. Tiếp tục bước N – <tên>. 2. Chạy mỗi ngày (bước 10). 3. Việc khác.”
+- **Có tiến trình:** tóm tắt tối đa ba dòng, rồi hỏi “1. Tiếp tục bước N – <tên>. 2. Chạy hằng ngày (bước 10). 3. Việc khác.”
 - **Lần đầu, có tài liệu:** làm bước 4 ngay.
 - **Lần đầu, `inputs` trống:** hỏi “1. Tôi tự đặt tài liệu vào thư mục (bước 2) — chỉ đường giúp tôi. 2. Tôi gửi website. 3. Hỏi tôi từng câu.” Nếu chọn 1, hướng dẫn mở Finder/File Explorer → thư mục workflow → `inputs` → thư mục tương ứng, sao chép và dán, rồi hỏi “Bạn dán xong chưa? 1. Rồi. 2. Chưa được.”
 
