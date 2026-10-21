@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRightIcon, ReaderIcon as BookOpenIcon, Cross1Icon, MagnifyingGlassIcon, HamburgerMenuIcon, SunIcon, MoonIcon } from "@radix-ui/react-icons";
-import { guides, cycle, help, guideHref } from "@/lib/guides";
+import { guides, cycle, help, guideHref, phases } from "@/lib/guides";
 
 const normalize = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").toLowerCase();
 
@@ -35,8 +35,10 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
     <div className="workspace">
       <aside className={`sidebar ${menu ? "is-open" : ""}`} aria-label="Điều hướng tài liệu">
         <Link className={`overview-link ${pathname === "/" ? "active" : ""}`} href="/" onClick={() => setMenu(false)}><BookOpenIcon /> Toàn bộ chu trình</Link>
-        <p className="nav-label nav-cycle-label">Chu trình</p>
-        <nav aria-label="Các bước của chu trình" className="nav-cycle">{cycle.map((guide, i) => <Link onClick={() => setMenu(false)} href={guideHref(guide.slug)} key={guide.slug} className={`nav-link ${pathname === guideHref(guide.slug) ? "active" : ""}`}><span><b className="nav-step">{i + 1}</b>{guide.shortTitle}</span></Link>)}</nav>
+        {phases.map((phase) => <nav aria-label={phase.title} className="nav-cycle" key={phase.id}>
+          <p className="nav-label nav-cycle-label">{phase.title}</p>
+          {cycle.slice(phase.from - 1, phase.to).map((guide, i) => <Link onClick={() => setMenu(false)} href={guideHref(guide.slug)} key={guide.slug} className={`nav-link ${pathname === guideHref(guide.slug) ? "active" : ""}`}><span><b className="nav-step">{phase.from + i}</b>{guide.shortTitle}</span></Link>)}
+        </nav>)}
         <Link onClick={() => setMenu(false)} href={guideHref(help.slug)} className={`nav-link nav-help ${pathname === guideHref(help.slug) ? "active" : ""}`}><span>{help.shortTitle}</span></Link>
       </aside>
       <main id="noi-dung" className="main-content" tabIndex={-1}>{children}</main>

@@ -11,3 +11,6 @@ body{font-size:16px;line-height:1.8}
 .actor-tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-bottom:10px;line-height:1.7}.start-steps .actor-tag{margin:0 4px 0 0;font-size:11px}
 .step-prefix{color:var(--accent)}.cycle-progress{display:flex;gap:5px;margin-bottom:20px}.cycle-progress a{flex:1;height:6px;border-radius:3px;background:var(--border)}.cycle-progress a.done{background:var(--accent);opacity:.45}.cycle-progress a.current{background:var(--accent)}
 .start-choice .start-steps{margin-top:0}
+.phase-block+.phase-block{margin-top:22px}.phase-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.phase-index{font-size:13px;font-weight:600;color:var(--accent)}.phase-head h2{font-size:23px;font-weight:600}.phase-range{margin-left:auto;font-size:14px;color:var(--muted)}.phase-when{font-size:15px;margin-top:6px}.phase-block .start-steps{margin:14px 0 0}.phase-block .button{margin-top:18px}
+.phase-tag{display:block;font-size:14px;font-weight:500;color:var(--muted);margin-bottom:10px}
+.nav-cycle+.nav-cycle .nav-cycle-label{margin-top:14px}

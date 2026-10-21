@@ -146,6 +146,16 @@ export const help: Guide = {
   ]
 };
 
+export type Phase = { id: string; title: string; when: string; from: number; to: number };
+
+/** Groups of cycle steps (1-based, inclusive) so users can tell one-time setup from daily use. */
+export const phases: Phase[] = [
+  { id: "thiet-lap", title: "Thiết lập lần đầu", when: "Làm một lần cho mỗi doanh nghiệp.", from: 1, to: 6 },
+  { id: "chien-dich", title: "Tạo chiến dịch", when: "Làm khi tạo chiến dịch đầu tiên và mỗi khi thêm chiến dịch mới.", from: 7, to: 9 },
+  { id: "hang-ngay", title: "Dùng hằng ngày", when: "Thiết lập xong thì chỉ cần phần này. Claude có thể tự chạy theo lịch.", from: 10, to: 11 }
+];
+export const phaseOf = (step: number) => phases.find((p) => step >= p.from && step <= p.to);
+
 export const guides: Guide[] = [...cycle, help];
 export const stepNumber = (slug: string) => cycle.findIndex((g) => g.slug === slug) + 1;
 export const guideHref = (slug: string) => `/huong-dan/${slug}`;

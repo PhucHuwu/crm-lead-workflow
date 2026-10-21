@@ -4,6 +4,12 @@ Trang hướng dẫn (`web-docs/`) trình bày **một chu trình duy nhất g�
 
 ## Chu trình 11 bước
 
+Trang chia 11 bước thành 3 phần, dùng đúng tên này khi nói với người dùng:
+
+- **Thiết lập lần đầu** (bước 1–6): một lần cho mỗi doanh nghiệp.
+- **Tạo chiến dịch** (bước 7–9): chiến dịch đầu tiên và mỗi chiến dịch mới.
+- **Dùng hằng ngày** (bước 10–11): sau khi thiết lập, chỉ cần phần này; Claude có thể đặt lịch tự chạy.
+
 | Bước | Tên trên trang | Ai làm | Claude làm | Xong khi |
 |---|---|---|---|---|
 | 1 | Tải workflow | Người dùng | — | Đã giải nén, có `inputs`, `outputs`, `CLAUDE.md`. |
