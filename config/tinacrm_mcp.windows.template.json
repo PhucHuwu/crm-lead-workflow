@@ -1,9 +1,0 @@
-{
-  "mcpServers": {
-    "tinacrm": {
-      "type": "http",
-      "url": "https://YOUR-TINACRM-SERVER/mcp",
-      "headersHelper": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/tinacrm_auth_header.ps1"
-    }
-  }
-}
