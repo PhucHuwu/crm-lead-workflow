@@ -1,8 +1,10 @@
 ﻿# Windows version of tinacrm_save_key.sh: shows a dialog where the user pastes the TinaCRM
-# API key. If an MCP URL is given, the key is saved only after TinaCRM accepts it.
+# API key. If the TinaCRM address is given, the key is saved only after the TinaCRM REST API
+# accepts it.
 # The key is never printed, so it stays out of the chat.
-# Usage: powershell -NoProfile -ExecutionPolicy Bypass -STA -File scripts\tinacrm_save_key.ps1 [https://<server>/mcp]
-param([string]$McpUrl = '')
+# Usage: powershell -NoProfile -ExecutionPolicy Bypass -STA -File scripts\tinacrm_save_key.ps1 [https://<workspace>.tinacrm.com]
+param([string]$BaseUrl = '')
+$BaseUrl = $BaseUrl.TrimEnd('/') -replace '/mcp$', ''
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
@@ -52,13 +54,12 @@ $form.Dispose()
 if ($result -ne [System.Windows.Forms.DialogResult]::OK) { Write-Output 'Đã hủy, chưa lưu khóa.'; exit 1 }
 if (-not $key) { Write-Output 'Ô trống, chưa lưu khóa.'; exit 1 }
 
-if ($McpUrl) {
+if ($BaseUrl) {
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-  $body = '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"crm-lead-workflow","version":"1"}}}'
-  $headers = @{ Authorization = "Bearer $key"; Accept = 'application/json, text/event-stream' }
+  $headers = @{ Authorization = "Bearer $key" }
   $code = 0
   try {
-    $resp = Invoke-WebRequest -Uri $McpUrl -Method Post -Headers $headers -ContentType 'application/json' -Body $body -UseBasicParsing -TimeoutSec 20
+    $resp = Invoke-WebRequest -Uri "$BaseUrl/rest/people?limit=1" -Method Get -Headers $headers -UseBasicParsing -TimeoutSec 20
     $code = [int]$resp.StatusCode
   } catch {
     if ($_.Exception.Response) { $code = [int]$_.Exception.Response.StatusCode }
@@ -69,7 +70,7 @@ if ($McpUrl) {
     Write-Output "TinaCRM từ chối khóa (HTTP $code): khóa sai, hết hạn hoặc đã xóa. Chưa lưu."
     exit 2
   } else {
-    Write-Output "Không kiểm tra được khóa (HTTP $code): xem lại địa chỉ MCP. Chưa lưu."
+    Write-Output "Không kiểm tra được khóa (HTTP $code): xem lại địa chỉ TinaCRM. Chưa lưu."
     exit 3
   }
 }

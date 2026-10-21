@@ -11,12 +11,12 @@ Trang hướng dẫn (`web-docs/`) trình bày **một chu trình duy nhất g�
 | 3 | Mở bằng Claude Code | Người dùng | — | Đang ở tab Code, thanh dưới ô nhập hiện This computer + tên thư mục workflow + Manual. |
 | 4 | Claude đọc tài liệu | Claude | Đọc `CLAUDE.md` + `inputs`, báo tệp đọc được/không, tóm tắt doanh nghiệp, hỏi phần thiếu, viết `product-marketing.md`, tạo `config/business.json` từ mẫu, hỏi sản phẩm ưu tiên. | Người dùng xác nhận tóm tắt và chọn sản phẩm ưu tiên. |
 | 5 | Claude kiểm tra môi trường | Claude | Kiểm tra Python/công cụ có sẵn, giải thích ngắn, cài CloakBrowser theo `CLOAKBROWSER.md` khi được cho phép. | Kết quả kiểm tra thật cho thấy đủ môi trường. |
-| 6 | Claude kết nối công cụ | Claude | Thêm `workflow-cloakbrowser` vào `.mcp.json`, nhắc mở lại session, mở thử trang công khai. Kết nối TinaCRM theo `TINACRM_CONNECTION.md`: hỏi địa chỉ, hướng dẫn đăng nhập, đọc thử schema, không ghi dữ liệu. | CloakBrowser mở được trang; đọc thử được đúng workspace TinaCRM. |
+| 6 | Claude kết nối công cụ | Claude | Thêm `workflow-cloakbrowser` vào `.mcp.json`, nhắc mở lại session, mở thử trang công khai. Kết nối TinaCRM qua REST theo `TINACRM_CONNECTION.md` (không dùng MCP cho TinaCRM): hỏi địa chỉ, bật hộp thoại lưu khóa, `scripts/tinacrm_rest.py check` và đọc thử, không ghi dữ liệu. Sau đó đề xuất connector các bước sau sẽ cần (Gmail/Outlook, Google Calendar, Apollo…) theo `CONNECTORS.md`: hiện thẻ Connect trong chat, người dùng bấm Connect và đăng nhập nếu cần; khách Việt Nam thì Claude tự thêm ThongtinCty vào `.mcp.json`. Kiểm tra bằng thao tác đọc. | CloakBrowser mở được trang; đọc thử được đúng workspace TinaCRM; connector đã chọn đọc thử được (hoặc người dùng chọn để sau). |
 | 7 | Xác định khách phù hợp | Claude | Hỏi tên chiến dịch (nhóm khách hoặc sản phẩm), tạo `campaigns/<slug>/` theo `CAMPAIGNS.md`. Đề xuất khách phù hợp + thị trường, hỏi chọn từng phần, lưu `campaigns/<slug>/outputs/01_icp_criteria/`. | Người dùng duyệt tiêu chí, đã lưu tệp. |
-| 8 | Tìm khách & lưu CRM | Claude | Nếu `campaign.json` → `lead_sources` còn trống: phân tích ICP của chiến dịch, đề xuất 2–3 nguồn xếp theo độ phù hợp (lý do, dữ liệu lấy được, cần đăng nhập không, rủi ro), người dùng chọn, lưu `lead_sources`; không mặc định LinkedIn (chi tiết: skill prospecting). Hỏi mục tiêu/ngày; tìm danh sách nhỏ (lưu `campaigns/<slug>/outputs/02_crawled_leads/`); người dùng tự đăng nhập trong CloakBrowser; kiểm tra trùng rồi lưu TinaCRM. | Danh sách được duyệt; số tạo mới/cập nhật/bỏ qua/lỗi là kết quả thật. |
-| 9 | Email chăm sóc | Claude | Hỏi loại hộp thư → địa chỉ, hướng dẫn kết nối; đề xuất chuỗi email (lưu `campaigns/<slug>/outputs/03_email_cadence/`), cho xem mẫu. | Hộp thư đã kết nối; người dùng duyệt kế hoạch và phạm vi gửi. |
-| 10 | Chạy hằng ngày | Claude | Phản hồi mới → tìm khách theo mục tiêu → email đến hạn. Kiểm tra lịch chạy thật trước khi hứa. Cuối phiên tóm tắt và lưu tiến trình. | Có tóm tắt phiên, tiến trình được cập nhật. |
-| 11 | Báo cáo tuần | Claude | Hỏi người nhận → ngày → giờ; cho xem bản nháp tổng hợp mọi chiến dịch, tách số theo chiến dịch (lưu `outputs/04_weekly_reports/`); đề xuất một điều chỉnh. | Mẫu báo cáo được duyệt. |
+| 8 | Tìm khách & lưu CRM | Claude | Nếu `campaign.json` → `lead_sources` còn trống: phân tích ICP của chiến dịch, đề xuất 2–3 nguồn xếp theo độ phù hợp (lý do, dữ liệu lấy được, cần đăng nhập không, rủi ro), người dùng chọn, lưu `lead_sources`; không mặc định LinkedIn (chi tiết: skill prospecting). Hỏi mục tiêu/ngày; tìm danh sách nhỏ (lưu `campaigns/<slug>/outputs/02_crawled_leads/`); người dùng tự đăng nhập trong CloakBrowser; kiểm tra trùng rồi lưu TinaCRM qua `scripts/tinacrm_rest.py`. | Danh sách được duyệt; số tạo mới/cập nhật/bỏ qua/lỗi là kết quả thật. |
+| 9 | Email chăm sóc | Claude | Hộp thư chưa kết nối ở bước 6 thì hỏi loại hộp thư → địa chỉ, kết nối theo `CONNECTORS.md`; đề xuất chuỗi email (lưu `campaigns/<slug>/outputs/03_email_cadence/`), cho xem mẫu. | Hộp thư đã kết nối; người dùng duyệt kế hoạch và phạm vi gửi. |
+| 10 | Chạy hằng ngày | Claude | Trước tiên kiểm tra và cập nhật workflow, nếu có bản mới thì nạp lại hướng dẫn rồi mới làm tiếp (`workflows/UPDATING.md`, mục “Trước mỗi lần chạy hằng ngày”). Sau đó: phản hồi mới → tìm khách theo mục tiêu → email đến hạn. Cuối phiên tóm tắt và lưu tiến trình. Khi người dùng muốn chạy tự động: Claude tự tạo lịch theo `workflows/SCHEDULING.md` (hỏi giờ → cách duyệt email), không bắt người dùng vào trang Scheduled. | Có tóm tắt phiên, tiến trình được cập nhật; lịch (nếu có) đã tạo thật. |
+| 11 | Báo cáo tuần | Claude | Hỏi người nhận → ngày → giờ; cho xem bản nháp tổng hợp mọi chiến dịch, tách số theo chiến dịch (lưu `outputs/04_weekly_reports/`); đề xuất một điều chỉnh. Sau khi duyệt, tự đặt lịch gửi theo `SCHEDULING.md`. | Mẫu báo cáo được duyệt, lịch gửi đã tạo. |
 
 Sau bước 11, chu trình lặp lại từ bước 10. Ánh xạ nội bộ: bước 4 = B1–B5, bước 7 = B6, bước 8 = B7–B9, bước 9 = B10–B12, bước 11 = B13.
 
@@ -36,12 +36,15 @@ Người dùng thường dán nguyên câu mẫu. Nhận diện bước và ch�
 |---|---|
 | “Đọc CLAUDE.md và tài liệu trong inputs…” | 4 |
 | “Kiểm tra môi trường cho workflow này…” | 5 |
-| “Kết nối CloakBrowser qua .mcp.json…”, “Kết nối TinaCRM qua MCP…” (người dùng đã có API key; làm theo mục “Thiết lập MCP với API key” trong `TINACRM_CONNECTION.md`: chạy `scripts/tinacrm_save_key.sh` (macOS) hoặc `scripts/tinacrm_save_key.ps1` (Windows) để bật hộp thoại cho người dùng dán khóa, không nhận khóa qua chat) | 6 |
+| “Kết nối CloakBrowser qua .mcp.json…”, “Kết nối TinaCRM…” (người dùng đã có API key; làm theo mục “Thiết lập” trong `TINACRM_CONNECTION.md`: chạy `scripts/tinacrm_save_key.sh` (macOS) hoặc `scripts/tinacrm_save_key.ps1` (Windows) để bật hộp thoại cho người dùng dán khóa, không nhận khóa qua chat) | 6 |
+| “Kết nối Gmail/Google Calendar/Apollo…”, “Kết nối thêm dịch vụ…” (`CONNECTORS.md`) | 6 |
 | “Đề xuất tiêu chí khách hàng phù hợp (ICP)…”, “Tạo chiến dịch mới…” | 7 |
 | “Tìm 10 khách theo ICP đã chốt…”, “Kiểm tra trùng và lưu danh sách đã duyệt vào TinaCRM…” | 8 |
 | “Kết nối hộp thư…”, “Đề xuất chuỗi email chăm sóc…” | 9 |
 | “Làm chiến dịch…”, “Tiếp tục chiến dịch…”, “Tiếp tục từ lần trước” | 10 (đúng chiến dịch đó) |
+| “Đặt lịch chạy…”, “Tạm dừng lịch…”, “Đổi giờ chạy…”, “Xem các lịch…” | 10 (`SCHEDULING.md`) |
 | “Thiết lập báo cáo hằng tuần…” | 11 |
+| “Cập nhật workflow” | Ngoài chu trình: làm theo `workflows/UPDATING.md` |
 
 Câu lệnh trên trang được viết ngắn cho người dùng. Vẫn áp dụng đầy đủ quy tắc an toàn: hỏi từng câu, giải thích ngắn trước khi cài, không ghi CRM khi câu lệnh chỉ yêu cầu đọc thử, không gửi email thật trước khi người dùng duyệt, không xin mật khẩu/khóa trong chat.
 

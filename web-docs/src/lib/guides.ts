@@ -66,15 +66,16 @@ export const cycle: Guide[] = [
     ]
   },
   {
-    slug: "ket-noi-mcp", title: "Claude kết nối công cụ (MCP)", shortTitle: "Claude kết nối công cụ", actor: "Bạn yêu cầu Claude",
-    description: "Kết nối CloakBrowser và TinaCRM qua .mcp.json trong thư mục workflow.",
+    slug: "ket-noi-mcp", title: "Claude kết nối công cụ", shortTitle: "Claude kết nối công cụ", actor: "Bạn yêu cầu Claude",
+    description: "Kết nối CloakBrowser (trình duyệt), TinaCRM (bằng API key) và các dịch vụ sẽ dùng như Gmail, Google Calendar, Apollo.",
     sections: [
       { id: "browser", title: "CloakBrowser", prompt: "Kết nối CloakBrowser qua .mcp.json và mở thử một trang web công khai." },
       { id: "apikey-open", title: "TinaCRM: tạo API key", paragraphs: ["Đăng nhập TinaCRM của doanh nghiệp → Settings → MCP & APIs → tab API → Create API key."] },
       { id: "apikey-form", title: "Điền thông tin khóa", paragraphs: ["Role quyết định Claude được làm gì trong CRM: chọn role đủ quyền với khách hàng, công ty và công việc. Nên đặt ngày hết hạn thay vì Never."] },
-      { id: "apikey-copy", title: "Sao chép khóa", paragraphs: ["Khóa chỉ hiện một lần. Bấm Copy rồi gửi câu lệnh dưới đây. Không dán khóa vào khung chat."], prompt: "Kết nối TinaCRM qua MCP. Hỏi tôi địa chỉ TinaCRM, bật hộp thoại để tôi dán API key, sau đó đọc thử dữ liệu khách hàng, chưa ghi gì." },
+      { id: "apikey-copy", title: "Sao chép khóa", paragraphs: ["Khóa chỉ hiện một lần. Bấm Copy rồi gửi câu lệnh dưới đây. Không dán khóa vào khung chat."], prompt: "Kết nối TinaCRM bằng API key. Hỏi tôi địa chỉ TinaCRM, bật hộp thoại để tôi dán API key, sau đó đọc thử dữ liệu khách hàng, chưa ghi gì." },
       { id: "apikey-paste", title: "Dán khóa vào hộp thoại", paragraphs: ["Claude bật hộp thoại Kết nối TinaCRM: dán khóa vào ô, bấm Lưu. Không thấy hộp thoại thì tìm trên thanh Dock (Mac) hoặc thanh tác vụ (Windows)."] },
-      { id: "mcp-check", title: "Kiểm tra kết nối", paragraphs: ["Claude ghi kết nối tinacrm vào .mcp.json rồi nhờ bạn mở phiên mới (+ New) và cho phép thư mục nếu được hỏi. Từ đây Claude đọc và lưu khách vào TinaCRM qua MCP này; API key chỉ là quyền truy cập."] },
+      { id: "mcp-check", title: "Kiểm tra kết nối", paragraphs: ["Claude kiểm tra khóa và đọc thử vài khách hàng, công ty để bạn xác nhận đúng CRM của doanh nghiệp. Không cần mở phiên mới."] },
+      { id: "connectors", title: "Dịch vụ khác", paragraphs: ["Claude đề xuất dịch vụ doanh nghiệp sẽ cần: Gmail hoặc Outlook để gửi email, Google Calendar để đặt lịch hẹn, Apollo để tìm khách. ", "Claude hiện thẻ như ảnh: bấm Connect, đăng nhập nếu được hỏi là xong. Claude đọc thử để kiểm tra, chưa gửi gì."], prompt: "Đề xuất các dịch vụ cần kết nối cho doanh nghiệp này và hướng dẫn tôi kết nối từng cái." },
     ]
   },
   {
@@ -111,17 +112,18 @@ export const cycle: Guide[] = [
       { id: "parallel", title: "Chạy song song", steps: [
         { title: "Mở phiên mới", body: "Bấm + New. Mỗi phiên làm một chiến dịch hoặc một doanh nghiệp." },
         { title: "Chọn thư mục", body: "Cùng doanh nghiệp: chọn cùng thư mục. Doanh nghiệp khác: chọn thư mục của doanh nghiệp đó." },
-        { title: "Gửi câu lệnh", body: "Gửi câu lệnh trên với tên chiến dịch của phiên đó." },
-        { title: "Chạy theo lịch", body: "Scheduled: mỗi chiến dịch một lịch, giờ cách nhau ít nhất 30 phút." }
+        { title: "Gửi câu lệnh", body: "Gửi câu lệnh trên với tên chiến dịch của phiên đó." }
       ], note: { title: "Lưu ý", body: "Không đăng nhập cùng một tài khoản mạng xã hội ở hai chiến dịch chạy cùng lúc. Mỗi phiên tốn lượt dùng Claude riêng." } },
-      { id: "outputs", title: "Kết quả", paragraphs: ["Mỗi chiến dịch: campaigns/<tên chiến dịch>/outputs. Báo cáo tuần: outputs/04_weekly_reports."] }
+      { id: "schedule", title: "Chạy tự động theo lịch", paragraphs: ["Sau khi chạy tay ổn, nhờ Claude đặt lịch. Claude hỏi giờ chạy và có cần bạn duyệt email trước khi gửi, rồi tự tạo lịch. Bạn không cần mở trang Scheduled.", "Mỗi lần chạy hiện thành một phiên mới ở mục Scheduled bên trái. Lần đầu nếu ứng dụng hỏi quyền, bấm Always allow cho việc đúng như mô tả.", "Lịch chỉ chạy khi máy bật và Claude Desktop đang mở. Đổi giờ hoặc tạm dừng: nhắn Claude."], prompt: "Đặt lịch chạy tự động hằng ngày cho chiến dịch <tên chiến dịch>." },
+      { id: "outputs", title: "Kết quả", paragraphs: ["Mỗi chiến dịch: campaigns/<tên chiến dịch>/outputs. Báo cáo tuần: outputs/04_weekly_reports."] },
+      { id: "auto-update", title: "Tự cập nhật", paragraphs: ["Mỗi lần chạy, Claude kiểm tra bản mới của workflow trước. Có bản mới thì cập nhật, đọc lại hướng dẫn rồi mới làm việc. Tóm tắt cuối phiên ghi rõ đã cập nhật hay chưa."] }
     ]
   },
   {
     slug: "bao-cao", title: "Báo cáo tuần", shortTitle: "Báo cáo tuần", actor: "Bạn yêu cầu Claude",
     description: "Khách mới, email đã gửi, phản hồi và đề xuất điều chỉnh.",
     sections: [
-      { id: "setup", title: "Câu lệnh", prompt: "Thiết lập báo cáo hằng tuần: hỏi tôi người nhận, ngày, giờ gửi và cho xem bản nháp." }
+      { id: "setup", title: "Câu lệnh", paragraphs: ["Sau khi bạn duyệt bản nháp, Claude tự đặt lịch gửi báo cáo theo ngày giờ đã chọn."], prompt: "Thiết lập báo cáo hằng tuần: hỏi tôi người nhận, ngày, giờ gửi, cho xem bản nháp rồi đặt lịch gửi tự động." }
     ]
   }
 ];
@@ -134,10 +136,12 @@ export const help: Guide = {
       { question: "Làm tiếp ở phiên sau?", answer: "Mở lại thư mục workflow trong Code và gửi “Tiếp tục chiến dịch <tên>” hoặc “Tiếp tục từ lần trước”." },
       { question: "Claude báo đã lưu nhưng TinaCRM không có?", answer: "Yêu cầu Claude kiểm tra lại bằng công cụ và báo ID bản ghi." },
       { question: "CloakBrowser không mở?", answer: "Làm lại bước 6." },
-      { question: "Lịch chạy không hoạt động?", answer: "Lịch chỉ chạy khi máy bật và Claude Desktop đang mở." },
+      { question: "Lịch chạy không hoạt động?", answer: "Lịch chỉ chạy khi máy bật, không ngủ và Claude Desktop đang mở. Máy ngủ qua giờ chạy thì Claude chạy bù một lần khi mở lại. Nếu phiên trong mục Scheduled đang chờ hỏi quyền, mở ra và bấm Always allow." },
+      { question: "Đổi giờ, tạm dừng hoặc xem lịch?", answer: "Nhắn Claude, ví dụ “Xem các lịch đang chạy”, “Tạm dừng lịch chiến dịch <tên>”, “Đổi giờ chạy chiến dịch <tên> sang 9:00”." },
       { question: "Dùng cho doanh nghiệp khác?", answer: "Tải một bản workflow riêng và làm lại từ bước 1. Chạy song song: xem bước 10." },
       { question: "Khách xuất hiện ở hai chiến dịch?", answer: "Claude giữ khách ở chiến dịch đầu tiên và báo “đã thuộc chiến dịch X”." }
     ] },
+    { id: "update", title: "Cập nhật workflow", paragraphs: ["Không cần tải lại ZIP. Mở thư mục workflow trong Code và gửi câu dưới. Tài liệu, chiến dịch, cấu hình và khóa được giữ nguyên. Lần chạy hằng ngày Claude tự cập nhật trước khi làm việc."], prompt: "Cập nhật workflow lên bản mới nhất." },
     { id: "usage", title: "Xem mức sử dụng Claude", paragraphs: ["Bấm tên tài khoản ở góc dưới bên trái → Usage."] }
   ]
 };

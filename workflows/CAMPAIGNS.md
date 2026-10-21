@@ -51,9 +51,10 @@ Khi tài liệu khác nói `outputs/01_icp_criteria`, `outputs/02_crawled_leads`
 
 ## Chạy theo lịch
 
-- Mỗi chiến dịch một tác vụ trong **Scheduled**, câu lệnh “Tiếp tục chiến dịch <tên>”, cùng thư mục doanh nghiệp, tắt tùy chọn worktree.
+- Claude tự tạo lịch theo `workflows/SCHEDULING.md`; người dùng không vào trang Scheduled. Mỗi chiến dịch một lịch, câu lệnh “Tiếp tục chiến dịch <tên>”, cùng thư mục doanh nghiệp, tắt tùy chọn worktree.
 - Đặt giờ lệch nhau (ít nhất 30 phút). Claude Desktop có thể bỏ qua một lần chạy khi lần trước chưa xong hoặc đang có tác vụ hẹn giờ khác chạy.
 - Máy phải bật và Claude Desktop phải mở.
+- Đầu mỗi lần chạy, Claude kiểm tra và cập nhật workflow, nạp lại hướng dẫn mới rồi mới làm chiến dịch (`workflows/UPDATING.md`). Không cần sửa câu lệnh của lịch.
 
 ## Nhiều doanh nghiệp
 

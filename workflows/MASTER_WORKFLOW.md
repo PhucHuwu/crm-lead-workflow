@@ -1,6 +1,6 @@
 # MASTER WORKFLOW — TOÀN BỘ TIẾN TRÌNH VẬN HÀNH 13 BƯỚC
 
-**Kết nối CRM:** các bước B9/B12 dùng `TINACRM_CONNECTION.md` làm quy tắc ưu tiên. Thử native MCP sẵn có; không mặc định yêu cầu webhook nhập lead/task và không yêu cầu workspace ID riêng cho REST/MCP. Các payload, mẫu hỏi webhook bên dưới chỉ dành cho trường hợp workflow custom đã được thiết lập.
+**Kết nối CRM:** các bước B9/B12 dùng `TINACRM_CONNECTION.md` làm quy tắc ưu tiên. Đọc/ghi qua REST API bằng `scripts/tinacrm_rest.py`, không dùng MCP của TinaCRM; không mặc định yêu cầu webhook nhập lead/task và không yêu cầu workspace ID riêng. Các payload, mẫu hỏi webhook bên dưới chỉ dành cho trường hợp workflow custom đã được thiết lập.
 
 Tài liệu này mô tả chi tiết logic chuyển trạng thái, đầu vào, đầu ra và kịch bản hỏi người dùng cho từng bước trong quy trình.
 

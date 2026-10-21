@@ -7,6 +7,8 @@
 3. Chọn **Manual** khi mới sử dụng, gửi: “Hãy đọc CLAUDE.md, kiểm tra tài liệu và hướng dẫn tôi thiết lập workflow từng bước”.
 4. Claude có thể đọc/ghi và chạy lệnh theo quyền thực tế; bạn tự đăng nhập và xử lý thao tác ngoài quyền.
 
+**Cập nhật bản mới:** không cần tải lại ZIP. Trong Code, gửi “Cập nhật workflow lên bản mới nhất.” Claude chạy `scripts/update_workflow.sh` (macOS) hoặc `scripts/update_workflow.ps1` (Windows); tài liệu, chiến dịch, cấu hình và khóa được giữ nguyên. Chi tiết: `workflows/UPDATING.md`.
+
 Không cần Node.js/CLI chỉ để mở tab Code. Không dùng Chat Projects/Project Knowledge hoặc `claude_desktop_config.json` như setup mặc định. Các hướng dẫn Chat cũ bên dưới không áp dụng cho môi trường đã chốt; xem `CLAUDE.md` và bài web “Mở tab Code trong Desktop”.
 
 Quy trình tự động hóa 13 bước từ dữ liệu doanh nghiệp thô đến Lead Generation, Webhook CRM, Email Nurturing và Báo cáo tuần. Được tối ưu hóa cho **Claude Desktop (Projects)** với cơ chế **Chủ động tương tác & hỏi người dùng**.
@@ -17,7 +19,7 @@ Website tài liệu Next.js nằm tại [`web-docs/`](web-docs/README.md), gồm
 
 ## Kiến trúc và trải nghiệm
 
-**TinaCRM:** đã khảo sát source và có native MCP. Xem [`workflows/TINACRM_CONNECTION.md`](workflows/TINACRM_CONNECTION.md) để thiết lập xác thực đúng, phân biệt data API, workflow trigger và webhook thông báo. Không dùng workspace ID thay token. Cần kiểm chứng trên instance thực tế trước khi báo đã kết nối.
+**TinaCRM:** đọc/ghi qua REST API (`scripts/tinacrm_rest.py`) bằng API key, không dùng MCP. Xem [`workflows/TINACRM_CONNECTION.md`](workflows/TINACRM_CONNECTION.md) để thiết lập xác thực đúng, phân biệt data API, workflow trigger và webhook thông báo. Không dùng workspace ID thay token. Cần kiểm chứng trên instance thực tế trước khi báo đã kết nối.
 
 ### Trải nghiệm cho người dùng ít quen công nghệ
 

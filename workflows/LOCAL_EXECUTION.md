@@ -5,7 +5,7 @@
 - Giao diện là Claude Code trong Desktop, tab Code → This computer → thư mục workflow. Claude đọc/ghi và chạy lệnh theo quyền/công cụ thực tế; người dùng xử lý đăng nhập và thao tác ngoài quyền. Filesystem MCP không bắt buộc cho đọc project Local.
 
 - Người dùng sử dụng Claude Desktop để thiết lập, điều phối và thực hiện quy trình BD cho doanh nghiệp của mình. Workflow/skills dùng chung; kiến thức và cấu hình được thiết lập riêng theo `BUSINESS_ONBOARDING.md`.
-- Các MCP server, connector và công cụ thực thi chạy trực tiếp trên máy người dùng. TinaCRM và dịch vụ email được truy cập qua kết nối hiện có.
+- Các MCP server, connector và công cụ thực thi chạy trực tiếp trên máy người dùng. TinaCRM được truy cập qua REST API (`scripts/tinacrm_rest.py`), dịch vụ email qua kết nối hiện có.
 - Không yêu cầu triển khai thêm server automation, n8n cloud hoặc dịch vụ AI chạy nền trên server.
 - Không xử lý yêu cầu hoạt động khi máy người dùng tắt.
 - Các tham số chưa biết được Claude hỏi trong bước thiết lập tương ứng và lưu lại để tránh hỏi lặp. Không yêu cầu secret trong chat.
@@ -31,7 +31,7 @@ Claude cần kiểm tra công cụ thực sự được kết nối trước khi
 ## Hai hình thức thực thi
 
 1. **Trong phiên chat:** người dùng yêu cầu chạy quy trình; Claude gọi các công cụ cục bộ và báo kết quả thực tế.
-2. **Theo lịch cục bộ:** cấu hình cơ chế scheduled tasks mà phiên bản/chế độ Claude Desktop hỗ trợ, hoặc bộ lập lịch trên máy gọi công cụ thực thi đã được triển khai. Cần kiểm tra khả năng kích hoạt và kết nối công cụ trước khi cam kết tự chạy.
+2. **Theo lịch cục bộ:** Claude tự tạo scheduled task cục bộ của Claude Desktop trong phiên theo `workflows/SCHEDULING.md`. Chỉ báo đã đặt lịch khi công cụ trả về thành công.
 
 Không coi việc thêm ngày giờ vào prompt, cài MCP hay import SKILL.md là đã tạo lịch tự động. Bộ lập lịch hệ điều hành không tự điều khiển một phiên chat Claude Desktop. Nếu tác vụ theo lịch cần suy luận AI, phải xác định cơ chế thực thi AI thực tế; không mặc định có API hay có thể dùng gói Desktop để gọi API.
 
@@ -48,7 +48,7 @@ Không coi việc thêm ngày giờ vào prompt, cài MCP hay import SKILL.md l�
 
 ## Trạng thái triển khai
 
-Đây là đặc tả kiến trúc, chưa phải bộ thực thi hoàn chỉnh. Cấu hình MCP hiện tại chỉ có filesystem và fetch; chưa cung cấp connector TinaCRM, gửi/đọc email hay bộ chạy lịch. Script thu thập hiện tại sinh dữ liệu demo, không dùng để nhập lead thật. Skills hướng dẫn nghiệp vụ không thay thế các connector đó.
+Đây là đặc tả kiến trúc, chưa phải bộ thực thi hoàn chỉnh. Cấu hình MCP hiện tại chỉ có filesystem và fetch; TinaCRM dùng REST qua `scripts/tinacrm_rest.py`; chưa có gửi/đọc email hay bộ chạy lịch. Script thu thập hiện tại sinh dữ liệu demo, không dùng để nhập lead thật. Skills hướng dẫn nghiệp vụ không thay thế các connector đó.
 
 ## Thứ tự triển khai
 

@@ -16,6 +16,9 @@
     "daily_send_limit": null
   },
   "schedule": {
-    "daily_run_time": null
+    "daily_run_time": null,
+    "days": null,
+    "task_name": null,
+    "email_approval": null
   }
 }

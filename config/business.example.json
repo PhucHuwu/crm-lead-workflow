@@ -5,15 +5,14 @@
   "crm": {
     "provider": "tinacrm",
     "base_url": null,
-    "connection_method": "native_mcp",
-    "mcp_url": null,
-    "auth_method": null,
+    "connection_method": "rest_api",
+    "auth_method": "api_key",
     "resolved_workspace_id": null,
     "lead_object": null,
     "field_mapping": {
       "campaign": null
     },
-    "credential_reference": null,
+    "credential_reference": "config/tinacrm_api_key.txt",
     "task_assignee_id": null,
     "workflow_triggers": {
       "lead_import_url": null,
@@ -29,6 +28,13 @@
     "credential_reference": null,
     "daily_send_limit": null
   },
+  "connectors": {
+    "gmail": null,
+    "microsoft_365": null,
+    "google_calendar": null,
+    "apollo": null,
+    "google_drive": null
+  },
   "schedule": {
     "timezone": null,
     "execution_method": null
@@ -36,6 +42,7 @@
   "reporting": {
     "recipients": [],
     "day_of_week": null,
-    "time": null
+    "time": null,
+    "task_name": null
   }
 }
