@@ -42,7 +42,7 @@ Xem [thiết lập doanh nghiệp](workflows/BUSINESS_ONBOARDING.md) và [kiến
 ## 📁 CẤU TRÚC THƯ MỤC DỰ ÁN
 
 ```text
-crm-lead-workflow/
+TinaCRM-Agent/
 ├── CLAUDE_PROJECT_INSTRUCTIONS.md      # 👉 Copy toàn bộ vào Custom Instructions của Claude Project
 ├── README.md                           # Hướng dẫn chi tiết này
 ├── product-marketing.template.md       # Mẫu hồ sơ ngữ cảnh trung tâm (Single Source of Truth)

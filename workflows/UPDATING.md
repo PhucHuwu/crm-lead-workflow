@@ -41,8 +41,8 @@ Chạy ở thư mục gốc workflow. Khi người dùng yêu cầu, giải thí
 
 Thư mục cũ chưa có script (tải trước khi có tính năng này):
 
-- macOS: `curl -fsSL https://raw.githubusercontent.com/PhucHuwu/crm-lead-workflow/main/scripts/update_workflow.sh | sh -s -- "$PWD"`
-- Windows (PowerShell): `$f="$env:TEMP\update_workflow.ps1"; iwr https://raw.githubusercontent.com/PhucHuwu/crm-lead-workflow/main/scripts/update_workflow.ps1 -OutFile $f; powershell -NoProfile -ExecutionPolicy Bypass -File $f (Get-Location).Path`
+- macOS: `curl -fsSL https://raw.githubusercontent.com/Tinasoft-Viet-Nam/TinaCRM-Agent/main/scripts/update_workflow.sh | sh -s -- "$PWD"`
+- Windows (PowerShell): `$f="$env:TEMP\update_workflow.ps1"; iwr https://raw.githubusercontent.com/Tinasoft-Viet-Nam/TinaCRM-Agent/main/scripts/update_workflow.ps1 -OutFile $f; powershell -NoProfile -ExecutionPolicy Bypass -File $f (Get-Location).Path`
 
 Thêm `--check` (macOS) hoặc `-Check` (Windows) để chỉ xem có bản mới không.
 

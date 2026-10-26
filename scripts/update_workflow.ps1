@@ -6,7 +6,7 @@
 #
 # Usage: powershell -NoProfile -ExecutionPolicy Bypass -File scripts\update_workflow.ps1 [-Check] [-Force] [target_folder]
 # Old folders without this script (run in PowerShell inside the workflow folder):
-#   $f="$env:TEMP\update_workflow.ps1"; iwr https://raw.githubusercontent.com/PhucHuwu/crm-lead-workflow/main/scripts/update_workflow.ps1 -OutFile $f; powershell -NoProfile -ExecutionPolicy Bypass -File $f (Get-Location).Path
+#   $f="$env:TEMP\update_workflow.ps1"; iwr https://raw.githubusercontent.com/Tinasoft-Viet-Nam/TinaCRM-Agent/main/scripts/update_workflow.ps1 -OutFile $f; powershell -NoProfile -ExecutionPolicy Bypass -File $f (Get-Location).Path
 #
 # Output: one "changed: <path>" line per added/updated/removed file (also saved to
 # .local/workflow-last-update.txt), then a last line
@@ -18,7 +18,7 @@ $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $ProgressPreference = 'SilentlyContinue'
 
-$repo = if ($env:WORKFLOW_REPO) { $env:WORKFLOW_REPO } else { 'PhucHuwu/crm-lead-workflow' }
+$repo = if ($env:WORKFLOW_REPO) { $env:WORKFLOW_REPO } else { 'Tinasoft-Viet-Nam/TinaCRM-Agent' }
 $branch = if ($env:WORKFLOW_BRANCH) { $env:WORKFLOW_BRANCH } else { 'main' }
 $zipUrl = if ($env:WORKFLOW_ZIP_URL) { $env:WORKFLOW_ZIP_URL } else { "https://codeload.github.com/$repo/zip/refs/heads/$branch" }
 

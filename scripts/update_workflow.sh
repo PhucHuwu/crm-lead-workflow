@@ -10,7 +10,7 @@
 #   --check  only report whether a newer version exists
 #   --force  reinstall even if the version is unchanged
 # Old folders without this script:
-#   curl -fsSL https://raw.githubusercontent.com/PhucHuwu/crm-lead-workflow/main/scripts/update_workflow.sh | sh -s -- "$PWD"
+#   curl -fsSL https://raw.githubusercontent.com/Tinasoft-Viet-Nam/TinaCRM-Agent/main/scripts/update_workflow.sh | sh -s -- "$PWD"
 #
 # Output: one "changed: <path>" line per added/updated/removed file (also saved to
 # .local/workflow-last-update.txt), then a last line
@@ -18,7 +18,7 @@
 # busy: another update is running in this folder right now.
 # Exit codes: 0 ok, 1 error.
 
-REPO="${WORKFLOW_REPO:-PhucHuwu/crm-lead-workflow}"
+REPO="${WORKFLOW_REPO:-Tinasoft-Viet-Nam/TinaCRM-Agent}"
 BRANCH="${WORKFLOW_BRANCH:-main}"
 ZIP_URL="${WORKFLOW_ZIP_URL:-https://codeload.github.com/$REPO/zip/refs/heads/$BRANCH}"
 
