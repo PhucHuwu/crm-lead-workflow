@@ -1,6 +1,6 @@
 # Chiến dịch và chạy song song
 
-Một thư mục workflow = một doanh nghiệp. Trong đó có thể có nhiều **chiến dịch**: mỗi chiến dịch là một nhóm khách hoặc một sản phẩm/kịch bản email riêng. Người dùng chạy song song bằng cách mở nhiều phiên (+ New) trong Claude Desktop, mỗi phiên làm một chiến dịch hoặc một doanh nghiệp.
+Một thư mục workflow = một doanh nghiệp. Trong đó có thể có nhiều **chiến dịch**: mỗi chiến dịch là một nhóm khách hoặc một sản phẩm/kịch bản email riêng. Người dùng chạy song song bằng cách mở nhiều phiên cùng thư mục (Claude Desktop: + New; ChatGPT desktop app: cuộc trò chuyện Codex mới, Local), mỗi phiên làm một chiến dịch hoặc một doanh nghiệp.
 
 ## Cấu trúc
 
@@ -19,7 +19,7 @@ Một thư mục workflow = một doanh nghiệp. Trong đó có thể có nhi�
     outputs/03_email_cadence/
 ```
 
-`slug` viết thường, không dấu, nối bằng gạch ngang, ví dụ `ban-le-hcm`, `logistics-erp`. Người dùng chỉ cần nói tên chiến dịch bằng lời; Claude tự đặt slug và báo lại.
+`slug` viết thường, không dấu, nối bằng gạch ngang, ví dụ `ban-le-hcm`, `logistics-erp`. Người dùng chỉ cần nói tên chiến dịch bằng lời; trợ lý tự đặt slug và báo lại.
 
 Khi tài liệu khác nói `outputs/01_icp_criteria`, `outputs/02_crawled_leads`, `outputs/03_email_cadence`, hiểu là thư mục đó **trong chiến dịch đang làm**: `campaigns/<slug>/outputs/...`.
 
@@ -45,16 +45,16 @@ Khi tài liệu khác nói `outputs/01_icp_criteria`, `outputs/02_crawled_leads`
 ## Tài nguyên dùng chung
 
 - **Hộp thư:** mọi chiến dịch gửi qua cùng hộp thư. `email.daily_send_limit` trong `config/business.json` là tổng cho cả hộp thư; `email.daily_send_limit` của mỗi chiến dịch là phần được chia, tổng không vượt mức chung.
-- **Nguồn tìm khách:** mỗi chiến dịch tự chọn nguồn theo ICP của mình (`campaign.json` → `lead_sources`), không mặc định LinkedIn. Claude đề xuất 2–3 nguồn, người dùng chọn (skill prospecting).
+- **Nguồn tìm khách:** mỗi chiến dịch tự chọn nguồn theo ICP của mình (`campaign.json` → `lead_sources`), không mặc định LinkedIn. Trợ lý đề xuất 2–3 nguồn, người dùng chọn (skill prospecting).
 - **Trình duyệt (CloakBrowser):** mỗi chiến dịch dùng hồ sơ trình duyệt riêng bằng tham số `profile=<slug>` của `browser_open`; người dùng đăng nhập riêng trong từng hồ sơ. Không đăng nhập cùng một tài khoản mạng xã hội ở hai chiến dịch chạy cùng lúc: nguy cơ bị khóa. Nếu chỉ có một tài khoản, lần lượt tìm khách từng chiến dịch.
 - **TinaCRM:** dùng chung kết nối và khóa.
 
 ## Chạy theo lịch
 
-- Claude tự tạo lịch theo `workflows/SCHEDULING.md`; người dùng không vào trang Scheduled. Mỗi chiến dịch một lịch, câu lệnh “Tiếp tục chiến dịch <tên>”, cùng thư mục doanh nghiệp, tắt tùy chọn worktree.
-- Đặt giờ lệch nhau (ít nhất 30 phút). Claude Desktop có thể bỏ qua một lần chạy khi lần trước chưa xong hoặc đang có tác vụ hẹn giờ khác chạy.
-- Máy phải bật và Claude Desktop phải mở.
-- Đầu mỗi lần chạy, Claude kiểm tra và cập nhật workflow, nạp lại hướng dẫn mới rồi mới làm chiến dịch (`workflows/UPDATING.md`). Không cần sửa câu lệnh của lịch.
+- Trợ lý tự tạo lịch theo `workflows/SCHEDULING.md`; người dùng không vào trang Scheduled. Chỉ đặt lịch ở một công cụ (Claude Desktop hoặc ChatGPT desktop app). Mỗi chiến dịch một lịch, câu lệnh “Tiếp tục chiến dịch <tên>”, cùng thư mục doanh nghiệp, tắt tùy chọn worktree.
+- Đặt giờ lệch nhau (ít nhất 30 phút). Ứng dụng có thể bỏ qua một lần chạy khi lần trước chưa xong hoặc đang có tác vụ hẹn giờ khác chạy.
+- Máy phải bật và ứng dụng có lịch (Claude Desktop hoặc ChatGPT desktop app) phải mở.
+- Đầu mỗi lần chạy, trợ lý kiểm tra và cập nhật workflow, nạp lại hướng dẫn mới rồi mới làm chiến dịch (`workflows/UPDATING.md`). Không cần sửa câu lệnh của lịch.
 
 ## Nhiều doanh nghiệp
 

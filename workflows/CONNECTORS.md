@@ -2,7 +2,12 @@
 
 Làm ở bước 6, sau CloakBrowser và TinaCRM. Mục đích: kết nối sẵn những dịch vụ các bước sau sẽ cần, để lúc tìm khách, gửi email hay chạy theo lịch không phải dừng lại chờ người dùng đăng nhập.
 
-Cách kết nối duy nhất cho người dùng: **Claude hiện thẻ Connect trong chat, người dùng bấm Connect và đăng nhập nếu được hỏi.** Không hướng dẫn người dùng vào Settings, không bắt họ sao chép địa chỉ hay thêm custom connector. Claude không nhận mật khẩu, mã OTP hay token qua chat. Connector đã kết nối dùng được trong mọi phiên Code của tài khoản Claude đó, mọi thư mục doanh nghiệp.
+Người dùng chỉ bấm kết nối và đăng nhập; cách bấm khác nhau theo công cụ (`config/business.json` → `assistant`):
+
+- **Claude Code:** trợ lý hiện thẻ Connect trong chat, người dùng bấm Connect. Gọi là “connector”.
+- **Codex:** người dùng bật plugin ở tab **Plugins** của ChatGPT desktop app. Gọi là “plugin”.
+
+Không bắt người dùng sao chép địa chỉ hay thêm custom connector. Trợ lý không nhận mật khẩu, mã OTP hay token qua chat. Dịch vụ đã kết nối dùng được ở mọi phiên của tài khoản đó, mọi thư mục doanh nghiệp.
 
 ## Đề xuất
 
@@ -18,7 +23,7 @@ Chỉ đề xuất những gì doanh nghiệp này sẽ dùng, dựa trên `prod
 | Apify | Bước 8: lấy danh sách doanh nghiệp từ Google Maps, dữ liệu công ty Việt Nam | Khách là cửa hàng, cơ sở địa phương (Maps) hoặc cần danh sách lớn. Cần tài khoản Apify, chạy tốn credit |
 | ThongtinCty | Bước 8: tra mã số thuế, địa chỉ, người đại diện, ngành nghề của doanh nghiệp Việt Nam | Khách là doanh nghiệp tại Việt Nam. Miễn phí, không cần tài khoản, **không cần người dùng kết nối** (mục dưới) |
 
-Chỉ đề xuất dịch vụ có trong danh bạ connector của Claude (hiện được thẻ Connect), riêng ThongtinCty Claude tự thêm. Dịch vụ người dùng nhắc tới mà không hiện được thẻ (ví dụ Hunter): nói rõ là chưa hỗ trợ kết nối đơn giản, đề xuất dịch vụ thay thế có trong danh bạ.
+Chỉ đề xuất dịch vụ có trong danh bạ của công cụ đang dùng (Claude: hiện được thẻ Connect; Codex: có trong tab Plugins), riêng ThongtinCty trợ lý tự thêm. Dịch vụ người dùng nhắc tới mà không có trong danh bạ (ví dụ Hunter): nói rõ là chưa hỗ trợ kết nối đơn giản, đề xuất dịch vụ thay thế có trong danh bạ. Không chắc dịch vụ có trong tab Plugins không thì nhờ người dùng tìm thử, không khẳng định.
 
 Không đề xuất: CRM khác (HubSpot, Salesforce, Pipedrive…) vì trùng TinaCRM; Zapier/Make/n8n; công cụ nhắn tin LinkedIn tự động.
 
@@ -26,10 +31,12 @@ Hỏi một lượt, cho chọn nhiều: “Bạn muốn kết nối sẵn dịc
 
 Lưu ý khi đề xuất Apollo, nói trước khi người dùng kết nối:
 - Cần tài khoản Apollo đăng nhập bằng email công ty (không nhận Gmail/Yahoo cá nhân).
-- Apollo yêu cầu tắt tùy chọn cho Anthropic dùng dữ liệu để huấn luyện (Claude: Settings → Privacy) trước khi kết nối.
+- Trên Claude, Apollo yêu cầu tắt tùy chọn cho Anthropic dùng dữ liệu để huấn luyện (Claude: Settings → Privacy) trước khi kết nối. Trên Codex, làm theo yêu cầu hiện ra khi bật plugin.
 - Một số thao tác (bổ sung email/số điện thoại) trừ credit của gói Apollo; tìm kiếm thì không lộ email.
 
 ## Hướng dẫn kết nối
+
+### Claude Code
 
 1. Dùng công cụ gợi ý connector (suggest connectors) của phiên để hiện thẻ “Suggested connectors” cho **tất cả** dịch vụ người dùng đã chọn, trong một lần.
 2. Nói một câu: “Bấm Connect trên từng dịch vụ ở thẻ trên, đăng nhập nếu được hỏi rồi bấm cho phép. Xong báo mình.” Gmail/Calendar: thêm “chọn đúng tài khoản Google dùng để liên hệ khách”.
@@ -39,15 +46,36 @@ Sự cố:
 - Không hiện được thẻ (phiên không có công cụ gợi ý connector): hướng dẫn một câu “Bấm dấu + cạnh ô nhập → Connectors → Browse connectors → tìm <tên dịch vụ> → Connect.”
 - Gói Team/Enterprise: thẻ hiện nút Request thay vì Connect thì người dùng bấm Request, chờ quản trị tài khoản Claude bật. Google Workspace báo “admin needs to review”: quản trị Google Workspace phải cho phép ứng dụng Claude.
 
-### ThongtinCty (Claude tự thêm)
+### Codex (ChatGPT desktop app)
 
-Khách là doanh nghiệp Việt Nam thì Claude tự thêm vào `.mcp.json` của thư mục workflow (giữ nguyên các server đã có), không hỏi người dùng thêm bước nào:
+1. Hướng dẫn từng thao tác, mỗi dịch vụ một lượt: mở tab **Plugins** ở thanh bên ChatGPT desktop app → tìm <tên dịch vụ> → bấm cài/kết nối → đăng nhập và cho phép. Gmail/Calendar: thêm “chọn đúng tài khoản Google dùng để liên hệ khách”.
+2. Hỏi “Bạn kết nối xong chưa? 1. Rồi. 2. Không tìm thấy dịch vụ. 3. Báo lỗi.”
+3. Người dùng báo xong: nhờ mở cuộc trò chuyện Codex mới cùng thư mục (Local) nếu công cụ của dịch vụ chưa có trong cuộc trò chuyện này, rồi kiểm tra (mục dưới).
 
-```json
-"thongtincty": { "type": "http", "url": "https://thongtincty.com/mcp" }
-```
+Sự cố:
+- Không tìm thấy dịch vụ trong Plugins: ghi `status = "skipped"`, đề xuất dịch vụ thay thế; không hướng dẫn tự dựng máy chủ MCP.
+- Tài khoản ChatGPT doanh nghiệp (Business/Enterprise): plugin có thể cần quản trị bật trước. Google Workspace báo cần quản trị duyệt: quản trị Google Workspace phải cho phép ứng dụng ChatGPT.
 
-Phiên mới sẽ hỏi cho phép dùng server trong `.mcp.json`: nói trước “Phiên sau nếu Claude hỏi cho dùng thongtincty, bấm cho phép.” Không cần đăng nhập.
+### ThongtinCty (trợ lý tự thêm)
+
+Khách là doanh nghiệp Việt Nam thì trợ lý tự thêm vào cấu hình MCP của thư mục workflow (giữ nguyên các server đã có), không hỏi người dùng thêm bước nào. Không cần đăng nhập.
+
+- **Claude Code:** `.mcp.json`
+
+  ```json
+  "thongtincty": { "type": "http", "url": "https://thongtincty.com/mcp" }
+  ```
+
+  Phiên mới sẽ hỏi cho phép dùng server trong `.mcp.json`: nói trước “Phiên sau nếu ứng dụng hỏi cho dùng thongtincty, bấm cho phép.”
+
+- **Codex:** `.codex/config.toml` (chỉ được đọc khi thư mục đã được tin cậy)
+
+  ```toml
+  [mcp_servers.thongtincty]
+  url = "https://thongtincty.com/mcp"
+  ```
+
+  Không được thì hướng dẫn người dùng: Settings → MCP servers → Add server → Streamable HTTP, tên `thongtincty`, địa chỉ `https://thongtincty.com/mcp`. Máy chủ mới có ở cuộc trò chuyện mới.
 
 ## Kiểm tra
 
@@ -65,6 +93,6 @@ Lưu vào `config/business.json` → `connectors`: tên dịch vụ, `status` (`
 ## Dùng ở các bước sau
 
 - Bước 8: Apollo, Apify, ThongtinCty đã kết nối thì đưa vào danh sách nguồn đề xuất (skill prospecting), nhưng vẫn chọn theo ICP, không mặc định. ThongtinCty dùng để bổ sung/xác minh thông tin doanh nghiệp Việt Nam trước khi lưu. Apify: báo trước số credit ước tính, chờ người dùng đồng ý mới chạy. Dữ liệu từ các nguồn này vẫn lưu vào TinaCRM qua `scripts/tinacrm_rest.py`, chống trùng như nguồn khác.
-- Bước 9–10: gửi và đọc email qua connector Gmail/Microsoft 365 nếu đã kết nối; đặt lịch hẹn qua Calendar khi khách đồng ý gặp.
-- Mặc định Claude Desktop hỏi người dùng trước khi gửi email hoặc tạo lịch. Lần chạy theo lịch không có ai bấm duyệt nên sẽ dừng ở đó: trước khi đặt lịch chạy (bước 10, `SCHEDULING.md`), hỏi người dùng muốn duyệt từng email hay cho phép gửi tự động trong giới hạn `daily_send_limit`. Không tự đổi quyền.
-- Đầu mỗi lần chạy, connector cần dùng mà không có trong phiên (bị ngắt, hết hạn đăng nhập): bỏ phần việc đó, làm phần còn lại, ghi vào tóm tắt “Cần kết nối lại <dịch vụ>”.
+- Bước 9–10: gửi và đọc email qua connector/plugin Gmail/Microsoft 365 nếu đã kết nối; đặt lịch hẹn qua Calendar khi khách đồng ý gặp.
+- Mặc định ứng dụng (Claude Desktop hay ChatGPT desktop app) hỏi người dùng trước khi gửi email hoặc tạo lịch hẹn. Lần chạy theo lịch không có ai bấm duyệt nên sẽ dừng ở đó: trước khi đặt lịch chạy (bước 10, `SCHEDULING.md`), hỏi người dùng muốn duyệt từng email hay cho phép gửi tự động trong giới hạn `daily_send_limit`. Không tự đổi quyền.
+- Đầu mỗi lần chạy, connector/plugin cần dùng mà không có trong phiên (bị ngắt, hết hạn đăng nhập): bỏ phần việc đó, làm phần còn lại, ghi vào tóm tắt “Cần kết nối lại <dịch vụ>”.

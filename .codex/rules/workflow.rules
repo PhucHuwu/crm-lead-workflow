@@ -1,0 +1,54 @@
+# Codex command rules for this workflow. Loaded only after the user trusts this project folder.
+# These scripts call TinaCRM / GitHub over the network, open the local key dialog or a browser
+# window, which the default sandbox blocks. Allowing exactly these prefixes lets daily and
+# scheduled runs work without opening full access. Sending email and writing CRM data still
+# follow the approval rules in AGENTS.md and workflows/.
+
+prefix_rule(
+    pattern = [["python3", "python", "py"], ["scripts/tinacrm_rest.py", "scripts/send_webhook.py"]],
+    decision = "allow",
+    justification = "Workflow scripts that read/write TinaCRM over the network.",
+    match = [
+        "python3 scripts/tinacrm_rest.py https://crm.example.com check",
+        "python scripts/send_webhook.py --type lead --file payload.json",
+    ],
+    not_match = [
+        "python3 scripts/other.py",
+        "python3 -c print(1)",
+    ],
+)
+
+prefix_rule(
+    pattern = [[".venv/bin/python", ".venv\\Scripts\\python.exe"], "scripts/linkedin_prospector.py"],
+    decision = "allow",
+    justification = "LinkedIn prospecting with a visible Chrome window; the user logs in themselves.",
+    match = [".venv/bin/python scripts/linkedin_prospector.py run --campaign ban-le-hcm --dry-run"],
+)
+
+prefix_rule(
+    pattern = [[".venv-browser/bin/python", ".venv-browser\\Scripts\\python.exe"], "-m", "pip", "install", "-r", "config/requirements-browser.txt"],
+    decision = "allow",
+    justification = "One-time install of CloakBrowser dependencies (workflows/CLOAKBROWSER.md).",
+    match = [".venv-browser/bin/python -m pip install -r config/requirements-browser.txt"],
+)
+
+prefix_rule(
+    pattern = ["sh", ["scripts/tinacrm_save_key.sh", "scripts/update_workflow.sh"]],
+    decision = "allow",
+    justification = "Local dialog where the user pastes the TinaCRM key, and the workflow updater (macOS).",
+    match = ["sh scripts/tinacrm_save_key.sh https://crm.example.com", "sh scripts/update_workflow.sh", "sh scripts/update_workflow.sh --check"],
+)
+
+prefix_rule(
+    pattern = [["powershell", "pwsh"], "-NoProfile", "-ExecutionPolicy", "Bypass", "-STA", "-File", "scripts/tinacrm_save_key.ps1"],
+    decision = "allow",
+    justification = "Local dialog where the user pastes the TinaCRM key (Windows).",
+    match = ["powershell -NoProfile -ExecutionPolicy Bypass -STA -File scripts/tinacrm_save_key.ps1 https://crm.example.com"],
+)
+
+prefix_rule(
+    pattern = [["powershell", "pwsh"], "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "scripts/update_workflow.ps1"],
+    decision = "allow",
+    justification = "Workflow updater (Windows).",
+    match = ["powershell -NoProfile -ExecutionPolicy Bypass -File scripts/update_workflow.ps1"],
+)

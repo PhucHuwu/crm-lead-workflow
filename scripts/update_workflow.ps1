@@ -1,6 +1,6 @@
 ﻿# Windows version of update_workflow.sh: updates a workflow folder (downloaded as ZIP, no git
 # needed) to the latest version on GitHub. Business data is never overwritten: inputs/, outputs/,
-# campaigns/, config/business.json, progress files, product-marketing.md, .mcp.json, the API key
+# campaigns/, config/business.json, progress files, product-marketing.md, .mcp.json, .codex/config.toml, the API key
 # and browser profiles. Workflow files the user edited are backed up to
 # .local/workflow-backups/<time>/ before being replaced; files removed upstream are moved there too.
 #
@@ -27,11 +27,13 @@ function Short($s) { if ($s) { $s.Substring(0, [Math]::Min(7, $s.Length)) } else
 
 if (-not $Target) {
   $candidate = Join-Path $PSScriptRoot '..'
-  $Target = if (Test-Path (Join-Path $candidate 'CLAUDE.md')) { $candidate } else { (Get-Location).Path }
+  $Target = if ((Test-Path (Join-Path $candidate 'AGENTS.md')) -or (Test-Path (Join-Path $candidate 'CLAUDE.md'))) { $candidate } else { (Get-Location).Path }
 }
 if (-not (Test-Path $Target -PathType Container)) { Die "Không tìm thấy thư mục $Target" }
 $Target = (Resolve-Path $Target).Path
-if (-not (Test-Path (Join-Path $Target 'CLAUDE.md')) -or -not (Test-Path (Join-Path $Target 'workflows'))) {
+# AGENTS.md since the Codex release; older folders only have CLAUDE.md.
+$hasGuide = (Test-Path (Join-Path $Target 'AGENTS.md')) -or (Test-Path (Join-Path $Target 'CLAUDE.md'))
+if (-not $hasGuide -or -not (Test-Path (Join-Path $Target 'workflows'))) {
   Die "Thư mục $Target không phải thư mục workflow"
 }
 if ((Test-Path (Join-Path $Target '.git')) -and -not $env:WORKFLOW_ALLOW_GIT) {
@@ -77,13 +79,14 @@ try {
   try { Invoke-WebRequest -UseBasicParsing -TimeoutSec 300 -OutFile $zip $zipUrl } catch { Die 'Không tải được bản mới từ GitHub' }
   try { Expand-Archive -Path $zip -DestinationPath (Join-Path $tmp 'x') } catch { Die 'Tệp tải về bị lỗi' }
   $src = (Get-ChildItem (Join-Path $tmp 'x') -Directory | Select-Object -First 1).FullName
-  if (-not (Test-Path (Join-Path $src 'CLAUDE.md')) -or -not (Test-Path (Join-Path $src 'scripts\update_workflow.sh'))) {
+  $srcGuide = (Test-Path (Join-Path $src 'AGENTS.md')) -or (Test-Path (Join-Path $src 'CLAUDE.md'))
+  if (-not $srcGuide -or -not (Test-Path (Join-Path $src 'scripts\update_workflow.sh'))) {
     Die 'Bản tải về không đúng cấu trúc workflow'
   }
 
   $protected = @('^inputs/', '^outputs/', '^campaigns/', '^\.local/', '^\.venv/', '^\.venv-browser/', '^config/\.browser_profile/',
     '^config/business\.json$', '^config/workflow_progress\.md$', '^config/tinacrm_api_key\.txt$',
-    '^product-marketing\.md$', '^\.mcp\.json$', '^CLAUDE\.local\.md$', '^\.claude/settings\.local\.json$',
+    '^product-marketing\.md$', '^\.mcp\.json$', '^\.codex/config\.toml$', '^CLAUDE\.local\.md$', '^\.claude/settings\.local\.json$',
     '^\.env$', '^\.env\.', '^config/\.env$', '^config/\.env\.', '^\.workflow-version$', '^\.workflow-manifest$')
   function IsProtected($rel) { foreach ($p in $protected) { if ($rel -match $p) { return $true } }; return $false }
   function HashOf($path) { (Get-FileHash -Algorithm SHA256 -LiteralPath $path).Hash.ToLower() }
@@ -143,7 +146,7 @@ try {
   [IO.File]::WriteAllLines($manifestFile, $manifest, (New-Object System.Text.UTF8Encoding($false)))
   if ($latest) { [IO.File]::WriteAllText($versionFile, "$latest`n") }
 
-  # Claude re-reads these files after an update instead of relying on the old session context.
+  # The assistant re-reads these files after an update instead of relying on the old session context.
   [IO.File]::WriteAllLines((Join-Path $localDir 'workflow-last-update.txt'), $changed, (New-Object System.Text.UTF8Encoding($false)))
   foreach ($rel in $changed) { Write-Output "changed: $rel" }
 

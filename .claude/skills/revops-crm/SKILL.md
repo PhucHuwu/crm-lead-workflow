@@ -11,7 +11,7 @@ metadata:
 
 Đọc `workflows/TINACRM_CONNECTION.md` trước các ví dụ bên dưới. Chỉ dùng REST API qua `scripts/tinacrm_rest.py` (không dùng MCP của TinaCRM): company → person → task, chống trùng theo domain/email, rồi đọc lại. REST cần xác thực; API key dùng Bearer, Role và workspace đã gắn trong token, không yêu cầu người dùng nhập workspace ID riêng. Webhook thông báo không phải cổng nhập lead; workflow trigger phải được thiết lập riêng. Payload `action` bên dưới chỉ là minh họa, không phải API chuẩn TinaCRM. Kết quả khởi chạy workflow chưa chứng minh dữ liệu đã được lưu; cần đọc lại.
 
-Kỹ năng này điều phối vòng đời của khách hàng tiềm năng giữa Claude và hệ thống CRM thông qua Webhook HTTP.
+Kỹ năng này điều phối vòng đời của khách hàng tiềm năng giữa trợ lý và hệ thống CRM thông qua Webhook HTTP.
 
 ## 1. Vòng đời dữ liệu Lead (Lifecycle Stages)
 1. `PROSPECT` ➔ Lead vừa cào được từ Bước 8.
@@ -43,7 +43,7 @@ Hỏi thông số webhook:
 {
   "action": "create_or_update_lead",
   "data": {
-    "source": "Claude Auto Pipeline",
+    "source": "AI Assistant Pipeline",
     "full_name": "Nguyễn Văn A",
     "job_title": "Giám đốc Vận hành",
     "company_name": "Công ty ABC",

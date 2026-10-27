@@ -1,21 +1,25 @@
 # HỆ THỐNG QUẢN TRỊ & CHĂM SÓC KHÁCH HÀNG TỰ ĐỘNG (CRM LEAD WORKFLOW)
 
-## Cách sử dụng ưu tiên: Claude Code trong Desktop
+## Cách sử dụng: Claude Code hoặc ChatGPT (Codex)
+
+Workflow chạy như nhau trên **Claude Code** (Claude Desktop) và **Codex** (ChatGPT desktop app). Chọn công cụ bạn đang dùng.
 
 1. Tải và giải nén workflow; đặt tài liệu vào `inputs/01_company_info/` và `inputs/02_marketing_materials/`.
-2. Mở Claude Desktop → **Code** → **Local** → **Select folder**, chọn thư mục gốc workflow có `CLAUDE.md`.
-3. Chọn **Manual** khi mới sử dụng, gửi: “Hãy đọc CLAUDE.md, kiểm tra tài liệu và hướng dẫn tôi thiết lập workflow từng bước”.
-4. Claude có thể đọc/ghi và chạy lệnh theo quyền thực tế; bạn tự đăng nhập và xử lý thao tác ngoài quyền.
+2. Mở thư mục gốc (có `AGENTS.md`) bằng trợ lý trên máy:
+   - **Claude:** Claude Desktop → **Code** → **This computer** → chọn thư mục; chọn **Manual** khi mới sử dụng.
+   - **ChatGPT/Codex:** ChatGPT desktop app → **Codex** → cuộc trò chuyện mới → chạy trên máy (**Local**) → chọn thư mục → chọn **tin cậy** thư mục khi được hỏi.
+3. Gửi: “Hãy đọc AGENTS.md, kiểm tra tài liệu và hướng dẫn tôi thiết lập workflow từng bước”.
+4. Trợ lý có thể đọc/ghi và chạy lệnh theo quyền thực tế; bạn tự đăng nhập và xử lý thao tác ngoài quyền. Quyền chạy lệnh và chỗ khác nhau giữa hai công cụ: [`workflows/ASSISTANT_SETUP.md`](workflows/ASSISTANT_SETUP.md).
 
-**Cập nhật bản mới:** không cần tải lại ZIP. Trong Code, gửi “Cập nhật workflow lên bản mới nhất.” Claude chạy `scripts/update_workflow.sh` (macOS) hoặc `scripts/update_workflow.ps1` (Windows); tài liệu, chiến dịch, cấu hình và khóa được giữ nguyên. Chi tiết: `workflows/UPDATING.md`.
+**Cập nhật bản mới:** không cần tải lại ZIP. Gửi “Cập nhật workflow lên bản mới nhất.” Trợ lý chạy `scripts/update_workflow.sh` (macOS) hoặc `scripts/update_workflow.ps1` (Windows); tài liệu, chiến dịch, cấu hình và khóa được giữ nguyên. Chi tiết: `workflows/UPDATING.md`.
 
-Không cần Node.js/CLI chỉ để mở tab Code. Không dùng Chat Projects/Project Knowledge hoặc `claude_desktop_config.json` như setup mặc định. Các hướng dẫn Chat cũ bên dưới không áp dụng cho môi trường đã chốt; xem `CLAUDE.md` và bài web “Mở tab Code trong Desktop”.
+Không cần Node.js/CLI chỉ để mở workflow. Không dùng Chat Projects/Project Knowledge hoặc `claude_desktop_config.json` như setup mặc định. Các hướng dẫn Chat cũ bên dưới không áp dụng cho môi trường đã chốt; xem `AGENTS.md`.
 
-Quy trình tự động hóa 13 bước từ dữ liệu doanh nghiệp thô đến Lead Generation, Webhook CRM, Email Nurturing và Báo cáo tuần. Được tối ưu hóa cho **Claude Desktop (Projects)** với cơ chế **Chủ động tương tác & hỏi người dùng**.
+Quy trình tự động hóa 13 bước từ dữ liệu doanh nghiệp thô đến Lead Generation, Webhook CRM, Email Nurturing và Báo cáo tuần. Chạy trên **Claude Code** hoặc **Codex** với cơ chế **Chủ động tương tác & hỏi người dùng**.
 
 ## Web hướng dẫn cho người dùng
 
-Website tài liệu: **https://crm-lead-workflow.vercel.app** (mã nguồn Next.js ở repo riêng [TinaCRM-Agent-Docs](https://github.com/Tinasoft-Viet-Nam/TinaCRM-Agent-Docs)), gồm hướng dẫn Claude Desktop và workflow bằng tiếng Việt, tìm kiếm, câu mẫu sao chép và checklist lưu tiến độ.
+Website tài liệu: **https://crm-lead-workflow.vercel.app** (mã nguồn Next.js ở repo riêng [TinaCRM-Agent-Docs](https://github.com/Tinasoft-Viet-Nam/TinaCRM-Agent-Docs)), gồm hướng dẫn mở workflow bằng Claude hoặc ChatGPT/Codex bằng tiếng Việt, tìm kiếm, câu mẫu sao chép và checklist lưu tiến độ.
 
 ## Kiến trúc và trải nghiệm
 
@@ -23,19 +27,19 @@ Website tài liệu: **https://crm-lead-workflow.vercel.app** (mã nguồn Next.
 
 ### Trải nghiệm cho người dùng ít quen công nghệ
 
-Claude chủ động hỏi từng câu, dùng từ dễ hiểu và lựa chọn đánh số. Người dùng có thể gửi tài liệu, website hoặc để Claude hỏi từng câu về doanh nghiệp; không cần biết tên skill hay chủ động đặt câu hỏi. Thông tin kỹ thuật do Claude chuyển thành cấu hình và hướng dẫn kết nối theo từng thao tác. Xem `rules/nontechnical_user_experience.md`.
+Trợ lý chủ động hỏi từng câu, dùng từ dễ hiểu và lựa chọn đánh số. Người dùng có thể gửi tài liệu, website hoặc để trợ lý hỏi từng câu về doanh nghiệp; không cần biết tên skill hay chủ động đặt câu hỏi. Thông tin kỹ thuật do trợ lý chuyển thành cấu hình và hướng dẫn kết nối theo từng thao tác. Xem `rules/nontechnical_user_experience.md`.
 
 **Lưu ý triển khai:** cài MCP/connector lần đầu hiện vẫn cần người hỗ trợ kỹ thuật; dự án chưa có bộ cài một lần bằng giao diện. Sau khi công cụ được kết nối, người dùng làm việc chủ yếu qua hội thoại dẫn dắt.
 
-**Browser backend:** [CloakBrowser qua MCP cục bộ](workflows/CLOAKBROWSER.md). Dùng server `scripts/cloakbrowser_mcp.py` và cấu hình mẫu `config/cloakbrowser_mcp.template.json` để Claude Desktop điều khiển browser này. Cần cài dependencies, kết nối MCP và kiểm tra trên máy người dùng.
+**Browser backend:** [CloakBrowser qua MCP cục bộ](workflows/CLOAKBROWSER.md). Dùng server `scripts/cloakbrowser_mcp.py` và cấu hình mẫu `config/cloakbrowser_mcp.template.json` để trợ lý điều khiển browser này (Claude: `.mcp.json`; Codex: `.codex/config.toml`). Cần cài dependencies, kết nối MCP và kiểm tra trên máy người dùng.
 
-Người dùng điều hành bằng **Claude Desktop**, với MCP/connector và công cụ thực thi chạy **trực tiếp trên máy người dùng**. TinaCRM lưu dữ liệu và trạng thái lead. Không yêu cầu server automation riêng; hoạt động khi máy tắt nằm ngoài phạm vi.
+Người dùng điều hành bằng **Claude Desktop** hoặc **ChatGPT desktop app (Codex)**, với MCP/connector/plugin và công cụ thực thi chạy **trực tiếp trên máy người dùng**. TinaCRM lưu dữ liệu và trạng thái lead. Không yêu cầu server automation riêng; hoạt động khi máy tắt nằm ngoài phạm vi.
 
-Workflow dùng chung cho nhiều doanh nghiệp. Mỗi doanh nghiệp dùng một bản clone/thư mục và Claude Project riêng; Claude hỏi và lưu các tham số riêng vào `config/business.json` từ mẫu `config/business.example.json`. Mục tiêu lead/ngày, số email và người nhận báo cáo không được cố định theo một doanh nghiệp.
+Workflow dùng chung cho nhiều doanh nghiệp. Mỗi doanh nghiệp dùng một bản clone/thư mục riêng; trợ lý hỏi và lưu các tham số riêng vào `config/business.json` từ mẫu `config/business.example.json`. Mục tiêu lead/ngày, số email và người nhận báo cáo không được cố định theo một doanh nghiệp.
 
 Xem [thiết lập doanh nghiệp](workflows/BUSINESS_ONBOARDING.md) và [kiến trúc thực thi cục bộ](workflows/LOCAL_EXECUTION.md) về cấu hình, lịch chạy và connector. Các tài liệu này được ưu tiên khi các ví dụ cũ khác với phạm vi đã chốt.
 
-**Trạng thái hiện tại:** bộ hướng dẫn và các script mẫu; chưa có connector TinaCRM/email hoặc lịch chạy hoàn chỉnh. Import Project Knowledge hay đặt file vào `.claude/skills/` không tự cấp các khả năng đó cho Claude Desktop.
+**Trạng thái hiện tại:** bộ hướng dẫn và các script mẫu; chưa có connector TinaCRM/email hoặc lịch chạy hoàn chỉnh. Import Project Knowledge hay đặt file vào thư mục skills không tự cấp các khả năng đó cho trợ lý.
 
 ---
 
@@ -43,12 +47,17 @@ Xem [thiết lập doanh nghiệp](workflows/BUSINESS_ONBOARDING.md) và [kiến
 
 ```text
 TinaCRM-Agent/
-├── CLAUDE_PROJECT_INSTRUCTIONS.md      # 👉 Copy toàn bộ vào Custom Instructions của Claude Project
+├── AGENTS.md                           # Chỉ dẫn khởi động chính (Codex đọc trực tiếp)
+├── CLAUDE.md                           # @AGENTS.md + ghi chú riêng cho Claude Code
+├── CLAUDE_PROJECT_INSTRUCTIONS.md      # Bản tóm tắt cũ cho Claude Project (không dùng mặc định)
 ├── README.md                           # Hướng dẫn chi tiết này
 ├── product-marketing.template.md       # Mẫu hồ sơ ngữ cảnh trung tâm (Single Source of Truth)
 ├── workflows/
+│   ├── ASSISTANT_SETUP.md              # Mở workflow và cấp quyền: Claude Code / Codex
 │   └── MASTER_WORKFLOW.md              # Sơ đồ & logic chi tiết 13 bước
-├── skills/                             # ⚡ BỘ KỸ NĂNG CHUẨN HOÁ (AGENT SKILLS SPEC)
+├── .claude/skills/                     # Bản sao skill cho Claude Code (python3 scripts/sync_skills.py)
+├── .codex/rules/                       # Quy tắc cho phép lệnh scripts/ của workflow trên Codex
+├── .agents/skills/                     # ⚡ BỘ KỸ NĂNG (bản gốc, AGENT SKILLS SPEC)
 │   ├── product-marketing/SKILL.md      # B2-B5: Đúc kết hồ sơ công ty & sản phẩm
 │   ├── icp-criteria/SKILL.md           # B6: Xây dựng tiêu chí khách hàng mục tiêu & Lead Scoring
 │   ├── prospecting/SKILL.md            # B7-B8: Tìm kiếm lead an toàn đa kênh (SaaS, B2B, Local)
@@ -57,7 +66,7 @@ TinaCRM-Agent/
 │   └── weekly-reporting/SKILL.md       # B13: Báo cáo tuần & đo lường chuyển đổi
 ├── subagents/                          # Tài liệu mô tả tính cách & vai trò chuyên môn của từng agent
 ├── rules/
-│   ├── interactive_interview_rules.md  # Nguyên tắc Claude dừng lại hỏi người dùng
+│   ├── interactive_interview_rules.md  # Nguyên tắc trợ lý dừng lại hỏi người dùng
 │   ├── security_credentials_rules.md   # Bảo mật tài khoản & Webhook token
 │   └── data_schemas.md                 # Định dạng JSON chuẩn cho Lead, ICP, Webhook
 ├── inputs/
@@ -78,7 +87,7 @@ TinaCRM-Agent/
 
 ---
 
-## 🚀 HƯỚNG DẪN IMPORT VÀO CLAUDE DESKTOP (3 BƯỚC)
+## 🚀 (CŨ, KHÔNG DÙNG MẶC ĐỊNH) HƯỚNG DẪN IMPORT VÀO CLAUDE PROJECT
 
 ### Bước 1: Tạo Claude Project mới
 1. Mở ứng dụng **Claude Desktop** (hoặc truy cập [claude.ai](https://claude.ai)).
@@ -98,11 +107,11 @@ TinaCRM-Agent/
 
 ---
 
-## 💬 CƠ CHẾ HOẠT ĐỘNG: CLAUDE SẼ CHỦ ĐỘNG HỎI GÌ?
+## 💬 CƠ CHẾ HOẠT ĐỘNG: TRỢ LÝ SẼ CHỦ ĐỘNG HỎI GÌ?
 
-Khi bạn bắt đầu với câu: *"Bắt đầu quy trình chăm sóc khách hàng"*, Claude sẽ tự động điều phối qua 13 bước và **chủ động dừng lại phỏng vấn bạn** tại các điểm cốt lõi:
+Khi bạn bắt đầu với câu: *"Bắt đầu quy trình chăm sóc khách hàng"*, trợ lý sẽ tự động điều phối qua 13 bước và **chủ động dừng lại phỏng vấn bạn** tại các điểm cốt lõi:
 
-| Bước | Vấn đề Claude sẽ hỏi bạn | Bạn cần cung cấp |
+| Bước | Vấn đề trợ lý sẽ hỏi bạn | Bạn cần cung cấp |
 | :--- | :--- | :--- |
 | **B3 & B5** | Xác nhận định vị công ty & sản phẩm trọng tâm | Phê duyệt hoặc góp ý chỉnh sửa |
 | **B6** | Kiểm tra bộ tiêu chí ICP & Tiêu chuẩn loại trừ | Thêm/bớt tiêu chí ngành nghề, chức danh |

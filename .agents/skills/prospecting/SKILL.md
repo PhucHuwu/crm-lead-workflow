@@ -32,7 +32,7 @@ Không mặc định LinkedIn hay bất kỳ nền tảng nào. Mỗi chiến d�
 
 Ví dụ hướng chọn (không phải mặc định): phòng khám/nhà hàng/bán lẻ theo khu vực → Google Maps, Facebook Page; nhà máy, xuất nhập khẩu → danh bạ B2B, Trang vàng, website ngành; SaaS/công nghệ → LinkedIn, website công ty, tin tuyển dụng; nhu cầu gấp → nhóm cộng đồng, diễn đàn, tin tuyển dụng.
 
-**Connector:** nếu `config/business.json` → `connectors.apollo.status` là `connected`, đưa Apollo vào danh sách đề xuất khi hợp ICP (B2B, cần người quyết định và email); nói rõ bổ sung email trừ credit Apollo. Chưa kết nối mà người dùng muốn dùng thì hiện thẻ Connect theo `workflows/CONNECTORS.md`. Khách Việt Nam: dùng ThongtinCty (nếu có) để xác minh mã số thuế, địa chỉ trước khi lưu.
+**Connector:** nếu `config/business.json` → `connectors.apollo.status` là `connected`, đưa Apollo vào danh sách đề xuất khi hợp ICP (B2B, cần người quyết định và email); nói rõ bổ sung email trừ credit Apollo. Chưa kết nối mà người dùng muốn dùng thì kết nối theo `workflows/CONNECTORS.md` (Claude: thẻ Connect; Codex: tab Plugins). Khách Việt Nam: dùng ThongtinCty (nếu có) để xác minh mã số thuế, địa chỉ trước khi lưu.
 
 **Công cụ:** dùng CloakBrowser (`workflows/CLOAKBROWSER.md`) với hồ sơ trình duyệt của chiến dịch cho mọi nguồn web. `scripts/linkedin_prospector.py` chỉ là công cụ có sẵn cho LinkedIn, không phải lý do để chọn LinkedIn. Nguồn công khai không cần đăng nhập thì ưu tiên khi chất lượng tương đương.
 

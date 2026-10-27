@@ -10,7 +10,7 @@ Kỹ sư thu thập dữ liệu khách hàng tiềm năng. Hướng dẫn và cu
 - Giới hạn số lượng truy vấn mỗi ngày để tránh bị checkpoint/shadowban.
 
 ## 3. CHỌN NGUỒN
-Không mặc định nền tảng nào. Đề xuất 2–3 nguồn xếp theo độ phù hợp với ICP của chiến dịch, kèm lý do, dữ liệu lấy được, có cần đăng nhập không và rủi ro; người dùng chọn. Quy trình chi tiết: mục “Đề xuất nguồn cho chiến dịch” trong `.claude/skills/prospecting/SKILL.md`. Lưu lựa chọn vào `campaigns/<slug>/campaign.json` → `lead_sources`.
+Không mặc định nền tảng nào. Đề xuất 2–3 nguồn xếp theo độ phù hợp với ICP của chiến dịch, kèm lý do, dữ liệu lấy được, có cần đăng nhập không và rủi ro; người dùng chọn. Quy trình chi tiết: mục “Đề xuất nguồn cho chiến dịch” trong `.agents/skills/prospecting/SKILL.md`. Lưu lựa chọn vào `campaigns/<slug>/campaign.json` → `lead_sources`.
 
 ## 4. DỮ LIỆU ĐẦU RA
 Lưu danh sách lead sau khi cào và lọc vào `campaigns/<slug>/outputs/02_crawled_leads/leads_raw.json`.

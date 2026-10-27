@@ -1,6 +1,6 @@
 # Cập nhật workflow
 
-Người dùng tải workflow bằng ZIP nên thư mục không có git. Cập nhật bằng script, không bắt người dùng tải lại ZIP hay chép lại tài liệu.
+Người dùng tải workflow bằng ZIP nên thư mục không có git. Trên Codex, lệnh cập nhật cần mạng: được `.codex/rules/workflow.rules` cho phép khi thư mục đã được tin cậy (xem `ASSISTANT_SETUP.md`). Cập nhật bằng script, không bắt người dùng tải lại ZIP hay chép lại tài liệu.
 
 ## Khi nào chạy
 
@@ -20,8 +20,8 @@ Làm trước mọi việc khác của bước 10, không hỏi người dùng (
    - `error` (mất mạng, GitHub lỗi…): **không dừng công việc**. Làm việc với bản hiện tại và ghi một dòng vào phần tóm tắt cuối phiên: “Chưa cập nhật được workflow: <message>”.
    - `updated`: làm bước 3 trước khi làm việc.
 3. **Nạp lại hướng dẫn mới** (phiên không tự khởi động lại, nên những gì đã đọc đầu phiên là bản cũ):
-   - Đọc lại `CLAUDE.md`, `workflows/USER_GUIDE_FLOW.md` và `workflows/CAMPAIGNS.md`.
-   - Đọc mọi tệp trong các dòng `changed:` (cũng lưu ở `.local/workflow-last-update.txt`) mà công việc hôm nay dùng tới: `workflows/`, `rules/`, `subagents/`, `skills/*/SKILL.md`, `.claude/skills/*/SKILL.md`. Skill đã đổi phải đọc trực tiếp từ tệp; bản skill nạp đầu phiên đã cũ.
+   - Đọc lại `AGENTS.md`, `workflows/USER_GUIDE_FLOW.md` và `workflows/CAMPAIGNS.md`.
+   - Đọc mọi tệp trong các dòng `changed:` (cũng lưu ở `.local/workflow-last-update.txt`) mà công việc hôm nay dùng tới: `AGENTS.md`, `workflows/`, `rules/`, `subagents/`, `.agents/skills/*/SKILL.md`, `.claude/skills/*/SKILL.md`. Bản cũ có thư mục `skills/`; nay skill nằm ở `.agents/skills/`, các dòng `skills/… (removed)` là bình thường. Skill đã đổi phải đọc trực tiếp từ tệp; bản skill nạp đầu phiên đã cũ.
    - Tệp có đuôi `(removed)`: không dùng nữa, kể cả khi đã đọc trước đó.
    - Script (`scripts/*`) không cần đọc: lần gọi sau tự chạy bản mới.
    - Khi hướng dẫn mới khác điều đã đọc trước đó, **làm theo bản mới**.
@@ -58,8 +58,8 @@ Trước dòng cuối có các dòng `changed: <tệp>`; dòng cuối luôn là 
 
 ## Script giữ và thay gì
 
-- **Không bao giờ ghi đè hay xóa:** `inputs/`, `outputs/`, `campaigns/`, `.local/`, `.venv*/`, `config/.browser_profile/`, `config/business.json`, `config/workflow_progress.md`, `config/tinacrm_api_key.txt`, `product-marketing.md`, `.mcp.json`, `.env*`, `CLAUDE.local.md`, `.claude/settings.local.json`. Tệp loại này chỉ được tạo khi chưa có (ví dụ `.gitkeep`).
-- **Thay bằng bản mới:** mọi tệp workflow khác (`CLAUDE.md`, `workflows/`, `skills/`, `.claude/skills/`, `scripts/`, `rules/`, `subagents/`, `config/*.example.json`, template…). Bản cũ có kèm `web-docs/` (trang hướng dẫn, nay là repo riêng TinaCRM-Agent-Docs); thư mục này không bao giờ được cài vào thư mục doanh nghiệp.
+- **Không bao giờ ghi đè hay xóa:** `inputs/`, `outputs/`, `campaigns/`, `.local/`, `.venv*/`, `config/.browser_profile/`, `config/business.json`, `config/workflow_progress.md`, `config/tinacrm_api_key.txt`, `product-marketing.md`, `.mcp.json`, `.codex/config.toml`, `.env*`, `CLAUDE.local.md`, `.claude/settings.local.json`. Tệp loại này chỉ được tạo khi chưa có (ví dụ `.gitkeep`).
+- **Thay bằng bản mới:** mọi tệp workflow khác (`AGENTS.md`, `CLAUDE.md`, `workflows/`, `.agents/skills/`, `.claude/skills/`, `.codex/rules/`, `scripts/`, `rules/`, `subagents/`, `config/*.example.json`, template…). Bản cũ có kèm `web-docs/` (trang hướng dẫn, nay là repo riêng TinaCRM-Agent-Docs); thư mục này không bao giờ được cài vào thư mục doanh nghiệp.
 - **Sao lưu:** tệp workflow người dùng đã sửa được sao vào `.local/workflow-backups/<thời-gian>/` trước khi thay. Lần cập nhật đầu tiên chưa có `.workflow-manifest` nên mọi tệp khác bản mới đều được sao lưu.
 - **Tệp bị gỡ ở bản mới:** chuyển vào thư mục sao lưu, không xóa.
 - `.workflow-version` (commit đang cài) và `.workflow-manifest` (mã băm từng tệp) ở thư mục gốc; không sửa tay. `.local/workflow-last-update.txt`: danh sách tệp đổi ở lần cập nhật gần nhất. `.local/workflow-update.lock`: khóa trong lúc cập nhật (tự gỡ; khóa quá 15 phút được coi là bỏ dở).

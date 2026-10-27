@@ -28,6 +28,7 @@
     "credential_reference": null,
     "daily_send_limit": null
   },
+  "assistant": null,
   "connectors": {
     "gmail": null,
     "microsoft_365": null,

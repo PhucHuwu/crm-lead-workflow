@@ -1,7 +1,7 @@
 #!/bin/sh
 # Updates a workflow folder (downloaded as ZIP, no git needed) to the latest version on GitHub.
 # Business data is never overwritten: inputs/, outputs/, campaigns/, config/business.json,
-# progress files, product-marketing.md, .mcp.json, the API key and browser profiles.
+# progress files, product-marketing.md, .mcp.json, .codex/config.toml, the API key and browser profiles.
 # Workflow files the user edited are backed up to .local/workflow-backups/<time>/ before being
 # replaced; files removed upstream are moved there too, never deleted. On the very first update
 # (no .workflow-manifest yet) every changed file is backed up, since edits can't be told apart.
@@ -37,10 +37,11 @@ die() { echo "status=error message=\"$1\""; exit 1; }
 
 if [ -z "$target" ]; then
   script_dir=$(cd "$(dirname "$0")" 2>/dev/null && pwd)
-  [ -n "$script_dir" ] && [ -f "$script_dir/../CLAUDE.md" ] && target="$script_dir/.." || target="$PWD"
+  { [ -f "$script_dir/../AGENTS.md" ] || [ -f "$script_dir/../CLAUDE.md" ]; } && [ -n "$script_dir" ] && target="$script_dir/.." || target="$PWD"
 fi
 target=$(cd "$target" 2>/dev/null && pwd) || die "Không tìm thấy thư mục $target"
-[ -f "$target/CLAUDE.md" ] && [ -d "$target/workflows" ] || die "Thư mục $target không phải thư mục workflow"
+# AGENTS.md since the Codex release; older folders only have CLAUDE.md.
+{ [ -f "$target/AGENTS.md" ] || [ -f "$target/CLAUDE.md" ]; } && [ -d "$target/workflows" ] || die "Thư mục $target không phải thư mục workflow"
 if [ -d "$target/.git" ] && [ -z "$WORKFLOW_ALLOW_GIT" ]; then
   die "Thư mục này là bản git; dùng git pull thay cho script cập nhật"
 fi
@@ -89,14 +90,14 @@ trap 'rm -rf "$tmp" "$lock"' EXIT
 curl -fsSL -m 300 -o "$tmp/workflow.zip" "$ZIP_URL" || die "Không tải được bản mới từ GitHub"
 unzip -q "$tmp/workflow.zip" -d "$tmp/x" || die "Tệp tải về bị lỗi"
 src=$(find "$tmp/x" -mindepth 1 -maxdepth 1 -type d | head -1)
-[ -f "$src/CLAUDE.md" ] && [ -f "$src/scripts/update_workflow.sh" ] || die "Bản tải về không đúng cấu trúc workflow"
+{ [ -f "$src/AGENTS.md" ] || [ -f "$src/CLAUDE.md" ]; } && [ -f "$src/scripts/update_workflow.sh" ] || die "Bản tải về không đúng cấu trúc workflow"
 
 # Paths owned by the business: only created when missing, never overwritten or moved.
 is_protected() {
   case "$1" in
     inputs/*|outputs/*|campaigns/*|.local/*|.venv/*|.venv-browser/*|config/.browser_profile/*) return 0 ;;
     config/business.json|config/workflow_progress.md|config/tinacrm_api_key.txt) return 0 ;;
-    product-marketing.md|.mcp.json|CLAUDE.local.md|.claude/settings.local.json) return 0 ;;
+    product-marketing.md|.mcp.json|.codex/config.toml|CLAUDE.local.md|.claude/settings.local.json) return 0 ;;
     .env|.env.*|config/.env|config/.env.*) return 0 ;;
     .workflow-version|.workflow-manifest) return 0 ;;
   esac
@@ -160,7 +161,7 @@ fi
 cp "$new_manifest" "$manifest_file"
 [ -n "$latest" ] && printf '%s\n' "$latest" > "$version_file"
 
-# Claude re-reads these files after an update instead of relying on the old session context.
+# The assistant re-reads these files after an update instead of relying on the old session context.
 touch "$tmp/changed"
 cp "$tmp/changed" "$target/.local/workflow-last-update.txt"
 sed 's/^/changed: /' "$tmp/changed"

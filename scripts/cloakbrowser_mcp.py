@@ -1,4 +1,4 @@
-"""Local Claude Desktop browser tools backed by CloakBrowser.
+"""Local MCP browser tools backed by CloakBrowser (Claude Code via .mcp.json, Codex via .codex/config.toml).
 
 Run with the Python environment containing requirements-browser.txt.
 Browser profiles are local to this clone and persist between sessions.

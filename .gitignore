@@ -33,3 +33,6 @@ config/tinacrm_api_key.txt
 # Workflow updater state (folders installed from ZIP)
 .workflow-version
 .workflow-manifest
+
+# Codex project config (absolute paths of this machine; MCP servers)
+.codex/config.toml

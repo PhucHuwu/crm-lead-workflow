@@ -4,11 +4,11 @@
 
 Workflow và skills dùng chung, còn dữ liệu và cấu hình thuộc từng doanh nghiệp. TinaCRM là nền tảng CRM hiện được định hướng tích hợp, không phải tên doanh nghiệp sử dụng workflow.
 
-Ở phiên bản hiện tại, mỗi doanh nghiệp dùng một bản clone/thư mục riêng (có thể chạy song song nhiều doanh nghiệp và nhiều chiến dịch, xem `CAMPAIGNS.md`), mở bằng Claude Code (Code → This computer → thư mục đó). Thứ tự dẫn dắt người dùng theo `USER_GUIDE_FLOW.md`; danh sách dưới đây là nội dung cần thu thập. Không dùng chung `product-marketing.md`, inputs, outputs hoặc cấu hình kết nối giữa các doanh nghiệp. Đây chưa phải ứng dụng nhiều tenant dùng chung một runtime.
+Ở phiên bản hiện tại, mỗi doanh nghiệp dùng một bản clone/thư mục riêng (có thể chạy song song nhiều doanh nghiệp và nhiều chiến dịch, xem `CAMPAIGNS.md`), mở bằng trợ lý trên máy (Claude Code hoặc Codex, theo `ASSISTANT_SETUP.md`). Thứ tự dẫn dắt người dùng theo `USER_GUIDE_FLOW.md`; danh sách dưới đây là nội dung cần thu thập. Không dùng chung `product-marketing.md`, inputs, outputs hoặc cấu hình kết nối giữa các doanh nghiệp. Đây chưa phải ứng dụng nhiều tenant dùng chung một runtime.
 
-## Cách Claude thiết lập
+## Cách trợ lý thiết lập
 
-Áp dụng `rules/nontechnical_user_experience.md`: danh sách bên dưới là checklist nội bộ cho Claude, không phải biểu mẫu đưa nguyên cho người dùng. Hỏi lần lượt một việc, dùng lựa chọn đánh số; Claude chuyển câu trả lời đơn giản thành cấu hình bằng công cụ có sẵn. Khi cần kết nối kỹ thuật, hướng dẫn từng thao tác hoặc giúp chuyển yêu cầu cho người hỗ trợ thiết lập.
+Áp dụng `rules/nontechnical_user_experience.md`: danh sách bên dưới là checklist nội bộ cho trợ lý, không phải biểu mẫu đưa nguyên cho người dùng. Hỏi lần lượt một việc, dùng lựa chọn đánh số; trợ lý chuyển câu trả lời đơn giản thành cấu hình bằng công cụ có sẵn. Khi cần kết nối kỹ thuật, hướng dẫn từng thao tác hoặc giúp chuyển yêu cầu cho người hỗ trợ thiết lập.
 
 1. Xác định doanh nghiệp đang được phục vụ, nhận tài liệu công ty, sản phẩm và case study. Chỉ hỏi phần chưa có trong tài liệu.
 2. Tổng hợp `product-marketing.md`, đề xuất thị trường/ngách và ICP; xác nhận sản phẩm trọng tâm với người dùng.
@@ -25,4 +25,4 @@ Workflow và skills dùng chung, còn dữ liệu và cấu hình thuộc từng
 - `product-marketing.md` cần xác định tên doanh nghiệp và nguồn tài liệu. Không dùng thông tin của doanh nghiệp khác để bổ sung dữ liệu thiếu.
 - Trước thao tác CRM/email, đối chiếu doanh nghiệp hiện tại, workspace và hộp thư được cấu hình. Nếu không rõ thì hỏi trước khi thực hiện.
 - Ánh xạ trường do schema workspace quyết định; không coi mọi khách hàng TinaCRM có cùng custom fields.
-- File cấu hình hiện là hợp đồng thiết lập cho Claude/connector sẽ triển khai, chưa được các script mẫu tự động đọc.
+- File cấu hình hiện là hợp đồng thiết lập cho trợ lý/connector sẽ triển khai, chưa được các script mẫu tự động đọc.

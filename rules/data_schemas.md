@@ -70,7 +70,7 @@ Bộ quy chuẩn JSON Schema cho các dữ liệu luân chuyển trong hệ th�
 {
   "action": "create_or_update_lead",
   "data": {
-    "source": "Claude Auto Pipeline",
+    "source": "AI Assistant Pipeline",
     "full_name": "Nguyễn Văn A",
     "job_title": "Giám đốc Vận hành (COO)",
     "company_name": "Công ty Cổ phần TechLogistics",

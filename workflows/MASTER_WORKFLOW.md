@@ -4,7 +4,7 @@
 
 Tài liệu này mô tả chi tiết logic chuyển trạng thái, đầu vào, đầu ra và kịch bản hỏi người dùng cho từng bước trong quy trình.
 
-**Kiến trúc ưu tiên:** [LOCAL_EXECUTION.md](LOCAL_EXECUTION.md) và [BUSINESS_ONBOARDING.md](BUSINESS_ONBOARDING.md). Claude Desktop điều phối với công cụ cục bộ; TinaCRM lưu lead và trạng thái theo workspace của doanh nghiệp. Mục tiêu lead/ngày, số email, lịch và người nhận báo cáo lấy từ `config/business.json` do Claude thiết lập với người dùng. Các ví dụ 4 email bên dưới chỉ là tham khảo. Lịch tự động cần được cấu hình và kiểm chứng bằng cơ chế thực thi thực tế trên máy người dùng.
+**Kiến trúc ưu tiên:** [LOCAL_EXECUTION.md](LOCAL_EXECUTION.md) và [BUSINESS_ONBOARDING.md](BUSINESS_ONBOARDING.md). Trợ lý (Claude Code hoặc Codex) điều phối với công cụ cục bộ; TinaCRM lưu lead và trạng thái theo workspace của doanh nghiệp. Mục tiêu lead/ngày, số email, lịch và người nhận báo cáo lấy từ `config/business.json` do trợ lý thiết lập với người dùng. Các ví dụ 4 email bên dưới chỉ là tham khảo. Lịch tự động cần được cấu hình và kiểm chứng bằng cơ chế thực thi thực tế trên máy người dùng.
 
 ---
 
@@ -13,12 +13,12 @@ Tài liệu này mô tả chi tiết logic chuyển trạng thái, đầu vào, 
 Quy trình vận hành sử dụng mô hình **Hub & Spoke Context** (tương thích chuẩn Agent Skills):
 - File trung tâm: `product-marketing.md` (Single Source of Truth).
 - Các gói kỹ năng chuyên môn:
-  - `skills/product-marketing`: Bước 2 - 5
-  - `skills/icp-criteria`: Bước 6
-  - `skills/prospecting`: Bước 7 - 8
-  - `skills/revops-crm`: Bước 9 & Bước 12
-  - `skills/cold-email`: Bước 10 - 11
-  - `skills/weekly-reporting`: Bước 13
+  - `.agents/skills/product-marketing`: Bước 2 - 5
+  - `.agents/skills/icp-criteria`: Bước 6
+  - `.agents/skills/prospecting`: Bước 7 - 8
+  - `.agents/skills/revops-crm`: Bước 9 & Bước 12
+  - `.agents/skills/cold-email`: Bước 10 - 11
+  - `.agents/skills/weekly-reporting`: Bước 13
 
 ```mermaid
 graph TD
@@ -58,7 +58,7 @@ graph TD
 ---
 
 ### GIAI ĐOẠN 2: THU THẬP & ĐỒNG BỘ LEAD LÊN CRM (B7 -> B9)
-5. **Chọn nguồn tìm khách (theo chiến dịch):** Claude phân tích ICP của chiến dịch, đề xuất 2–3 nguồn xếp theo độ phù hợp kèm lý do và rủi ro, người dùng chọn. Không mặc định LinkedIn. Chi tiết: `.claude/skills/prospecting/SKILL.md`.
+5. **Chọn nguồn tìm khách (theo chiến dịch):** trợ lý phân tích ICP của chiến dịch, đề xuất 2–3 nguồn xếp theo độ phù hợp kèm lý do và rủi ro, người dùng chọn. Không mặc định LinkedIn. Chi tiết: `.agents/skills/prospecting/SKILL.md`.
 6. **Đăng nhập nguồn:** người dùng tự đăng nhập trong cửa sổ CloakBrowser của chiến dịch; không xin mật khẩu, OTP, cookie hay token.
 
 ---

@@ -14,7 +14,7 @@ import urllib.error
 def send_webhook(url, payload, token=None):
     headers = {
         "Content-Type": "application/json",
-        "User-Agent": "Claude-CRM-Workflow/1.0"
+        "User-Agent": "TinaCRM-Agent-Workflow/1.0"
     }
     if token:
         headers["Authorization"] = token
