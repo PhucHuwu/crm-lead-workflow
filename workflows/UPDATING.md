@@ -59,7 +59,7 @@ Trước dòng cuối có các dòng `changed: <tệp>`; dòng cuối luôn là 
 ## Script giữ và thay gì
 
 - **Không bao giờ ghi đè hay xóa:** `inputs/`, `outputs/`, `campaigns/`, `.local/`, `.venv*/`, `config/.browser_profile/`, `config/business.json`, `config/workflow_progress.md`, `config/tinacrm_api_key.txt`, `product-marketing.md`, `.mcp.json`, `.env*`, `CLAUDE.local.md`, `.claude/settings.local.json`. Tệp loại này chỉ được tạo khi chưa có (ví dụ `.gitkeep`).
-- **Thay bằng bản mới:** mọi tệp workflow khác (`CLAUDE.md`, `workflows/`, `skills/`, `.claude/skills/`, `scripts/`, `rules/`, `subagents/`, `config/*.example.json`, template…). `web-docs/` (trang hướng dẫn) không được cài vào thư mục doanh nghiệp.
+- **Thay bằng bản mới:** mọi tệp workflow khác (`CLAUDE.md`, `workflows/`, `skills/`, `.claude/skills/`, `scripts/`, `rules/`, `subagents/`, `config/*.example.json`, template…). Bản cũ có kèm `web-docs/` (trang hướng dẫn, nay là repo riêng TinaCRM-Agent-Docs); thư mục này không bao giờ được cài vào thư mục doanh nghiệp.
 - **Sao lưu:** tệp workflow người dùng đã sửa được sao vào `.local/workflow-backups/<thời-gian>/` trước khi thay. Lần cập nhật đầu tiên chưa có `.workflow-manifest` nên mọi tệp khác bản mới đều được sao lưu.
 - **Tệp bị gỡ ở bản mới:** chuyển vào thư mục sao lưu, không xóa.
 - `.workflow-version` (commit đang cài) và `.workflow-manifest` (mã băm từng tệp) ở thư mục gốc; không sửa tay. `.local/workflow-last-update.txt`: danh sách tệp đổi ở lần cập nhật gần nhất. `.local/workflow-update.lock`: khóa trong lúc cập nhật (tự gỡ; khóa quá 15 phút được coi là bỏ dở).

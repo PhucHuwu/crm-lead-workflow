@@ -109,7 +109,7 @@ try {
     Move-Item -LiteralPath "$dest.update-tmp" -Destination $dest -Force
   }
 
-  # web-docs/ is the guide website, not part of the workflow a business runs.
+  # web-docs/ (guide website, shipped by older releases; now repo TinaCRM-Agent-Docs) is never installed.
   $files = Get-ChildItem -LiteralPath $src -Recurse -File -Force | ForEach-Object {
     $_.FullName.Substring($src.Length + 1).Replace('\', '/')
   } | Where-Object { $_ -notmatch '^web-docs/' } | Sort-Object

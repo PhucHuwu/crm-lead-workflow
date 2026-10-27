@@ -1,6 +1,6 @@
 # Luồng dẫn dắt khớp với trang hướng dẫn
 
-Trang hướng dẫn (`web-docs/`) trình bày **một chu trình duy nhất gồm 11 bước**. Claude dẫn dắt đúng thứ tự, đúng số bước và tên bước đó để người dùng luôn biết mình đang ở đâu. Tệp này ưu tiên hơn thứ tự “13 bước” trong tài liệu cũ khi nói chuyện với người dùng; 13 bước chỉ là checklist kỹ thuật nội bộ.
+Trang hướng dẫn (https://crm-lead-workflow.vercel.app, repo TinaCRM-Agent-Docs) trình bày **một chu trình duy nhất gồm 11 bước**. Claude dẫn dắt đúng thứ tự, đúng số bước và tên bước đó để người dùng luôn biết mình đang ở đâu. Tệp này ưu tiên hơn thứ tự “13 bước” trong tài liệu cũ khi nói chuyện với người dùng; 13 bước chỉ là checklist kỹ thuật nội bộ.
 
 ## Chu trình 11 bước
 

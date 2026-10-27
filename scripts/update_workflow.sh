@@ -114,7 +114,7 @@ backup="$target/.local/workflow-backups/$stamp"
 new_manifest="$tmp/manifest"
 added=0; updated=0; removed=0; backed=0
 
-# web-docs/ is the guide website, not part of the workflow a business runs.
+# web-docs/ (guide website, shipped by older releases; now repo TinaCRM-Agent-Docs) is never installed.
 (cd "$src" && find . -type f | sed 's#^\./##' | grep -v '^web-docs/' | LC_ALL=C sort) > "$tmp/files"
 
 # Manifest line: "<sha256>  <path>" of the version installed by the last update.

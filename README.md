@@ -15,7 +15,7 @@ Quy trình tự động hóa 13 bước từ dữ liệu doanh nghiệp thô đ�
 
 ## Web hướng dẫn cho người dùng
 
-Website tài liệu Next.js nằm tại [`web-docs/`](web-docs/README.md), gồm hướng dẫn Claude Desktop và workflow bằng tiếng Việt, tìm kiếm, câu mẫu sao chép và checklist lưu tiến độ. Xem README trong thư mục đó để chạy local.
+Website tài liệu: **https://crm-lead-workflow.vercel.app** (mã nguồn Next.js ở repo riêng [TinaCRM-Agent-Docs](https://github.com/Tinasoft-Viet-Nam/TinaCRM-Agent-Docs)), gồm hướng dẫn Claude Desktop và workflow bằng tiếng Việt, tìm kiếm, câu mẫu sao chép và checklist lưu tiến độ.
 
 ## Kiến trúc và trải nghiệm
 
