@@ -4,7 +4,7 @@ Workflow đọc/ghi TinaCRM **chỉ qua REST API** bằng `scripts/tinacrm_rest.
 
 ## Thiết lập (bước 6)
 
-1. Hỏi địa chỉ TinaCRM của doanh nghiệp, ví dụ `https://<workspace>.tinacrm.com`. Ghi vào `config/business.json`: `crm.base_url`, `crm.connection_method: "rest_api"`, `crm.auth_method: "api_key"`, `crm.credential_reference: "config/tinacrm_api_key.txt"`.
+1. Địa chỉ TinaCRM mặc định là `https://app.tinacrm.com`: người dùng mở link này, đăng nhập và vào workspace của doanh nghiệp; API key tự xác định workspace nên không cần hỏi địa chỉ riêng. Chỉ hỏi khi doanh nghiệp dùng địa chỉ khác (ví dụ `https://<workspace>.tinacrm.com`). Ghi vào `config/business.json`: `crm.base_url`, `crm.connection_method: "rest_api"`, `crm.auth_method: "api_key"`, `crm.credential_reference: "config/tinacrm_api_key.txt"`.
 2. Người dùng tạo API key: Settings → MCP & APIs → tab API → Create API key; Name, Role đủ quyền đọc/ghi người, công ty, công việc; nên đặt ngày hết hạn.
 3. Bật hộp thoại lưu khóa, chọn lệnh theo hệ điều hành:
    - macOS: `sh scripts/tinacrm_save_key.sh <base_url>`
