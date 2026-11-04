@@ -29,11 +29,13 @@ Website tài liệu: **https://crm-lead-workflow.vercel.app** (mã nguồn Next.
 
 Trợ lý chủ động hỏi từng câu, dùng từ dễ hiểu và lựa chọn đánh số. Người dùng có thể gửi tài liệu, website hoặc để trợ lý hỏi từng câu về doanh nghiệp; không cần biết tên skill hay chủ động đặt câu hỏi. Thông tin kỹ thuật do trợ lý chuyển thành cấu hình và hướng dẫn kết nối theo từng thao tác. Xem `rules/nontechnical_user_experience.md`.
 
-**Lưu ý triển khai:** cài MCP/connector lần đầu hiện vẫn cần người hỗ trợ kỹ thuật; dự án chưa có bộ cài một lần bằng giao diện. Sau khi công cụ được kết nối, người dùng làm việc chủ yếu qua hội thoại dẫn dắt.
+**Lưu ý triển khai:** cài connector lần đầu có thể cần người hỗ trợ kỹ thuật; dự án chưa có bộ cài một lần bằng giao diện. Sau khi công cụ được kết nối, người dùng làm việc chủ yếu qua hội thoại dẫn dắt.
 
-**Browser backend:** [CloakBrowser qua MCP cục bộ](workflows/CLOAKBROWSER.md). Dùng server `scripts/cloakbrowser_mcp.py` và cấu hình mẫu `config/cloakbrowser_mcp.template.json` để trợ lý điều khiển browser này (Claude: `.mcp.json`; Codex: `.codex/config.toml`). Cần cài dependencies, kết nối MCP và kiểm tra trên máy người dùng.
+**Browser backend:** [CloakBrowser qua lệnh `scripts/browser.py`](workflows/CLOAKBROWSER.md), dùng ngay trong phiên đang mở, không cần MCP hay mở phiên mới. Cần cài dependencies (`config/requirements-browser.txt`) và kiểm tra trên máy người dùng. Tra cứu doanh nghiệp Việt Nam: `scripts/thongtincty.py`.
 
-Người dùng điều hành bằng **Claude Desktop** hoặc **ChatGPT desktop app (Codex)**, với MCP/connector/plugin và công cụ thực thi chạy **trực tiếp trên máy người dùng**. TinaCRM lưu dữ liệu và trạng thái lead. Không yêu cầu server automation riêng; hoạt động khi máy tắt nằm ngoài phạm vi.
+**Một phiên cho mọi việc:** kết nối và ngữ cảnh không chuyển sang phiên khác, nên làm mọi bước và mọi chiến dịch trong cùng một phiên; hôm sau mở lại đúng phiên đó ở thanh bên trái.
+
+Người dùng điều hành bằng **Claude Desktop** hoặc **ChatGPT desktop app (Codex)**, với connector/plugin và công cụ thực thi chạy **trực tiếp trên máy người dùng**. TinaCRM lưu dữ liệu và trạng thái lead. Không yêu cầu server automation riêng; hoạt động khi máy tắt nằm ngoài phạm vi.
 
 Workflow dùng chung cho nhiều doanh nghiệp. Mỗi doanh nghiệp dùng một bản clone/thư mục riêng; trợ lý hỏi và lưu các tham số riêng vào `config/business.json` từ mẫu `config/business.example.json`. Mục tiêu lead/ngày, số email và người nhận báo cáo không được cố định theo một doanh nghiệp.
 

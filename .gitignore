@@ -34,5 +34,5 @@ config/tinacrm_api_key.txt
 .workflow-version
 .workflow-manifest
 
-# Codex project config (absolute paths of this machine; MCP servers)
+# Codex project config (machine-specific; the workflow adds nothing here)
 .codex/config.toml

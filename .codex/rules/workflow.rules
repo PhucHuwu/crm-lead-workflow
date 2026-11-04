@@ -26,6 +26,20 @@ prefix_rule(
 )
 
 prefix_rule(
+    pattern = [["python3", "python", "py"], "scripts/thongtincty.py"],
+    decision = "allow",
+    justification = "Read-only lookup of Vietnamese company registry data on thongtincty.com.",
+    match = ["python3 scripts/thongtincty.py lookup 0900887507"],
+)
+
+prefix_rule(
+    pattern = [[".venv-browser/bin/python", ".venv-browser\\Scripts\\python.exe"], "scripts/browser.py"],
+    decision = "allow",
+    justification = "CloakBrowser in a visible window (workflows/CLOAKBROWSER.md); the user logs in themselves.",
+    match = [".venv-browser/bin/python scripts/browser.py open https://example.com"],
+)
+
+prefix_rule(
     pattern = [[".venv-browser/bin/python", ".venv-browser\\Scripts\\python.exe"], "-m", "pip", "install", "-r", "config/requirements-browser.txt"],
     decision = "allow",
     justification = "One-time install of CloakBrowser dependencies (workflows/CLOAKBROWSER.md).",

@@ -1,6 +1,6 @@
-# Chiến dịch và chạy song song
+# Chiến dịch
 
-Một thư mục workflow = một doanh nghiệp. Trong đó có thể có nhiều **chiến dịch**: mỗi chiến dịch là một nhóm khách hoặc một sản phẩm/kịch bản email riêng. Người dùng chạy song song bằng cách mở nhiều phiên cùng thư mục (Claude Desktop: + New; ChatGPT desktop app: cuộc trò chuyện Codex mới, Local), mỗi phiên làm một chiến dịch hoặc một doanh nghiệp.
+Một thư mục workflow = một doanh nghiệp. Trong đó có thể có nhiều **chiến dịch**: mỗi chiến dịch là một nhóm khách hoặc một sản phẩm/kịch bản email riêng. Người dùng làm **mọi chiến dịch trong cùng một phiên**, lần lượt từng chiến dịch: muốn chuyển chiến dịch thì nhắn ngay trong phiên đó (“Làm chiến dịch <tên>”). Không hướng dẫn mở phiên mới (+ New / cuộc trò chuyện mới): phiên mới không mang theo kết nối (connector, quyền đã cho) và ngữ cảnh của phiên đang làm.
 
 ## Cấu trúc
 
@@ -23,11 +23,11 @@ Một thư mục workflow = một doanh nghiệp. Trong đó có thể có nhi�
 
 Khi tài liệu khác nói `outputs/01_icp_criteria`, `outputs/02_crawled_leads`, `outputs/03_email_cadence`, hiểu là thư mục đó **trong chiến dịch đang làm**: `campaigns/<slug>/outputs/...`.
 
-## Mỗi phiên làm một chiến dịch
+## Làm lần lượt từng chiến dịch trong một phiên
 
-- Mở đầu phiên: đọc `config/workflow_progress.md` và liệt kê `campaigns/` (thư mục là danh sách chiến dịch chính thức). Nếu người dùng chưa nói chiến dịch nào, hỏi: “1. <chiến dịch A>. 2. <chiến dịch B>. 3. Tạo chiến dịch mới.” Có đúng một chiến dịch thì dùng luôn và nói tên.
-- Câu “Làm chiến dịch <tên>” hoặc “Tiếp tục chiến dịch <tên>” chọn chiến dịch cho cả phiên. Nói tên chiến dịch khi báo kết quả để người dùng không nhầm phiên.
-- Chỉ ghi vào `campaigns/<slug>/` của chiến dịch đang làm. Các tệp dùng chung (`inputs/`, `product-marketing.md`, `config/business.json`, `.mcp.json`, khóa) chỉ đọc; muốn sửa thì hỏi người dùng trước và nhắc rằng các phiên khác cũng dùng chúng.
+- Mở đầu (hoặc khi người dùng quay lại phiên): đọc `config/workflow_progress.md` và liệt kê `campaigns/` (thư mục là danh sách chiến dịch chính thức). Nếu người dùng chưa nói chiến dịch nào, hỏi: “1. <chiến dịch A>. 2. <chiến dịch B>. 3. Tạo chiến dịch mới.” Có đúng một chiến dịch thì dùng luôn và nói tên.
+- Câu “Làm chiến dịch <tên>” hoặc “Tiếp tục chiến dịch <tên>” chọn chiến dịch đang làm, cho tới khi người dùng chuyển sang chiến dịch khác. Khi chuyển, ghi xong `progress.md` của chiến dịch cũ rồi mới đọc chiến dịch mới. Nói tên chiến dịch khi báo kết quả để người dùng không nhầm.
+- Chỉ ghi vào `campaigns/<slug>/` của chiến dịch đang làm. Các tệp dùng chung (`inputs/`, `product-marketing.md`, `config/business.json`, khóa) chỉ đọc; muốn sửa thì hỏi người dùng trước và nhắc rằng mọi chiến dịch đều dùng chúng.
 - Không đọc hoặc sửa thư mục chiến dịch khác, trừ khi kiểm tra trùng khách (dưới đây) hoặc tổng hợp báo cáo tuần.
 
 ## Tạo chiến dịch (bước 7)
@@ -46,7 +46,7 @@ Khi tài liệu khác nói `outputs/01_icp_criteria`, `outputs/02_crawled_leads`
 
 - **Hộp thư:** mọi chiến dịch gửi qua cùng hộp thư. `email.daily_send_limit` trong `config/business.json` là tổng cho cả hộp thư; `email.daily_send_limit` của mỗi chiến dịch là phần được chia, tổng không vượt mức chung.
 - **Nguồn tìm khách:** mỗi chiến dịch tự chọn nguồn theo ICP của mình (`campaign.json` → `lead_sources`), không mặc định LinkedIn. Trợ lý đề xuất 2–3 nguồn, người dùng chọn (skill prospecting).
-- **Trình duyệt (CloakBrowser):** mỗi chiến dịch dùng hồ sơ trình duyệt riêng bằng tham số `profile=<slug>` của `browser_open`; người dùng đăng nhập riêng trong từng hồ sơ. Không đăng nhập cùng một tài khoản mạng xã hội ở hai chiến dịch chạy cùng lúc: nguy cơ bị khóa. Nếu chỉ có một tài khoản, lần lượt tìm khách từng chiến dịch.
+- **Trình duyệt (CloakBrowser):** mỗi chiến dịch có thể dùng hồ sơ trình duyệt riêng: `.venv-browser/bin/python scripts/browser.py open <url> --profile <slug>`; người dùng đăng nhập riêng trong từng hồ sơ. Mỗi lúc chỉ mở một hồ sơ: chuyển chiến dịch thì `browser.py close` trước. Chỉ có một tài khoản mạng xã hội thì dùng chung hồ sơ mặc định.
 - **TinaCRM:** dùng chung kết nối và khóa.
 
 ## Chạy theo lịch
@@ -58,7 +58,7 @@ Khi tài liệu khác nói `outputs/01_icp_criteria`, `outputs/02_crawled_leads`
 
 ## Nhiều doanh nghiệp
 
-Mỗi doanh nghiệp một thư mục workflow riêng (bước 1). Mở mỗi doanh nghiệp trong một phiên riêng: + New → Choose… → thư mục doanh nghiệp đó. Không dùng dữ liệu, khóa hoặc hồ sơ trình duyệt của doanh nghiệp khác.
+Mỗi doanh nghiệp một thư mục workflow riêng (bước 1). Mỗi thư mục gắn với phiên đã mở nó ở bước 3; làm việc cho doanh nghiệp nào thì quay lại đúng phiên của thư mục đó ở thanh bên trái (kết nối dịch vụ phải làm lại một lần cho mỗi phiên như vậy). Không dùng dữ liệu, khóa hoặc hồ sơ trình duyệt của doanh nghiệp khác.
 
 ## Không dùng worktree
 

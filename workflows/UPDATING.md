@@ -7,7 +7,7 @@ Người dùng tải workflow bằng ZIP nên thư mục không có git. Trên C
 - Người dùng gửi “Cập nhật workflow” (hoặc ý tương tự).
 - **Mỗi lần chạy hằng ngày (bước 10)**, theo lịch Scheduled hay người dùng gửi tay: luôn kiểm tra và cập nhật trước khi làm việc (mục “Trước mỗi lần chạy hằng ngày”).
 - Phiên thiết lập (bước 1–9) **không** tự kiểm tra; chỉ chạy khi được yêu cầu, hoặc khi gặp lỗi mà tài liệu ghi là đã sửa ở bản mới.
-- Cập nhật tay (người dùng yêu cầu) khi một phiên khác đang chạy chiến dịch: hỏi người dùng tạm dừng phiên đó trước.
+- Cập nhật tay (người dùng yêu cầu) khi một lần chạy theo lịch đang chạy: hỏi người dùng chờ lần chạy đó xong trước.
 
 ## Trước mỗi lần chạy hằng ngày
 
@@ -25,10 +25,11 @@ Làm trước mọi việc khác của bước 10, không hỏi người dùng (
    - Tệp có đuôi `(removed)`: không dùng nữa, kể cả khi đã đọc trước đó.
    - Script (`scripts/*`) không cần đọc: lần gọi sau tự chạy bản mới.
    - Khi hướng dẫn mới khác điều đã đọc trước đó, **làm theo bản mới**.
+   - `.mcp.json` hoặc `.codex/config.toml` còn mục `workflow-cloakbrowser` hay `thongtincty` (cách cũ): xóa hai mục đó, giữ mục khác. Nay dùng `scripts/browser.py` và `scripts/thongtincty.py` ngay trong phiên; không nhờ người dùng mở phiên mới.
    - Nếu `config/*.example.json` hoặc mẫu `campaign.json` có đổi: đối chiếu cấu hình hiện có. Trường mới có giá trị mặc định an toàn thì dùng mặc định; trường bắt buộc mà thiếu thì không đoán, ghi vào tóm tắt để người dùng bổ sung ở phiên sau, và bỏ qua phần việc cần trường đó.
 4. Đầu phần tóm tắt cuối phiên ghi một dòng: “Đã cập nhật workflow lên bản <version> (<added> thêm, <updated> sửa, <removed> gỡ).”
 
-Các chiến dịch chạy song song: script có khóa nên chỉ một phiên cập nhật tại một thời điểm. Phiên đang chạy dở khi phiên khác vừa cập nhật vẫn làm xong với hướng dẫn đã đọc; lần chạy sau sẽ dùng bản mới.
+Lần chạy theo lịch và phiên người dùng có thể trùng giờ: script có khóa nên chỉ một bên cập nhật tại một thời điểm. Bên đang chạy dở khi bên kia vừa cập nhật vẫn làm xong với hướng dẫn đã đọc; lần chạy sau sẽ dùng bản mới.
 
 ## Cách chạy
 

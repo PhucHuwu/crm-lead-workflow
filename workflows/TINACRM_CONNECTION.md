@@ -1,6 +1,6 @@
 # Kết nối TinaCRM (REST API)
 
-Workflow đọc/ghi TinaCRM **chỉ qua REST API** bằng `scripts/tinacrm_rest.py` với API key. Không dùng MCP của TinaCRM, không thêm TinaCRM vào `.mcp.json`, không dùng connector/Quick install của TinaCRM. (CloakBrowser vẫn dùng MCP cục bộ; không liên quan TinaCRM.)
+Workflow đọc/ghi TinaCRM **chỉ qua REST API** bằng `scripts/tinacrm_rest.py` với API key. Không dùng MCP của TinaCRM, không thêm TinaCRM vào `.mcp.json`, không dùng connector/Quick install của TinaCRM.
 
 ## Thiết lập (bước 6)
 
@@ -13,7 +13,7 @@ Workflow đọc/ghi TinaCRM **chỉ qua REST API** bằng `scripts/tinacrm_rest.
    Nói trước với người dùng: "Một hộp thoại Kết nối TinaCRM sẽ hiện ra, dán khóa vào ô và bấm Lưu". Script lưu khóa vào `config/tinacrm_api_key.txt` (gitignore), không in khóa, và chỉ lưu khi REST của TinaCRM chấp nhận khóa (khóa cũ giữ nguyên nếu bị từ chối). Không nhận khóa qua chat, không bắt người dùng tự tìm hoặc mở tệp. Hộp thoại bị che thì nhắc tìm trên thanh Dock (macOS) hoặc thanh tác vụ (Windows). Kết quả "Đã hủy" thì hỏi lại; "từ chối" thì tạo khóa mới và chạy lại.
 4. Chạy `python3 scripts/tinacrm_rest.py <base_url> check`, rồi đọc thử vài bản ghi bằng `get` (ví dụ `get companies`) để người dùng xác nhận đúng CRM của doanh nghiệp. Chưa ghi dữ liệu. Không cần mở phiên mới.
 
-Thư mục đã thiết lập theo cách cũ (MCP): nếu `.mcp.json` có server `tinacrm`, xóa riêng mục đó (giữ `workflow-cloakbrowser`); trong `config/business.json` đổi `crm.connection_method` thành `"rest_api"`, bỏ `crm.mcp_url` nếu có (`base_url` là phần trước `/mcp`). Khóa đã lưu dùng tiếp được. Báo người dùng một câu, không cần mở phiên mới.
+Thư mục đã thiết lập theo cách cũ (MCP): nếu `.mcp.json` có server `tinacrm`, xóa mục đó (cùng `workflow-cloakbrowser`, `thongtincty` nếu có; nay là lệnh script); trong `config/business.json` đổi `crm.connection_method` thành `"rest_api"`, bỏ `crm.mcp_url` nếu có (`base_url` là phần trước `/mcp`). Khóa đã lưu dùng tiếp được. Báo người dùng một câu, không cần mở phiên mới.
 
 Bản Windows dùng Windows PowerShell 5.1 có sẵn (Windows Forms); tệp `.ps1` lưu UTF-8 có BOM để hiện đúng tiếng Việt, đừng lưu lại không BOM. Chưa chạy thử trên máy Windows thật.
 

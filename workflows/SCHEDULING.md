@@ -44,7 +44,7 @@ Dùng ở bước 10 (lịch chạy hằng ngày cho từng chiến dịch) và 
 - Tạo bằng chính cuộc trò chuyện Codex đang mở thư mục workflow: lịch **độc lập** (standalone, mỗi lần chạy là một cuộc trò chuyện mới), chạy **trong thư mục dự án (local)**, không dùng worktree. `execution_method = "codex_scheduled_task"`.
 - Thêm `$cold-email` vào cuối câu lệnh chạy chiến dịch, `$weekly-reporting` vào câu lệnh báo cáo tuần, để lần chạy chắc chắn nạp đúng skill.
 - Lịch chạy không người trông, dùng quyền mặc định của Codex (sandbox chặn mạng). Cập nhật workflow và ghi TinaCRM chỉ chạy được khi:
-  1. Thư mục workflow đã được **tin cậy** (Codex nạp `.codex/rules/workflow.rules` và `.codex/config.toml`), hoặc
+  1. Thư mục workflow đã được **tin cậy** (Codex nạp `.codex/rules/workflow.rules`), hoặc
   2. Người dùng đã duyệt **luôn** cho các lệnh đó trong một lần chạy tay (Codex lưu vào `~/.codex/rules/default.rules`).
 
   Trước khi tạo lịch, chạy tay “Tiếp tục chiến dịch <tên>” một lần trên Codex và xác nhận không còn câu hỏi quyền nào. Không đề xuất **Full access** cho lịch.

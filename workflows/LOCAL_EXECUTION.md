@@ -5,7 +5,7 @@
 - Giao diện là trợ lý chạy trên máy trong thư mục workflow: Claude Code (Claude Desktop → Code → This computer) hoặc Codex (ChatGPT desktop app → Codex → Local), theo `ASSISTANT_SETUP.md`. Trợ lý đọc/ghi và chạy lệnh theo quyền/công cụ thực tế; người dùng xử lý đăng nhập và thao tác ngoài quyền. Filesystem MCP không bắt buộc cho đọc project Local.
 
 - Người dùng sử dụng Claude Desktop hoặc ChatGPT desktop app để thiết lập, điều phối và thực hiện quy trình BD cho doanh nghiệp của mình. Workflow/skills dùng chung; kiến thức và cấu hình được thiết lập riêng theo `BUSINESS_ONBOARDING.md`.
-- Các MCP server, connector và công cụ thực thi chạy trực tiếp trên máy người dùng. TinaCRM được truy cập qua REST API (`scripts/tinacrm_rest.py`), dịch vụ email qua connector (Claude) hoặc plugin (ChatGPT/Codex) hiện có.
+- Connector/plugin và script (`scripts/`) chạy trực tiếp trên máy người dùng, trong cùng phiên trợ lý đang mở; workflow không thêm MCP server nào (máy chủ mới chỉ nạp ở phiên mới, làm mất kết nối và ngữ cảnh). TinaCRM được truy cập qua REST API (`scripts/tinacrm_rest.py`), dịch vụ email qua connector (Claude) hoặc plugin (ChatGPT/Codex) hiện có.
 - Không yêu cầu triển khai thêm server automation, n8n cloud hoặc dịch vụ AI chạy nền trên server.
 - Không xử lý yêu cầu hoạt động khi máy người dùng tắt.
 - Các tham số chưa biết được trợ lý hỏi trong bước thiết lập tương ứng và lưu lại để tránh hỏi lặp. Không yêu cầu secret trong chat.
@@ -15,7 +15,7 @@
 ```text
 Trợ lý (Claude Code / Codex): kiến thức doanh nghiệp + kiến thức TinaCRM + skills + workflow
                          |
-            MCP / connector / plugin cục bộ
+            script / connector / plugin cục bộ
                          |
           +--------------+----------------+
           |              |                |
@@ -48,7 +48,7 @@ Không coi việc thêm ngày giờ vào prompt, cài MCP hay import SKILL.md l�
 
 ## Trạng thái triển khai
 
-Đây là đặc tả kiến trúc, chưa phải bộ thực thi hoàn chỉnh. Cấu hình MCP hiện tại chỉ có filesystem và fetch; TinaCRM dùng REST qua `scripts/tinacrm_rest.py`; chưa có gửi/đọc email hay bộ chạy lịch. Script thu thập hiện tại sinh dữ liệu demo, không dùng để nhập lead thật. Skills hướng dẫn nghiệp vụ không thay thế các connector đó.
+Đây là đặc tả kiến trúc, chưa phải bộ thực thi hoàn chỉnh. TinaCRM dùng REST qua `scripts/tinacrm_rest.py`; trình duyệt qua `scripts/browser.py`; tra doanh nghiệp qua `scripts/thongtincty.py`; chưa có gửi/đọc email hay bộ chạy lịch. Script thu thập hiện tại sinh dữ liệu demo, không dùng để nhập lead thật. Skills hướng dẫn nghiệp vụ không thay thế các connector đó.
 
 ## Thứ tự triển khai
 

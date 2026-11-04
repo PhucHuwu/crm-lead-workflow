@@ -9,14 +9,14 @@ Khi hướng dẫn người dùng, một thao tác mỗi lượt, rồi hỏi �
 1. Mở Claude Desktop → tab **Code** (biểu tượng `</>`) → **This computer** (bản cũ ghi Local) → **Choose…** → chọn thư mục gốc workflow (có `AGENTS.md`).
 2. Chế độ quyền ở thanh dưới ô nhập: giữ **Manual** khi mới dùng. Không đề nghị Bypass permissions.
 3. Lần đầu chạy lệnh, Claude hỏi quyền: bấm **Always allow** cho đúng các lệnh `python3 scripts/...`, `sh scripts/...` (Windows: `powershell ... scripts/...ps1`) của workflow.
-4. MCP (CloakBrowser, ThongtinCty) nằm trong `.mcp.json`; phiên mới sẽ hỏi cho dùng server trong tệp đó, bấm cho phép.
+4. CloakBrowser và ThongtinCty cũng là lệnh script (`.venv-browser/bin/python scripts/browser.py …`, `python3 scripts/thongtincty.py …`), dùng được ngay trong phiên đang mở; không có MCP nào phải nạp.
+
+**Làm mọi việc trong cùng một phiên.** Kết nối (thẻ Connect, quyền đã cho) và ngữ cảnh không chuyển sang phiên khác, nên không bao giờ nhờ người dùng mở phiên mới (+ New). Hôm sau làm tiếp: mở lại đúng phiên cũ ở thanh bên trái.
 
 ## Codex (ChatGPT desktop app)
 
 1. Mở ChatGPT desktop app → **Codex** → cuộc trò chuyện mới → chọn chạy trên máy này (**Local**), chọn thư mục gốc workflow. Không chọn worktree hay cloud: khóa, hồ sơ trình duyệt và chiến dịch chỉ có trong thư mục gốc.
-2. Khi được hỏi có tin cậy thư mục không, chọn **tin cậy** (trust). Nhờ vậy Codex nạp:
-   - quy tắc `.codex/rules/workflow.rules`, cho phép đúng các lệnh `scripts/` cần mạng, hộp thoại nhập khóa và cập nhật workflow chạy mà không hỏi lại;
-   - cấu hình MCP `.codex/config.toml` (CloakBrowser, ThongtinCty) do trợ lý tạo ở bước 6.
+2. Khi được hỏi có tin cậy thư mục không, chọn **tin cậy** (trust). Nhờ vậy Codex nạp quy tắc `.codex/rules/workflow.rules`, cho phép đúng các lệnh `scripts/` cần mạng, hộp thoại nhập khóa, cửa sổ trình duyệt và cập nhật workflow chạy mà không hỏi lại.
 3. Chế độ quyền (ô bên dưới khung chat): giữ **Ask for approval** hoặc **Approve for me**. Không cần **Full access**.
 4. Nếu Codex vẫn hỏi quyền một lệnh `scripts/` (ví dụ chưa tin cậy thư mục): chọn duyệt **luôn cho lệnh này** (không phải chỉ một lần), để lần chạy theo lịch không bị chặn.
 5. Đã dùng Claude Code trước đó: Codex có mục **Settings → Import from Claude Code**; không bắt buộc, vì workflow đã có sẵn `AGENTS.md` và `.agents/skills/`.
@@ -28,7 +28,8 @@ Trợ lý chạy trên Codex:
 - Hộp thoại nhập khóa (`tinacrm_save_key`) và cửa sổ trình duyệt (CloakBrowser, LinkedIn) mở trên màn hình người dùng. Nói trước để người dùng tìm cửa sổ; nếu không thấy, nhờ kiểm tra cửa sổ có bị che sau ChatGPT không.
 - Cài thư viện (`pip install`, tạo `.venv-browser`) cần mạng: giải thích ngắn rồi xin chạy ngoài sandbox.
 - Vai trò trong `subagents/` được làm tuần tự trong cùng cuộc trò chuyện, trừ khi người dùng yêu cầu chạy song song.
-- Sau khi tạo hoặc sửa `.codex/config.toml`, máy chủ MCP mới chỉ có ở cuộc trò chuyện mới: nhờ người dùng mở cuộc trò chuyện mới cùng thư mục rồi gửi “Tiếp tục từ lần trước”.
+- Không thêm máy chủ MCP vào `.codex/config.toml` (máy chủ mới chỉ có ở cuộc trò chuyện mới). CloakBrowser, ThongtinCty, TinaCRM đều là lệnh `scripts/`.
+- Làm mọi việc trong cùng một cuộc trò chuyện; không nhờ người dùng mở cuộc trò chuyện mới, vì kết nối và ngữ cảnh không chuyển sang. Hôm sau làm tiếp: mở lại đúng cuộc trò chuyện cũ ở thanh bên.
 
 ## Kiểm tra nhanh sau bước 3
 
@@ -37,4 +38,4 @@ Trợ lý tự kiểm tra, không đọc kết quả kỹ thuật cho người d
 - Đọc được `AGENTS.md` và thấy các skill `product-marketing`, `icp-criteria`, `prospecting`, `revops-crm`, `cold-email`, `weekly-reporting`.
 - `python3 --version` chạy được (bước 5 kiểm tra kỹ hơn).
 
-Lưu vào `config/business.json` → `assistant` (`"claude_code"` hoặc `"codex"`) để các bước sau, nhất là kết nối dịch vụ và đặt lịch, hướng dẫn đúng chỗ bấm. Người dùng đổi công cụ giữa chừng thì cập nhật trường này và xem lại bước 6 (MCP, kết nối dịch vụ) cho công cụ mới.
+Lưu vào `config/business.json` → `assistant` (`"claude_code"` hoặc `"codex"`) để các bước sau, nhất là kết nối dịch vụ và đặt lịch, hướng dẫn đúng chỗ bấm. Người dùng đổi công cụ giữa chừng thì cập nhật trường này và xem lại bước 6 (kết nối dịch vụ) cho công cụ mới.

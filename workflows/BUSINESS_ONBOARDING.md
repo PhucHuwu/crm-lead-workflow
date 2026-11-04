@@ -4,7 +4,7 @@
 
 Workflow và skills dùng chung, còn dữ liệu và cấu hình thuộc từng doanh nghiệp. TinaCRM là nền tảng CRM hiện được định hướng tích hợp, không phải tên doanh nghiệp sử dụng workflow.
 
-Ở phiên bản hiện tại, mỗi doanh nghiệp dùng một bản clone/thư mục riêng (có thể chạy song song nhiều doanh nghiệp và nhiều chiến dịch, xem `CAMPAIGNS.md`), mở bằng trợ lý trên máy (Claude Code hoặc Codex, theo `ASSISTANT_SETUP.md`). Thứ tự dẫn dắt người dùng theo `USER_GUIDE_FLOW.md`; danh sách dưới đây là nội dung cần thu thập. Không dùng chung `product-marketing.md`, inputs, outputs hoặc cấu hình kết nối giữa các doanh nghiệp. Đây chưa phải ứng dụng nhiều tenant dùng chung một runtime.
+Ở phiên bản hiện tại, mỗi doanh nghiệp dùng một bản clone/thư mục riêng (mỗi thư mục có thể có nhiều chiến dịch, làm lần lượt trong cùng một phiên, xem `CAMPAIGNS.md`), mở bằng trợ lý trên máy (Claude Code hoặc Codex, theo `ASSISTANT_SETUP.md`). Thứ tự dẫn dắt người dùng theo `USER_GUIDE_FLOW.md`; danh sách dưới đây là nội dung cần thu thập. Không dùng chung `product-marketing.md`, inputs, outputs hoặc cấu hình kết nối giữa các doanh nghiệp. Đây chưa phải ứng dụng nhiều tenant dùng chung một runtime.
 
 ## Cách trợ lý thiết lập
 
