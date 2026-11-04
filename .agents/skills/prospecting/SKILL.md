@@ -34,11 +34,11 @@ Ví dụ hướng chọn (không phải mặc định): phòng khám/nhà hàng/
 
 **Connector:** nếu `config/business.json` → `connectors.apollo.status` là `connected`, đưa Apollo vào danh sách đề xuất khi hợp ICP (B2B, cần người quyết định và email); nói rõ bổ sung email trừ credit Apollo. Chưa kết nối mà người dùng muốn dùng thì kết nối theo `workflows/CONNECTORS.md` (Claude: thẻ Connect; Codex: tab Plugins), ngay trong phiên đang mở, không nhờ mở phiên mới. Khách Việt Nam: dùng `python3 scripts/thongtincty.py lookup <mã số thuế>` (hoặc `directory --industry … --province …` để tìm danh sách) để xác minh mã số thuế, địa chỉ trước khi lưu.
 
-**Công cụ:** dùng CloakBrowser (`workflows/CLOAKBROWSER.md`) với hồ sơ trình duyệt của chiến dịch cho mọi nguồn web. `scripts/linkedin_prospector.py` chỉ là công cụ có sẵn cho LinkedIn, không phải lý do để chọn LinkedIn. Nguồn công khai không cần đăng nhập thì ưu tiên khi chất lượng tương đương.
+**Công cụ:** lấy dữ liệu web theo thứ tự trong `workflows/WEB_RESEARCH.md` (công cụ web có sẵn của trợ lý → `scripts/fetch_page.py` → nguồn có cấu trúc → công cụ trình duyệt có sẵn trong phiên → người dùng xuất tệp); cách nào không được thì chuyển cách khác, không thử lại liên tục. `scripts/linkedin_prospector.py` chỉ là công cụ có sẵn cho LinkedIn, không phải lý do để chọn LinkedIn. Nguồn công khai không cần đăng nhập thì ưu tiên khi chất lượng tương đương.
 
 ## 3. Đăng nhập an toàn
 
-- Nguồn cần đăng nhập: người dùng **tự đăng nhập** trong cửa sổ CloakBrowser của chiến dịch; phiên được giữ trong hồ sơ trình duyệt. Không xin mật khẩu, OTP, cookie hay token trong chat hoặc tệp `.env`.
+- Nguồn cần đăng nhập: người dùng **tự đăng nhập** trong cửa sổ trình duyệt (Chrome của LinkedIn script, hoặc công cụ trình duyệt có sẵn trong phiên); không có cách nào thì nhờ người dùng tự xuất danh sách. Không xin mật khẩu, OTP, cookie hay token trong chat hoặc tệp `.env`.
 - Khuyên dùng tài khoản phụ cho mạng xã hội; không dùng cùng một tài khoản ở hai chiến dịch chạy cùng lúc.
 - Gặp xác minh, captcha hoặc chặn truy cập: dừng, báo người dùng, không cố vượt.
 

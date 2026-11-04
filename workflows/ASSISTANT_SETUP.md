@@ -9,13 +9,13 @@ Khi hướng dẫn người dùng, một thao tác mỗi lượt, rồi hỏi �
 1. Mở Claude Desktop → tab **Code** (biểu tượng `</>`) → **This computer** (bản cũ ghi Local) → **Choose…** → chọn thư mục gốc workflow (có `AGENTS.md`).
 2. Chế độ quyền ở thanh dưới ô nhập: giữ **Manual** khi mới dùng. Không đề nghị Bypass permissions.
 3. Lần đầu chạy lệnh, Claude hỏi quyền: bấm **Always allow** cho đúng các lệnh `python3 scripts/...`, `sh scripts/...` (Windows: `powershell ... scripts/...ps1`) của workflow.
-4. CloakBrowser và ThongtinCty cũng là lệnh script (`.venv-browser/bin/python scripts/browser.py …`, `python3 scripts/thongtincty.py …`), dùng được ngay trong phiên đang mở; không có MCP nào phải nạp.
+4. Đọc web dùng công cụ có sẵn của Claude hoặc `python3 scripts/fetch_page.py`; ThongtinCty là `python3 scripts/thongtincty.py`. Dùng được ngay trong phiên đang mở; không có MCP nào phải nạp, không cài trình duyệt riêng.
 
 **Làm mọi việc trong cùng một phiên.** Kết nối (thẻ Connect, quyền đã cho) và ngữ cảnh không chuyển sang phiên khác, nên không bao giờ nhờ người dùng mở phiên mới (+ New). Hôm sau làm tiếp: mở lại đúng phiên cũ ở thanh bên trái.
 
 ## Codex (ChatGPT desktop app)
 
-1. Mở ChatGPT desktop app → **Codex** → cuộc trò chuyện mới → chọn chạy trên máy này (**Local**), chọn thư mục gốc workflow. Không chọn worktree hay cloud: khóa, hồ sơ trình duyệt và chiến dịch chỉ có trong thư mục gốc.
+1. Mở ChatGPT desktop app → **Codex** → cuộc trò chuyện mới → chọn chạy trên máy này (**Local**), chọn thư mục gốc workflow. Không chọn worktree hay cloud: khóa và chiến dịch chỉ có trong thư mục gốc.
 2. Khi được hỏi có tin cậy thư mục không, chọn **tin cậy** (trust). Nhờ vậy Codex nạp quy tắc `.codex/rules/workflow.rules`, cho phép đúng các lệnh `scripts/` cần mạng, hộp thoại nhập khóa, cửa sổ trình duyệt và cập nhật workflow chạy mà không hỏi lại.
 3. Chế độ quyền (ô bên dưới khung chat): giữ **Ask for approval** hoặc **Approve for me**. Không cần **Full access**.
 4. Nếu Codex vẫn hỏi quyền một lệnh `scripts/` (ví dụ chưa tin cậy thư mục): chọn duyệt **luôn cho lệnh này** (không phải chỉ một lần), để lần chạy theo lịch không bị chặn.
@@ -25,10 +25,10 @@ Trợ lý chạy trên Codex:
 
 - Chạy mỗi lần một lệnh đơn giản (`python3 scripts/tinacrm_rest.py <base_url> check`), không nối `&&`, `|`, `>`, không đặt biến môi trường trước lệnh; nếu không, quy tắc duyệt theo tiền tố không khớp và lệnh bị chặn hoặc phải hỏi.
 - Lệnh bị chặn vì mạng (lỗi kiểu “Network is unreachable”, “nodename nor servname”, “Could not resolve host”, “Operation not permitted”) không phải lỗi khóa TinaCRM: xin chạy lại ngoài sandbox, rồi hướng dẫn người dùng bước 2 hoặc 4 ở trên. Không kết luận “khóa sai” khi chưa có phản hồi thật từ TinaCRM.
-- Hộp thoại nhập khóa (`tinacrm_save_key`) và cửa sổ trình duyệt (CloakBrowser, LinkedIn) mở trên màn hình người dùng. Nói trước để người dùng tìm cửa sổ; nếu không thấy, nhờ kiểm tra cửa sổ có bị che sau ChatGPT không.
-- Cài thư viện (`pip install`, tạo `.venv-browser`) cần mạng: giải thích ngắn rồi xin chạy ngoài sandbox.
+- Hộp thoại nhập khóa (`tinacrm_save_key`) và cửa sổ trình duyệt (LinkedIn) mở trên màn hình người dùng. Nói trước để người dùng tìm cửa sổ; nếu không thấy, nhờ kiểm tra cửa sổ có bị che sau ChatGPT không.
+- Cài thư viện (`pip install`, chỉ khi dùng LinkedIn script) cần mạng: giải thích ngắn rồi xin chạy ngoài sandbox.
 - Vai trò trong `subagents/` được làm tuần tự trong cùng cuộc trò chuyện, trừ khi người dùng yêu cầu chạy song song.
-- Không thêm máy chủ MCP vào `.codex/config.toml` (máy chủ mới chỉ có ở cuộc trò chuyện mới). CloakBrowser, ThongtinCty, TinaCRM đều là lệnh `scripts/`.
+- Không thêm máy chủ MCP vào `.codex/config.toml` (máy chủ mới chỉ có ở cuộc trò chuyện mới). Đọc web, ThongtinCty, TinaCRM đều là lệnh `scripts/` hoặc công cụ có sẵn.
 - Làm mọi việc trong cùng một cuộc trò chuyện; không nhờ người dùng mở cuộc trò chuyện mới, vì kết nối và ngữ cảnh không chuyển sang. Hôm sau làm tiếp: mở lại đúng cuộc trò chuyện cũ ở thanh bên.
 
 ## Kiểm tra nhanh sau bước 3

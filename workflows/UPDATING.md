@@ -25,7 +25,7 @@ Làm trước mọi việc khác của bước 10, không hỏi người dùng (
    - Tệp có đuôi `(removed)`: không dùng nữa, kể cả khi đã đọc trước đó.
    - Script (`scripts/*`) không cần đọc: lần gọi sau tự chạy bản mới.
    - Khi hướng dẫn mới khác điều đã đọc trước đó, **làm theo bản mới**.
-   - `.mcp.json` hoặc `.codex/config.toml` còn mục `workflow-cloakbrowser` hay `thongtincty` (cách cũ): xóa hai mục đó, giữ mục khác. Nay dùng `scripts/browser.py` và `scripts/thongtincty.py` ngay trong phiên; không nhờ người dùng mở phiên mới.
+   - `.mcp.json` hoặc `.codex/config.toml` còn mục `workflow-cloakbrowser` hay `thongtincty` (cách cũ): xóa hai mục đó, giữ mục khác. CloakBrowser đã bỏ; đọc web theo `workflows/WEB_RESEARCH.md`, ThongtinCty qua `scripts/thongtincty.py`, ngay trong phiên; không nhờ người dùng mở phiên mới.
    - Nếu `config/*.example.json` hoặc mẫu `campaign.json` có đổi: đối chiếu cấu hình hiện có. Trường mới có giá trị mặc định an toàn thì dùng mặc định; trường bắt buộc mà thiếu thì không đoán, ghi vào tóm tắt để người dùng bổ sung ở phiên sau, và bỏ qua phần việc cần trường đó.
 4. Đầu phần tóm tắt cuối phiên ghi một dòng: “Đã cập nhật workflow lên bản <version> (<added> thêm, <updated> sửa, <removed> gỡ).”
 

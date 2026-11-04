@@ -1,6 +1,6 @@
 # Kết nối dịch vụ khác (connector)
 
-Làm ở bước 6, sau CloakBrowser và TinaCRM. Mục đích: kết nối sẵn những dịch vụ các bước sau sẽ cần, để lúc tìm khách, gửi email hay chạy theo lịch không phải dừng lại chờ người dùng đăng nhập.
+Làm ở bước 6, sau TinaCRM. Mục đích: kết nối sẵn những dịch vụ các bước sau sẽ cần, để lúc tìm khách, gửi email hay chạy theo lịch không phải dừng lại chờ người dùng đăng nhập.
 
 Người dùng chỉ bấm kết nối và đăng nhập; cách bấm khác nhau theo công cụ (`config/business.json` → `assistant`):
 

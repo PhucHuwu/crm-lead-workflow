@@ -46,7 +46,7 @@ Khi tài liệu khác nói `outputs/01_icp_criteria`, `outputs/02_crawled_leads`
 
 - **Hộp thư:** mọi chiến dịch gửi qua cùng hộp thư. `email.daily_send_limit` trong `config/business.json` là tổng cho cả hộp thư; `email.daily_send_limit` của mỗi chiến dịch là phần được chia, tổng không vượt mức chung.
 - **Nguồn tìm khách:** mỗi chiến dịch tự chọn nguồn theo ICP của mình (`campaign.json` → `lead_sources`), không mặc định LinkedIn. Trợ lý đề xuất 2–3 nguồn, người dùng chọn (skill prospecting).
-- **Trình duyệt (CloakBrowser):** mỗi chiến dịch có thể dùng hồ sơ trình duyệt riêng: `.venv-browser/bin/python scripts/browser.py open <url> --profile <slug>`; người dùng đăng nhập riêng trong từng hồ sơ. Mỗi lúc chỉ mở một hồ sơ: chuyển chiến dịch thì `browser.py close` trước. Chỉ có một tài khoản mạng xã hội thì dùng chung hồ sơ mặc định.
+- **Đọc web:** theo `workflows/WEB_RESEARCH.md`, dùng chung cho mọi chiến dịch. LinkedIn script giữ phiên đăng nhập riêng cho từng chiến dịch.
 - **TinaCRM:** dùng chung kết nối và khóa.
 
 ## Chạy theo lịch
@@ -58,7 +58,7 @@ Khi tài liệu khác nói `outputs/01_icp_criteria`, `outputs/02_crawled_leads`
 
 ## Nhiều doanh nghiệp
 
-Mỗi doanh nghiệp một thư mục workflow riêng (bước 1). Mỗi thư mục gắn với phiên đã mở nó ở bước 3; làm việc cho doanh nghiệp nào thì quay lại đúng phiên của thư mục đó ở thanh bên trái (kết nối dịch vụ phải làm lại một lần cho mỗi phiên như vậy). Không dùng dữ liệu, khóa hoặc hồ sơ trình duyệt của doanh nghiệp khác.
+Mỗi doanh nghiệp một thư mục workflow riêng (bước 1). Mỗi thư mục gắn với phiên đã mở nó ở bước 3; làm việc cho doanh nghiệp nào thì quay lại đúng phiên của thư mục đó ở thanh bên trái (kết nối dịch vụ phải làm lại một lần cho mỗi phiên như vậy). Không dùng dữ liệu, khóa hoặc phiên đăng nhập của doanh nghiệp khác.
 
 ## Không dùng worktree
 

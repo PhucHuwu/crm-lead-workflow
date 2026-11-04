@@ -33,17 +33,10 @@ prefix_rule(
 )
 
 prefix_rule(
-    pattern = [[".venv-browser/bin/python", ".venv-browser\\Scripts\\python.exe"], "scripts/browser.py"],
+    pattern = [["python3", "python", "py"], "scripts/fetch_page.py"],
     decision = "allow",
-    justification = "CloakBrowser in a visible window (workflows/CLOAKBROWSER.md); the user logs in themselves.",
-    match = [".venv-browser/bin/python scripts/browser.py open https://example.com"],
-)
-
-prefix_rule(
-    pattern = [[".venv-browser/bin/python", ".venv-browser\\Scripts\\python.exe"], "-m", "pip", "install", "-r", "config/requirements-browser.txt"],
-    decision = "allow",
-    justification = "One-time install of CloakBrowser dependencies (workflows/CLOAKBROWSER.md).",
-    match = [".venv-browser/bin/python -m pip install -r config/requirements-browser.txt"],
+    justification = "Read a public web page as text (workflows/WEB_RESEARCH.md).",
+    match = ["python3 scripts/fetch_page.py https://example.com --links"],
 )
 
 prefix_rule(
