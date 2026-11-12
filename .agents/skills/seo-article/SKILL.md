@@ -2,12 +2,18 @@
 name: seo-article
 description: Viết bài chuẩn SEO tiếng Việt cho website doanh nghiệp từ product-marketing.md, rồi đăng lên trang quản trị nội bộ bằng trình duyệt trong ứng dụng sau khi người dùng duyệt. Dùng khi người dùng nhờ viết hoặc đăng bài blog, tin tức, trang sản phẩm (workflow phụ, workflows/ADMIN_SITE.md).
 metadata:
-  version: 1.0.0
+  version: 1.1.0
 ---
 
 # Bài viết chuẩn SEO
 
-Đọc `product-marketing.md` (sản phẩm, khách hàng, giọng văn) và `config/admin_site_notes.md` (nếu có) trước khi viết. Thao tác trên trang quản trị theo `workflows/ADMIN_SITE.md`.
+Đọc `product-marketing.md` (sản phẩm, khách hàng, giọng văn) và `config/admin_site_notes.md` (nếu có) trước khi viết. Thao tác trên trang quản trị và ghi TinaCRM theo `workflows/ADMIN_SITE.md`.
+
+## 0. Chủ đề từ TinaCRM
+
+- Chưa có chủ đề: đề xuất từ dữ liệu khách trên TinaCRM (`topic-digest`, mục “Đề xuất chủ đề” trong `ADMIN_SITE.md`): câu hỏi và lý do chưa mua hay gặp trong ghi chú, task; ngành nhiều khách mà website chưa có bài; khách đã thành CUSTOMER (case study). Mỗi chủ đề nêu số liệu thật lấy từ kết quả lệnh.
+- Bài trả lời câu hỏi thật của khách: dùng đúng cách khách hỏi làm H2 hoặc câu FAQ (viết lại cho gọn, không chép nguyên văn, không nêu tên khách).
+- Case study: chỉ dùng tên khách, logo, số liệu dự án khi người dùng xác nhận khách đã đồng ý; không thì ẩn danh. Không đưa thông tin liên hệ, giá hợp đồng hay ghi chú nội bộ vào bài.
 
 ## 1. Chọn từ khóa
 
@@ -47,4 +53,4 @@ metadata:
 - [ ] Liên kết nội bộ trỏ tới trang có thật.
 - [ ] Không có thông tin không kiểm chứng được.
 
-Lưu bản nháp ở `outputs/05_articles/<ngày>-<slug>.md`, đầu tệp là khối thông tin: `title`, `meta_description`, `slug`, `focus_keyword`, `category`, `tags`, `featured_image`. Hỏi duyệt bằng lựa chọn: “1. Đăng. 2. Sửa (nói chỗ cần sửa). 3. Để nháp, chưa đăng.” Chỉ đăng khi người dùng chọn Đăng.
+Lưu bản nháp ở `outputs/05_articles/<ngày>-<slug>.md`, đầu tệp là khối thông tin: `title`, `meta_description`, `slug`, `focus_keyword`, `category`, `tags`, `featured_image`, `crm_article_id` (id bản ghi “Bài viết” trên TinaCRM, nếu có). Hỏi duyệt bằng lựa chọn: “1. Đăng. 2. Sửa (nói chỗ cần sửa). 3. Để nháp, chưa đăng.” Chỉ đăng khi người dùng chọn Đăng.

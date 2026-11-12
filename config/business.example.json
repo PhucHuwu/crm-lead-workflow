@@ -14,6 +14,11 @@
     },
     "credential_reference": "config/tinacrm_api_key.txt",
     "task_assignee_id": null,
+    "articles": {
+      "status": null,
+      "object_id": null,
+      "checked_at": null
+    },
     "workflow_triggers": {
       "lead_import_url": null,
       "task_create_url": null,

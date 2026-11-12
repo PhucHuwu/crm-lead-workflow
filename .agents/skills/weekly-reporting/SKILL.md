@@ -14,6 +14,7 @@ Kỹ năng này đóng vai trò chốt chu trình (Loop Closer), đo lường to
 2. **Phễu tiếp cận Email:** Số email đã gửi ➔ Tỷ lệ mở (Open Rate) ➔ Tỷ lệ phản hồi (Reply Rate %).
 3. **Phễu bán hàng (CRM Tasks):** Số lượng Task CSKH được kích hoạt ➔ Số lead hủy chăm sóc (Unresponsive).
 4. **Insight chất lượng:** Trích xuất các phản hồi tích cực và lý do phản đối chính để cải thiện chu trình sau.
+5. **Bài đã đăng tuần này** (chỉ khi `config/business.json` → `crm.articles.status` là `"ready"`): chạy `python3 scripts/tinacrm_rest.py <base_url> articles-report '{"since":"<thứ Hai>","until":"<Chủ nhật>"}'`. Bảng: tiêu đề, đường dẫn, từ khóa, chiến dịch, task gửi bài đã xong / tổng. Thêm một dòng số bài đang ở trạng thái Đề xuất và Nháp (`list articles 'articleStatus[in]:["PROPOSED","DRAFT"]'`). Không có bài nào thì ghi “Tuần này chưa đăng bài”. Lỗi TinaCRM thì ghi đúng lỗi, không bỏ trống mục.
 
 ---
 

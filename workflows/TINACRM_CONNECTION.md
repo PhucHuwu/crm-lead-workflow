@@ -5,7 +5,7 @@ Workflow đọc/ghi TinaCRM **chỉ qua REST API** bằng `scripts/tinacrm_rest.
 ## Thiết lập (bước 6)
 
 1. Địa chỉ TinaCRM mặc định là `https://app.tinacrm.com`: người dùng mở link này, đăng nhập và vào workspace của doanh nghiệp; API key tự xác định workspace nên không cần hỏi địa chỉ riêng. Chỉ hỏi khi doanh nghiệp dùng địa chỉ khác (ví dụ `https://<workspace>.tinacrm.com`). Ghi vào `config/business.json`: `crm.base_url`, `crm.connection_method: "rest_api"`, `crm.auth_method: "api_key"`, `crm.credential_reference: "config/tinacrm_api_key.txt"`.
-2. Người dùng tạo API key: Settings → MCP & APIs → tab API → Create API key; Name, Role đủ quyền đọc/ghi người, công ty, công việc; nên đặt ngày hết hạn.
+2. Người dùng tạo API key: Settings → MCP & APIs → tab API → Create API key; Name, Role đủ quyền đọc/ghi người, công ty, công việc (muốn dùng workflow phụ đăng bài website thì Role cần được sửa Data model, thường là Admin, để trợ lý tạo mục “Bài viết”); nên đặt ngày hết hạn.
 3. Bật hộp thoại lưu khóa, chọn lệnh theo hệ điều hành:
    - macOS: `sh scripts/tinacrm_save_key.sh <base_url>`
    - Windows: `powershell -NoProfile -ExecutionPolicy Bypass -STA -File scripts/tinacrm_save_key.ps1 <base_url>` (chạy được từ Git Bash lẫn PowerShell)
@@ -37,6 +37,40 @@ python3 scripts/tinacrm_rest.py <base_url> get <object-plural> '<filter>'
 - Trường hoặc object chưa có lệnh riêng: xem schema thật tại `<base_url>/rest/open-api/core` (cùng khóa) trước khi mở rộng script; không đoán tên trường.
 - Trên Windows dùng `python` thay `python3` (cần Python; `curl.exe` có sẵn trên Windows 10+). Chưa thử trên Windows.
 - Lỗi phân biệt rõ: khóa thiếu/sai/hết hạn, thiếu quyền Role, sai địa chỉ, sai trường dữ liệu. Không gộp thành “workspace chưa cấu hình”.
+- `list <object-plural> '<filter>' [max]`: như `get` nhưng tự lấy hết các trang (mặc định tối đa 200 bản ghi). `members`: danh sách người trong workspace (id, tên, email) để giao task.
+
+## Bài viết (workflow phụ `ADMIN_SITE.md`)
+
+Object riêng “Bài viết” (`articles`) do trợ lý tạo qua Metadata API (`/rest/metadata/objects`, `/rest/metadata/fields`). Cần API key có Role được sửa Data model (thường là Admin); khóa chỉ đọc/ghi bản ghi sẽ báo 401/403 ở bước tạo.
+
+```
+python3 scripts/tinacrm_rest.py <base_url> ensure-articles-schema --dry-run
+python3 scripts/tinacrm_rest.py <base_url> ensure-articles-schema
+python3 scripts/tinacrm_rest.py <base_url> upsert-article  '{"title":"…","keyword":"…","status":"PROPOSED","audience":"…","campaign":"…","ideaSource":"…"}'
+python3 scripts/tinacrm_rest.py <base_url> upsert-article  '{"id":"<id>","status":"PUBLISHED","url":"https://…","publishedAt":"YYYY-MM-DD"}'
+python3 scripts/tinacrm_rest.py <base_url> topic-digest    '{"since":"YYYY-MM-DD","industryField":"industry"}'
+python3 scripts/tinacrm_rest.py <base_url> articles-report '{"since":"YYYY-MM-DD","until":"YYYY-MM-DD"}'
+python3 scripts/tinacrm_rest.py <base_url> create-task     '{"title":"…","assigneeId":"<id>","companyId":"<id>","articleId":"<id>"}'
+```
+
+| Trường trên TinaCRM | Tên API | Kiểu | Khóa trong `upsert-article` |
+|---|---|---|---|
+| Tiêu đề | `name` | Text | `title` |
+| Đường dẫn bài | `articleUrl` | Links | `url` |
+| Từ khóa chính | `focusKeyword` | Text | `keyword` |
+| Trạng thái | `articleStatus` | Select: `PROPOSED` Đề xuất, `DRAFT` Nháp, `PUBLISHED` Đã đăng, `UNPUBLISHED` Đã gỡ | `status` (nhận cả nhãn tiếng Việt) |
+| Ngày đăng | `publishedAt` | Date | `publishedAt` |
+| Ngành / nhóm khách | `audience` | Text | `audience` |
+| Chiến dịch | `campaign` | Text | `campaign` (slug trong `campaigns/`) |
+| Nguồn ý tưởng | `ideaSource` | Text | `ideaSource` |
+| Tệp nháp | `draftPath` | Text | `draftPath` |
+| Công ty / Người liên quan / Cơ hội | `companyId`, `personId`, `opportunityId` | Quan hệ nhiều-một | cùng tên |
+
+- `ensure-articles-schema` kiểm tra theo tên API; chỉ tạo phần thiếu, không sửa hay xóa trường có sẵn, rồi đọc lại cấu trúc (`verified_missing` phải rỗng). Chạy lại nhiều lần không sao.
+- Object mới tự có quan hệ với Task và Note, nên `create-task` gắn được `articleId` (qua `taskTargets.targetArticleId`).
+- `upsert-article` tìm bản ghi theo `id`, rồi đường dẫn, rồi tiêu đề chính xác; chỉ cập nhật các khóa được truyền. Bản ghi mới mặc định `PROPOSED`.
+- Người dùng muốn tự tạo trên giao diện (Settings → Data model → New object): dùng đúng tên API trong bảng (mục Advanced của từng trường), rồi chạy `ensure-articles-schema --dry-run` để kiểm tra.
+- Ghi vào `config/business.json` → `crm.articles`: `status` (`ready` / `skipped`), `object_id`, `checked_at`.
 
 ## Các cơ chế khác của TinaCRM
 
