@@ -19,7 +19,9 @@ Claude in Chrome (tiện ích Chrome) đã có sẵn trong phiên thì dùng đ�
 
 ### Claude Desktop (tab Code)
 
-1. Trợ lý mở trang cần đọc bằng công cụ trình duyệt; khung **Browser** hiện bên cạnh chat (người dùng cũng mở được bằng nút **Browser** trên thanh tiêu đề hoặc Cmd+Shift+B / Ctrl+Shift+B).
+1. Người dùng **không cần bấm Browser trước**. Trợ lý gọi thẳng `navigate` (hoặc `preview_start` với `url`): công cụ tự mở khung **Browser** và trả `serverId` để dùng tiếp với `read_page` / `computer` / `navigate`.
+   - Khi cần người dùng nhìn hoặc thao tác (đăng nhập, cho phép, xem trợ lý làm): gọi `tabs_select` với `handoff: true`. Ứng dụng tự hiện khung Browser ở bảng bên; kết quả cho biết khung đã hiện chưa. Chưa hiện thì nhờ người dùng bấm nút **Browser** trên thanh tiêu đề (Cmd+Shift+B / Ctrl+Shift+B).
+   - Cào thường không cần khung hiện ra: tab chạy nền vẫn đọc được.
 2. Thẻ hỏi quyền hiện ra cho từng trang (kể cả tên miền phụ): nhắc người dùng bấm **Always allow** cho các trang nguồn.
 3. Nhờ người dùng bật **Keep cookies** trong menu **⋮** của khung Browser, để không phải đăng nhập lại sau khi tắt ứng dụng.
 4. Không có công cụ trình duyệt trong phiên: nhờ kiểm tra **Settings → Code (hoặc Claude Code) → Browser tools** đang bật. Tổ chức (gói Team/Enterprise) có thể đã tắt hoặc giới hạn trang được mở: khi đó chuyển cách 2.
