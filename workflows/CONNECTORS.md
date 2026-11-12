@@ -15,8 +15,8 @@ Chỉ đề xuất những gì doanh nghiệp này sẽ dùng, dựa trên `prod
 
 | Dịch vụ | Dùng ở | Đề xuất khi |
 |---|---|---|
-| Gmail | Bước 9–10: gửi email, đọc phản hồi | Hộp thư liên hệ khách là Gmail/Google Workspace |
-| Microsoft 365 (Outlook, lịch) | Bước 9–10 | Hộp thư là Outlook/Microsoft 365 |
+| Gmail | Bước 9–10: gửi email, đọc phản hồi | Chỉ khi máy không có Outlook classic (`EMAIL_SENDING.md`) |
+| Microsoft 365 (Outlook, lịch) | Bước 9–10 | Chỉ khi máy không có Outlook classic và connector bật được (gói Team/Enterprise thường cần quản trị duyệt) |
 | Google Calendar | Bước 10: đặt lịch hẹn khi khách đồng ý gặp, tìm giờ trống | Doanh nghiệp hẹn gặp/demo với khách và dùng Google |
 | Apollo.io | Bước 8: tìm công ty, người quyết định, bổ sung email | Khách là doanh nghiệp (B2B) và người dùng **đã có** tài khoản Apollo |
 | Google Drive | Bước 4: đọc tài liệu doanh nghiệp | Tài liệu nằm trên Drive thay vì thư mục `inputs/` |
@@ -27,7 +27,7 @@ Chỉ đề xuất dịch vụ có trong danh bạ của công cụ đang dùng 
 
 Không đề xuất: CRM khác (HubSpot, Salesforce, Pipedrive…) vì trùng TinaCRM; Zapier/Make/n8n; công cụ nhắn tin LinkedIn tự động.
 
-Hỏi một lượt, cho chọn nhiều: “Bạn muốn kết nối sẵn dịch vụ nào? 1. Gmail (gửi email cho khách). 2. Google Calendar (đặt lịch hẹn). 3. Apollo (tìm khách). 4. Để sau.” Mỗi lựa chọn một dòng lý do ngắn. Không đưa ThongtinCty vào câu hỏi.
+Hỏi một lượt, cho chọn nhiều: “Bạn muốn kết nối sẵn dịch vụ nào? 1. Google Calendar (đặt lịch hẹn). 2. Apollo (tìm khách). 3. Để sau.” Mỗi lựa chọn một dòng lý do ngắn. Không đưa ThongtinCty vào câu hỏi. Email thiết lập riêng theo `EMAIL_SENDING.md` (Outlook classic trên máy), không hỏi ở đây.
 
 Lưu ý khi đề xuất Apollo, nói trước khi người dùng kết nối:
 - Cần tài khoản Apollo đăng nhập bằng email công ty (không nhận Gmail/Yahoo cá nhân).
@@ -86,6 +86,6 @@ Lưu vào `config/business.json` → `connectors`: tên dịch vụ, `status` (`
 ## Dùng ở các bước sau
 
 - Bước 8: Apollo, Apify, ThongtinCty đã kết nối thì đưa vào danh sách nguồn đề xuất (skill prospecting), nhưng vẫn chọn theo ICP, không mặc định. ThongtinCty dùng để bổ sung/xác minh thông tin doanh nghiệp Việt Nam trước khi lưu. Apify: báo trước số credit ước tính, chờ người dùng đồng ý mới chạy. Dữ liệu từ các nguồn này vẫn lưu vào TinaCRM qua `scripts/tinacrm_rest.py`, chống trùng như nguồn khác.
-- Bước 9–10: gửi và đọc email qua connector/plugin Gmail/Microsoft 365 nếu đã kết nối; đặt lịch hẹn qua Calendar khi khách đồng ý gặp.
+- Bước 9–10: gửi và đọc email theo `EMAIL_SENDING.md` (Outlook classic trước, connector chỉ là dự phòng); đặt lịch hẹn qua Calendar khi khách đồng ý gặp.
 - Mặc định ứng dụng (Claude Desktop hay ChatGPT desktop app) hỏi người dùng trước khi gửi email hoặc tạo lịch hẹn. Lần chạy theo lịch không có ai bấm duyệt nên sẽ dừng ở đó: trước khi đặt lịch chạy (bước 10, `SCHEDULING.md`), hỏi người dùng muốn duyệt từng email hay cho phép gửi tự động trong giới hạn `daily_send_limit`. Không tự đổi quyền.
 - Đầu mỗi lần chạy, connector/plugin cần dùng mà không có trong phiên (bị ngắt, hết hạn đăng nhập): bỏ phần việc đó, làm phần còn lại, ghi vào tóm tắt “Cần kết nối lại <dịch vụ>”.

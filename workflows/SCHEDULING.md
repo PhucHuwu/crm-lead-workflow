@@ -48,7 +48,7 @@ Dùng ở bước 10 (lịch chạy hằng ngày cho từng chiến dịch) và 
   2. Người dùng đã duyệt **luôn** cho các lệnh đó trong một lần chạy tay (Codex lưu vào `~/.codex/rules/default.rules`).
 
   Trước khi tạo lịch, chạy tay “Tiếp tục chiến dịch <tên>” một lần trên Codex và xác nhận không còn câu hỏi quyền nào. Không đề xuất **Full access** cho lịch.
-- Gửi email qua plugin: lần chạy theo lịch có thể dừng ở bước cần duyệt; khi đó làm theo `email_approval = draft_only` và ghi vào tóm tắt.
+- Gửi bằng Outlook classic (`EMAIL_SENDING.md`): máy phải bật; Outlook đóng thì lệnh tự mở. Gửi email qua plugin: lần chạy theo lịch có thể dừng ở bước cần duyệt; khi đó làm theo `email_approval = draft_only` và ghi vào tóm tắt.
 - Nhắc người dùng (ngắn): lịch chỉ chạy khi máy bật, không ngủ và ChatGPT desktop app đang mở. Kết quả mỗi lần chạy xem ở mục **Scheduled** ở thanh bên. Đổi giờ, tạm dừng: nhắn trợ lý hoặc sửa trong mục Scheduled.
 
 ## Chỉ một công cụ đặt lịch
@@ -60,7 +60,7 @@ Chỉ đặt lịch ở **một** công cụ: đã có lịch ở Claude Desktop
 - Không hỏi người dùng (không ai trả lời). Việc cần người dùng (đăng nhập lại, duyệt nháp, lỗi quyền) thì bỏ qua phần đó, làm phần còn lại, ghi vào tóm tắt cuối phiên.
 - Theo thứ tự: cập nhật workflow (`UPDATING.md`) → phản hồi mới → tìm khách theo mục tiêu ngày → email đến hạn → tóm tắt, lưu `campaigns/<slug>/progress.md`.
 - Chạy bù/chạy muộn: nếu đã quá 17:00 giờ địa phương thì vẫn xử lý phản hồi và lưu CRM, nhưng không gửi email mới; ghi “dời gửi sang lần chạy sau”. Đã có lần chạy hoàn tất hôm nay (theo `progress.md`) thì chỉ kiểm tra phản hồi, không tìm khách hay gửi lặp.
-- `email_approval = draft_only`: soạn nháp trong hộp thư (hoặc lưu vào `campaigns/<slug>/outputs/03_email_cadence/`), không gửi. `auto_send`: gửi trong giới hạn `daily_send_limit`, tôn trọng mọi quy tắc ngừng liên hệ.
+- `email_approval = draft_only`: soạn nháp trong hộp thư (`outlook_mail.py draft`) hoặc lưu vào `campaigns/<slug>/outputs/03_email_cadence/`, không gửi. `auto_send`: gửi trong giới hạn `daily_send_limit`, tôn trọng mọi quy tắc ngừng liên hệ.
 - Khóa TinaCRM lỗi hoặc connector mất kết nối: không thử cách khác để vượt quyền, ghi “Cần kết nối lại <dịch vụ>”.
 
 ## Không có công cụ đặt lịch

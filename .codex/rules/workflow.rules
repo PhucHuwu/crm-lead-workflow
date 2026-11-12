@@ -33,6 +33,13 @@ prefix_rule(
 )
 
 prefix_rule(
+    pattern = [["python3", "python", "py"], "scripts/outlook_mail.py"],
+    decision = "allow",
+    justification = "Drive the user's own signed-in classic Outlook (workflows/EMAIL_SENDING.md); send needs --confirm.",
+    match = ["python3 scripts/outlook_mail.py check"],
+)
+
+prefix_rule(
     pattern = [["python3", "python", "py"], "scripts/fetch_page.py"],
     decision = "allow",
     justification = "Read a public web page as text (workflows/WEB_RESEARCH.md).",

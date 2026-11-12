@@ -121,7 +121,7 @@ Khi bạn bắt đầu với câu: *"Bắt đầu quy trình chăm sóc khách h
 | **B8** | Phương thức xác thực tài khoản an toàn | Session Cookie (hướng dẫn an toàn qua F12) |
 | **B9** | Webhook nhận Lead vào CRM | Gửi link Webhook URL (Lark, HubSpot, Sheet...) |
 | **B10** | Lộ trình và thời gian gửi chuỗi email (Routine) | Phê duyệt số ngày cách quãng giữa các mail |
-| **B11** | Kênh gửi email (Gmail, SMTP, Resend...) | Chọn phương thức gửi email mong muốn |
+| **B11** | Gửi email bằng Outlook classic trên máy ([EMAIL_SENDING](workflows/EMAIL_SENDING.md)) | Mở Outlook bản cũ, cho phép trợ lý điều khiển Outlook |
 | **B12** | Webhook tạo Task CSKH khi khách trả lời | Gửi link Webhook tạo task & Email nhân viên phụ trách |
 | **B13** | Thông tin nhận Báo cáo tuần | Email của bạn và khung giờ muốn nhận mail |
 

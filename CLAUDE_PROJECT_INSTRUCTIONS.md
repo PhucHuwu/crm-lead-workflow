@@ -109,10 +109,7 @@ Hệ thống hoạt động theo tiêu chuẩn **Agent Skills**:
 
 ### BƯỚC 11: Cơ chế Gửi Email Chăm sóc & Lắng nghe Phản hồi
 - **Hành động hỏi BẮT BUỘC:** 
-  1. *"Bạn muốn gửi email chăm sóc thông qua phương thức nào?"*
-     - Gửi qua Gmail / Outlook tích hợp.
-     - Gửi qua SMTP server riêng.
-     - Gửi qua Email Service Provider (Resend, SendGrid, Amazon SES).
+  1. Không hỏi kênh gửi kỹ thuật: gửi theo `workflows/EMAIL_SENDING.md` (Outlook classic trên máy qua `scripts/outlook_mail.py` → connector có sẵn → tệp `.eml`).
   2. *"Bạn muốn trợ lý chuẩn bị sẵn nội dung cá nhân hóa từng lead để bạn duyệt trước khi gửi (Human-in-the-loop) hay gửi tự động theo batch?"*
 - Xuất danh sách email cá nhân hóa vào `campaigns/<slug>/outputs/03_email_cadence/`.
 - Thiết lập cơ chế ghi nhận trạng thái phản hồi (Đã mở, Đã click, Đã trả lời, Chưa trả lời).

@@ -12,11 +12,7 @@ Thiết kế chuỗi email tối thiểu 4 điểm chạm:
 
 ## 3. CHECKPOINTS HỎI NGƯỜI DÙNG BẮT BUỘC (B11)
 Hỏi người dùng phương thức triển khai gửi:
-1. *"Bạn muốn gửi email bằng phương thức nào sau đây?*
-   - *A. Gửi qua tài khoản Gmail / Google Workspace*
-   - *B. Gửi qua SMTP server công ty*
-   - *C. Gửi qua API nền tảng chuyên dụng (Resend / SendGrid)*
-   - *D. Xuất file email templates đã cá nhân hóa từng người để bạn duyệt trước khi gửi thủ công (Human Approval)?"*
+1. Cách gửi: không hỏi kênh kỹ thuật. Thiết lập theo `workflows/EMAIL_SENDING.md`: Outlook classic trên máy (`scripts/outlook_mail.py`) → connector có sẵn → tệp `.eml` để người dùng tự bấm Gửi. Chỉ hỏi: *"Trợ lý gửi luôn sau khi bạn duyệt, hay mở sẵn thư để bạn tự bấm Gửi?"*
 2. *"Giọng điệu (Tone of Voice) bạn muốn duy trì trong chuỗi email là gì? (Ví dụ: Chuyên nghiệp tư vấn, thân thiện cởi mở, hay ngắn gọn trực diện)?"*
 
 ## 4. XỬ LÝ PHÂN NHÁNH TRẠNG THÁI (B12)

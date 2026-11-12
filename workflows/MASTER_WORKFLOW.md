@@ -69,11 +69,7 @@ graph TD
    - Xác nhận với người dùng về thời gian chờ (delay) giữa các email (Ví dụ: 0 ngày -> 3 ngày -> 6 ngày -> 10 ngày).
 9. **Bước 11 (Cấu hình gửi mail & Lắng nghe phản hồi):**
    - **Kịch bản hỏi:**
-     > *"Bạn muốn gửi email chăm sóc thông qua phương thức nào sau đây?*
-     > 1. *Gửi qua Gmail API (Google Workspace)*
-     > 2. *Gửi qua SMTP (Tên miền riêng công ty)*
-     > 3. *Gửi qua nền tảng gửi mail (Resend, SendGrid, Mailchimp)*
-     > 4. *Xuất danh sách nội dung ra file CSV để bạn tự import vào công cụ gửi mail hiện có?"*
+     > Gửi theo `workflows/EMAIL_SENDING.md`: Outlook classic trên máy (`scripts/outlook_mail.py`) → connector có sẵn → tệp `.eml`. Chỉ hỏi: *"Trợ lý gửi luôn sau khi bạn duyệt, hay mở sẵn thư để bạn tự bấm Gửi?"*
 10. **Bước 12 (Xử lý phân nhánh):**
     - Nếu khách trả lời: Hỏi thông tin webhook tạo Task của CRM:
       > *"Khách hàng [Tên công ty] vừa phản hồi tích cực! Vui lòng cung cấp webhook tạo Task trên CRM và email/ID nhân viên kinh doanh phụ trách để tôi tạo việc ngay lập tức."*

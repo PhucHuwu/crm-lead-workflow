@@ -26,4 +26,4 @@ Kỹ năng này đóng vai trò chốt chu trình (Loop Closer), đo lường to
 
 ## 3. Đầu ra
 - Tạo báo cáo định dạng Markdown và HTML lưu tại: `outputs/04_weekly_reports/weekly_report_YYYY-WW.md`.
-- Kích hoạt gửi email báo cáo tới địa chỉ người dùng đã đăng ký.
+- Gửi email báo cáo tới địa chỉ người dùng đã đăng ký theo `workflows/EMAIL_SENDING.md` (`python3 scripts/outlook_mail.py send … --confirm` khi đã được cho phép gửi tự động; không thì `draft`).

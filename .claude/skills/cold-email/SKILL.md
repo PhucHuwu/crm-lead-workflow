@@ -35,9 +35,7 @@ Kỹ năng này chịu trách nhiệm xây dựng chuỗi email chăm sóc đa �
 ---
 
 ## 4. Checkpoint hỏi người dùng (Bước 11)
-- *"Bạn muốn triển khai gửi email chuỗi này qua phương thức nào?"*
-  1. *Gửi qua tài khoản Gmail / Google Workspace*
-  2. *Gửi qua SMTP server riêng của doanh nghiệp*
-  3. *Gửi qua dịch vụ API (Resend / SendGrid)*
-  4. *Xuất file email cá nhân hóa để bạn duyệt và gửi thủ công từng người*
+- Gửi theo `workflows/EMAIL_SENDING.md`: Outlook classic trên máy (`python3 scripts/outlook_mail.py draft|send --confirm`) → connector có sẵn → tệp `.eml`. Không hỏi người dùng chọn Gmail API/SMTP/Resend.
+- Hỏi: *"Trợ lý gửi luôn sau khi bạn duyệt, hay mở sẵn thư để bạn tự bấm Gửi?"*
+- Phản hồi: `python3 scripts/outlook_mail.py replies --days 7`, so với email của lead.
 - Xuất danh sách email đã cá nhân hóa vào thư mục `campaigns/<slug>/outputs/03_email_cadence/`.
