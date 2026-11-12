@@ -46,7 +46,7 @@ Khi tài liệu khác nói `outputs/01_icp_criteria`, `outputs/02_crawled_leads`
 
 - **Hộp thư:** mọi chiến dịch gửi qua cùng hộp thư. `email.daily_send_limit` trong `config/business.json` là tổng cho cả hộp thư; `email.daily_send_limit` của mỗi chiến dịch là phần được chia, tổng không vượt mức chung.
 - **Nguồn tìm khách:** mỗi chiến dịch tự chọn nguồn theo ICP của mình (`campaign.json` → `lead_sources`), không mặc định LinkedIn. Trợ lý đề xuất 2–3 nguồn, người dùng chọn (skill prospecting).
-- **Đọc web:** theo `workflows/WEB_RESEARCH.md`, dùng chung cho mọi chiến dịch. LinkedIn script giữ phiên đăng nhập riêng cho từng chiến dịch.
+- **Đọc web:** theo `workflows/WEB_RESEARCH.md` (trình duyệt trong ứng dụng là chính), dùng chung cho mọi chiến dịch. Trình duyệt trong ứng dụng chỉ có một phiên đăng nhập cho mỗi trang: chiến dịch cần tài khoản mạng xã hội khác thì người dùng đăng xuất/đăng nhập lại khi chuyển chiến dịch. LinkedIn script giữ phiên đăng nhập riêng cho từng chiến dịch.
 - **TinaCRM:** dùng chung kết nối và khóa.
 
 ## Chạy theo lịch

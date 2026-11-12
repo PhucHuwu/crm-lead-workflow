@@ -48,7 +48,7 @@ Không coi việc thêm ngày giờ vào prompt, cài MCP hay import SKILL.md l�
 
 ## Trạng thái triển khai
 
-Đây là đặc tả kiến trúc, chưa phải bộ thực thi hoàn chỉnh. TinaCRM dùng REST qua `scripts/tinacrm_rest.py`; đọc web theo `WEB_RESEARCH.md`; tra doanh nghiệp qua `scripts/thongtincty.py`; chưa có gửi/đọc email hay bộ chạy lịch. Script thu thập hiện tại sinh dữ liệu demo, không dùng để nhập lead thật. Skills hướng dẫn nghiệp vụ không thay thế các connector đó.
+Đây là đặc tả kiến trúc, chưa phải bộ thực thi hoàn chỉnh. TinaCRM dùng REST qua `scripts/tinacrm_rest.py`; cào web bằng trình duyệt trong ứng dụng theo `WEB_RESEARCH.md`; tra doanh nghiệp qua `scripts/thongtincty.py`; chưa có gửi/đọc email hay bộ chạy lịch. Script thu thập hiện tại sinh dữ liệu demo, không dùng để nhập lead thật. Skills hướng dẫn nghiệp vụ không thay thế các connector đó.
 
 ## Thứ tự triển khai
 

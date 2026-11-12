@@ -59,7 +59,7 @@ graph TD
 
 ### GIAI ĐOẠN 2: THU THẬP & ĐỒNG BỘ LEAD LÊN CRM (B7 -> B9)
 5. **Chọn nguồn tìm khách (theo chiến dịch):** trợ lý phân tích ICP của chiến dịch, đề xuất 2–3 nguồn xếp theo độ phù hợp kèm lý do và rủi ro, người dùng chọn. Không mặc định LinkedIn. Chi tiết: `.agents/skills/prospecting/SKILL.md`.
-6. **Đăng nhập nguồn:** nguồn cần đăng nhập thì người dùng tự đăng nhập trong cửa sổ trình duyệt (`WEB_RESEARCH.md`); không xin mật khẩu, OTP, cookie hay token.
+6. **Đăng nhập nguồn:** nguồn cần đăng nhập thì người dùng tự đăng nhập trong khung trình duyệt của ứng dụng (`WEB_RESEARCH.md`); không xin mật khẩu, OTP, cookie hay token.
 
 ---
 

@@ -31,7 +31,7 @@ Trợ lý chủ động hỏi từng câu, dùng từ dễ hiểu và lựa ch�
 
 **Lưu ý triển khai:** cài connector lần đầu có thể cần người hỗ trợ kỹ thuật; dự án chưa có bộ cài một lần bằng giao diện. Sau khi công cụ được kết nối, người dùng làm việc chủ yếu qua hội thoại dẫn dắt.
 
-**Lấy dữ liệu web:** [không cài trình duyệt riêng](workflows/WEB_RESEARCH.md). Trợ lý dùng công cụ web có sẵn, `scripts/fetch_page.py`, ThongtinCty (`scripts/thongtincty.py`), Apollo/Apify; cách nào không được thì chuyển cách khác, ngay trong phiên đang mở.
+**Lấy dữ liệu web:** [không cài trình duyệt riêng](workflows/WEB_RESEARCH.md). Trợ lý điều khiển trình duyệt có sẵn trong Claude Desktop / ChatGPT desktop app (cuộn, bấm, đọc) để cào dữ liệu, kèm công cụ đọc web, `scripts/fetch_page.py`, ThongtinCty (`scripts/thongtincty.py`), Apollo/Apify; cách nào không được thì chuyển cách khác, ngay trong phiên đang mở.
 
 **Một phiên cho mọi việc:** kết nối và ngữ cảnh không chuyển sang phiên khác, nên làm mọi bước và mọi chiến dịch trong cùng một phiên; hôm sau mở lại đúng phiên đó ở thanh bên trái.
 

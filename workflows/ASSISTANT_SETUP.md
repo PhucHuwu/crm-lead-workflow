@@ -9,7 +9,7 @@ Khi hướng dẫn người dùng, một thao tác mỗi lượt, rồi hỏi �
 1. Mở Claude Desktop → tab **Code** (biểu tượng `</>`) → **This computer** (bản cũ ghi Local) → **Choose…** → chọn thư mục gốc workflow (có `AGENTS.md`).
 2. Chế độ quyền ở thanh dưới ô nhập: giữ **Manual** khi mới dùng. Không đề nghị Bypass permissions.
 3. Lần đầu chạy lệnh, Claude hỏi quyền: bấm **Always allow** cho đúng các lệnh `python3 scripts/...`, `sh scripts/...` (Windows: `powershell ... scripts/...ps1`) của workflow.
-4. Đọc web dùng công cụ có sẵn của Claude hoặc `python3 scripts/fetch_page.py`; ThongtinCty là `python3 scripts/thongtincty.py`. Dùng được ngay trong phiên đang mở; không có MCP nào phải nạp, không cài trình duyệt riêng.
+4. Cào dữ liệu web bằng trình duyệt trong ứng dụng (khung Browser, cần **Settings → Code → Browser tools** đang bật), đọc nhanh bằng công cụ có sẵn hoặc `python3 scripts/fetch_page.py`; ThongtinCty là `python3 scripts/thongtincty.py`. Dùng được ngay trong phiên đang mở; không có MCP nào phải nạp, không cài trình duyệt riêng.
 
 **Làm mọi việc trong cùng một phiên.** Kết nối (thẻ Connect, quyền đã cho) và ngữ cảnh không chuyển sang phiên khác, nên không bao giờ nhờ người dùng mở phiên mới (+ New). Hôm sau làm tiếp: mở lại đúng phiên cũ ở thanh bên trái.
 

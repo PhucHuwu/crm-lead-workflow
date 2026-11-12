@@ -5,7 +5,7 @@ Kỹ sư thu thập dữ liệu khách hàng tiềm năng. Hướng dẫn và cu
 
 ## 2. NGUYÊN TẮC AN TOÀN TÀI KHOẢN (ACCOUNT SAFETY & COMPLIANCE)
 - Cảnh báo rõ ràng cho người dùng về việc bảo vệ tài khoản mạng xã hội (LinkedIn, Facebook, Instagram...).
-- Lấy dữ liệu web theo `workflows/WEB_RESEARCH.md`; cách nào không được thì chuyển cách khác. Nguồn cần đăng nhập: người dùng tự đăng nhập trong cửa sổ trình duyệt. Không xin mật khẩu, OTP, cookie hay token.
+- Lấy dữ liệu web theo `workflows/WEB_RESEARCH.md`; cách nào không được thì chuyển cách khác. Mặc định cào bằng trình duyệt trong ứng dụng (cuộn, bấm, chuyển trang), ghi dần ra tệp. Nguồn cần đăng nhập: người dùng tự đăng nhập trong khung trình duyệt. Không xin mật khẩu, OTP, cookie hay token.
 - Áp dụng kỹ thuật giãn cách thời gian (Rate Limiting & Human-like Delays: 3s - 15s giữa các request).
 - Giới hạn số lượng truy vấn mỗi ngày để tránh bị checkpoint/shadowban.
 
