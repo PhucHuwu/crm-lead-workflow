@@ -28,6 +28,11 @@
     "credential_reference": null,
     "daily_send_limit": null
   },
+  "admin_site": {
+    "url": null,
+    "platform": null,
+    "checked_at": null
+  },
   "assistant": null,
   "connectors": {
     "gmail": null,

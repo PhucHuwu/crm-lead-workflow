@@ -78,7 +78,8 @@ TinaCRM-Agent/
 │   ├── 01_icp_criteria/                # Tiêu chí ICP & Lead scoring xuất ra
 │   ├── 02_crawled_leads/               # Danh sách lead cào được
 │   ├── 03_email_cadence/               # Chuỗi email chăm sóc cá nhân hóa
-│   └── 04_weekly_reports/              # Báo cáo hiệu quả hàng tuần
+│   ├── 04_weekly_reports/              # Báo cáo hiệu quả hàng tuần
+│   └── 05_articles/                    # Bài viết SEO (workflow phụ ADMIN_SITE)
 ├── config/
 │   ├── config.example.env              # Mẫu cấu hình biến môi trường
 │   └── claude_desktop_config.template.json # Cấu hình MCP Server (nếu dùng)

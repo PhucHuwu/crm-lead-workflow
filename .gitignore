@@ -36,3 +36,6 @@ config/tinacrm_api_key.txt
 
 # Codex project config (machine-specific; the workflow adds nothing here)
 .codex/config.toml
+
+# Per-business notes about the internal admin site (workflows/ADMIN_SITE.md)
+config/admin_site_notes.md

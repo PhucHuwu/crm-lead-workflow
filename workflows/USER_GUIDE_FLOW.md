@@ -47,6 +47,7 @@ Người dùng thường dán nguyên câu mẫu. Nhận diện bước và ch�
 | “Đề xuất tiêu chí khách hàng phù hợp (ICP)…”, “Tạo chiến dịch mới…” | 7 |
 | “Tìm 10 khách theo ICP đã chốt…”, “Kiểm tra trùng và lưu danh sách đã duyệt vào TinaCRM…” | 8 |
 | “Kết nối hộp thư…”, “Gửi email bằng Outlook…”, “Đề xuất chuỗi email chăm sóc…” | 9 |
+| “Tôi đang ở trang quản trị…”, “Viết và đăng bài…”, “Viết bài chuẩn SEO…” | Workflow phụ `ADMIN_SITE.md` (không đổi bước đang làm) |
 | “Làm chiến dịch…”, “Tiếp tục chiến dịch…”, “Tiếp tục từ lần trước” | 10 (đúng chiến dịch đó) |
 | “Đặt lịch chạy…”, “Tạm dừng lịch…”, “Đổi giờ chạy…”, “Xem các lịch…” | 10 (`SCHEDULING.md`) |
 | “Thiết lập báo cáo hằng tuần…” | 11 |
