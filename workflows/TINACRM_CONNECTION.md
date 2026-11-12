@@ -68,6 +68,9 @@ python3 scripts/tinacrm_rest.py <base_url> create-task     '{"title":"…","assi
 
 - `ensure-articles-schema` kiểm tra theo tên API; chỉ tạo phần thiếu, không sửa hay xóa trường có sẵn, rồi đọc lại cấu trúc (`verified_missing` phải rỗng). Chạy lại nhiều lần không sao.
 - Object mới tự có quan hệ với Task và Note, nên `create-task` gắn được `articleId` (qua `taskTargets.targetArticleId`).
+- Phía Công ty / Người / Cơ hội có trường ngược “Bài viết” (tên API `baiViet`; workspace tạo lúc nhãn tiếng Việt bị từ chối thì là `articles`).
+- `assigneeId` phải là id trong `members` của đúng workspace đang dùng; id của workspace khác báo lỗi `violates foreign key constraint`.
+- Đã chạy thử trên app.tinacrm.com (12/11/2026): tạo object, trường, quan hệ, đổi trạng thái, task gắn bài, báo cáo tuần đều đúng.
 - `upsert-article` tìm bản ghi theo `id`, rồi đường dẫn, rồi tiêu đề chính xác; chỉ cập nhật các khóa được truyền. Bản ghi mới mặc định `PROPOSED`.
 - Người dùng muốn tự tạo trên giao diện (Settings → Data model → New object): dùng đúng tên API trong bảng (mục Advanced của từng trường), rồi chạy `ensure-articles-schema --dry-run` để kiểm tra.
 - Ghi vào `config/business.json` → `crm.articles`: `status` (`ready` / `skipped`), `object_id`, `checked_at`.
